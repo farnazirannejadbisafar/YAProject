@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "Yempo">
+
+<head>
+  <meta charset="UTF-8">
+  <title>profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=PT+Sans'>
+  <link rel="stylesheet" href="css/styleProfile.css">
+
+</head>
+
+<body>
+
+  <div class='container' ng-controller="ProfileController">
+    <div ng-show="openslide" id="side-menu" class="side-nav">
+      <a class="btn-close" ng-click="closeSlideMenu()">&times;</a>
+	  <span></br></br></span>
+      <a ng-show="connected" ng-click="openFilters()">Filters</a>
+      <a ng-show="connected" ng-click="openFeed()">Feed</a>
+	  <a ng-show="connected" ng-click="openReach()">Reach</a>
+      <a href="#">Logout</a>
+    </div>
+    <div class='card'>
+      <div class="add-btn"><a class="fa fa-arrow-right" ng-click="openSlideMenu()"></a></div>
+      <div class="avatar"><img src={{currentUser.profilepic}} width="150" height="150"/></div>
+      <div class="hi">
+        <h5>Hi, {{currentUser.name}}</h5>
+      </div>
+      <div class="details">
+      <div class="email">
+        <span class="id">email </span><span class="emailid">{{currentUser.username}}</span>
+      </div>
+      <div class="linked-accounts">
+        <span class="linked">linked accounts</span>
+        <div class="social-media">
+          <div class="twit">
+          <a ng-show="connected" class="fa fa-twitter-square"></a>
+          </div>
+        </div>
+      </div>
+        <button class="btn" ng-show="!connected"  id="addaccount"><a href={{twitterLogin}}>add account</a></button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

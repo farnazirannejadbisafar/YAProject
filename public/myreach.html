@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "Yempo">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Reach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=PT+Sans'>
+  <link rel="stylesheet" href="css/styleMyReach.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class='container' ng-controller="ReachController">
+      <div ng-show="openslide" id="side-menu" class="side-nav">
+          <a class="btn-close" ng-click="closeSlideMenu()">&times;</a>
+          <span></br></br></span>
+          <a ng-click="openFilters()">Filters</a>
+          <a ng-click="openFeed()">Feed</a>
+          <a ng-click="openProfile()">Profile</a>
+          <a href="#">Logout</a>
+      </div>
+    <div class='card'>
+        <div class="add-btn"><a class="fa fa-arrow-right" ng-click="openSlideMenu()"></a></div>
+	  
+	  <div class= "title"> 
+		<h3>Reach</h3>
+	  </div>
+	  <div class="likes-text">
+		<img src="images/likes.png">
+		<h2><i>{{likes.message[0].count}}</i></h2>
+		<p>Likes</p>
+	  </div>
+	  <div class="comments-text">
+	  <img src="images/comments.png">
+	  <h2><i>{{comments.message[0].count}}</i></h2>
+		<p>comments</p>
+	  </div>
+	  <div class="shares-text">
+	  <img src="images/shares.png">
+	  <h2><i>{{shares.message[0].count}}</i></h2>
+	  <p>shares</p>
+	  </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
