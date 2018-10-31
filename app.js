@@ -45,7 +45,7 @@ const postRoutes = require("./api/routes/post.route");
 const userRoutes = require('./api/routes/user.route');
 
 mongoose.connect(
-  "mongodb://heroku_xptmg5hr:9sp2bqojd2obgiccnlujse1mo@ds143241.mlab.com:43241/heroku_xptmg5hr",
+  "mongodb://manpreet:manpreet1@ds257808.mlab.com:57808/heroku_bb9z6l3j",
   {
     useMongoClient: true
   }
