@@ -16,7 +16,7 @@ app.use(passport.session());
 passport.use(new Strategy({
         consumerKey: process.env.CONSUMER_KEY,
         consumerSecret: process.env.CONSUMER_SECRET,
-        callbackURL: 'https://karanam-saikrishna-webdev.herokuapp.com/login/twitter/return',
+        callbackURL: 'https://yap-meanstack-app.herokuapp.com',
         passReqToCallback : true
     },
     function (req, token, tokenSecret, profile, cb) {
