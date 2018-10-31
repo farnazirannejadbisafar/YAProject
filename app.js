@@ -16,14 +16,14 @@ app.use(passport.session());
 passport.use(new Strategy({
         consumerKey: process.env.CONSUMER_KEY,
         consumerSecret: process.env.CONSUMER_SECRET,
-        callbackURL: 'https://yap-meanstack-app.herokuapp.com',
+        callbackURL: 'https://yap-meanstack-app.herokuapp.com/',
         passReqToCallback : true
     },
     function (req, token, tokenSecret, profile, cb) {
-        //console.log("req is ", req);
-        //console.log("token is ", token);
-        //console.log("the token secret is ", tokenSecret);
-        //console.log("the profile secret is ", profile);
+        console.log("req is ", req);
+        console.log("token is ", token);
+        console.log("the token secret is ", tokenSecret);
+        console.log("the profile secret is ", profile);
         UserController.user_connect_twitter(profile,token,tokenSecret);
         return cb(null, profile);
     }));
