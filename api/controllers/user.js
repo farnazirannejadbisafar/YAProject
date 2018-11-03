@@ -55,6 +55,7 @@ exports.user_signup = (req, res, next) => {
 };
 
 exports.currentUser = (req, res) => {
+    console.log("********** = " + req);
     const currentUser = req.session['currentUser'];
     const id = currentUser.userId;
     User.findById(id)
@@ -109,8 +110,9 @@ exports.user_login = (req, res, next) => {
           let currUser = {
               userId: user[0]._id,
               token: token
-          }
+          };
             req.session['currentUser'] = currUser;
+            console.log("************ = " + req.session['currentUser']);
           return res.status(200).json({
             message: "Login successful",
             _id : user[0]._id,
