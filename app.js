@@ -16,7 +16,7 @@ app.use(passport.session());
 passport.use(new Strategy({
         consumerKey: process.env.CONSUMER_KEY,
         consumerSecret: process.env.CONSUMER_SECRET,
-        callbackURL: 'https://yap-meanstack-app.herokuapp.com/',
+        callbackURL: 'https://yap-meanstack-app.herokuapp.com/login/twitter/return',
         passReqToCallback : true
     },
     function (req, token, tokenSecret, profile, cb) {
@@ -79,10 +79,16 @@ app.use((req, res, next) => {
 
 app.get('/login/twitter',passport.authenticate('twitter'));
 
+// app.get('/login/twitter/return',
+//     passport.authenticate('twitter', { failureRedirect: '/' }),
+//     function(req, res) {
+//         res.redirect('/');
+//     });
+
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
-        res.redirect('/');
+        res.redirect('/user/profile');
     });
 
 // Routes which should handle requests
