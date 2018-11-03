@@ -1640,7 +1640,7 @@
 
     function ProfileController($location, userService, $routeParams, $anchorScroll, $route, $scope) {
 
-        if(!$location.path().contains('/profile')){
+        if(!$location.path().indexOf('/profile') > -1){
             $scope.userId = $routeParams.userId;
             $scope.token = $routeParams.token;
         }
