@@ -82,7 +82,8 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
-        res.redirect('/');
+        var oldURL = document.referrer;
+        res.redirect(oldURL);
     });
 
 // Routes which should handle requests
