@@ -55,7 +55,6 @@ exports.user_signup = (req, res, next) => {
 };
 
 exports.currentUser = (req, res) => {
-    console.log("********** = " + res);
     const currentUser = req.session['currentUser'];
     const id = currentUser.userId;
     User.findById(id)
