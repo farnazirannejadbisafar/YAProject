@@ -104,7 +104,7 @@ exports.user_profile = (req, res, next) => {
   User.findById(id)
     .exec()
     .then(user => {
-
+    console.log("********** = " + JSON.stringify(user));
       if (user) {
         res.status(200).json({
           profilepic: user.profilepic,
