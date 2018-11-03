@@ -79,16 +79,10 @@ app.use((req, res, next) => {
 
 app.get('/login/twitter',passport.authenticate('twitter'));
 
-// app.get('/login/twitter/return',
-//     passport.authenticate('twitter', { failureRedirect: '/' }),
-//     function(req, res) {
-//         res.redirect('/');
-//     });
-
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
-        res.redirect('/user/profile');
+        res.redirect('/');
     });
 
 // Routes which should handle requests

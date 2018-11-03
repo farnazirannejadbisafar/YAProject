@@ -2499,11 +2499,6 @@
             .when('/feed/:userId/:token', {
                 templateUrl: 'feed.html'
             })
-            .when('/user/profile', {
-                templateUrl: 'profile.html'
-            })
-
-
     }
 
 })();
