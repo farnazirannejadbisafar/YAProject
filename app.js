@@ -80,8 +80,7 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
-        // $location('/profile')
-        res.redirect('#!profile')
+        res.redirect('/')
     });
 
 

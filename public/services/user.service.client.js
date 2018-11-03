@@ -31,11 +31,6 @@
             return $http.get(url);
         }
 
-        function currentUser() {
-            var url = userURL + 'currentUser';
-            return $http.get(url);
-        }
-
         // done
         function findUserById(userId,token) {
             var url = userURL + '/profile/' + userId;

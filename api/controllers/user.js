@@ -54,34 +54,6 @@ exports.user_signup = (req, res, next) => {
     });
 };
 
-exports.currentUser = (req, res) => {
-    console.log("**************8888 = " + req);
-    const currentUser = req.session['currentUser'];
-    console.log("**************8888 = " + currentUser);
-    const id = currentUser.userId;
-    User.findById(id)
-        .exec()
-        .then(user => {
-
-            if (user) {
-                res.status(200).json({
-                    profilepic: user.profilepic,
-                    name: user.name,
-                    username: user.username,
-                    connected : (user.twitter.token !== 'token')
-                });
-            } else {
-                res
-                    .status(404)
-                    .json({ message: "No user found." });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ error: err });
-        });
-};
-
 exports.user_login = (req, res, next) => {
   User.find({ username: req.body.email })
     .exec()
@@ -108,12 +80,6 @@ exports.user_login = (req, res, next) => {
               expiresIn: "1h"
             }
           );
-          let currUser = {
-              userId: user[0]._id,
-              token: token
-          };
-            req.session['currentUser'] = currUser;
-            console.log("************ = " + req.session['currentUser']);
           return res.status(200).json({
             message: "Login successful",
             _id : user[0]._id,

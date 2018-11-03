@@ -1665,13 +1665,6 @@
 
         init();
 
-        function currentUser(){
-            userService.currentUser().then(user => {
-                $scope.userId = user.userId;
-                $scope.token = user.token;
-            })
-        }
-
         function displayUser(user) {
             $scope.currentUser = user;
             $scope.connected = user.connected;
