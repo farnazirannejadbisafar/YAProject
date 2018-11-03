@@ -88,11 +88,9 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 
 
 app.get('/login/twitter/return',
-    function(req, res) {
-        UserController.currentUser(req, res).then(user => {
+        UserController.currentUser().then(user => {
             $location.url('/user/' + user.userId, +'/' + user.token);
-        });
-    })
+        }))
 
 // Routes which should handle requests
 app.use("/api/filter", filterRoutes);
