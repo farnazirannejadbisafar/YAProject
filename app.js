@@ -83,7 +83,6 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function (req, token, tokenSecret, profile, cb) {
-        alert("SSDFSDFSDF");
         console.log("req is ", req);
         console.log("token is ", token);
         console.log("the token secret is ", tokenSecret);
