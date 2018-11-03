@@ -65,7 +65,7 @@
 
         function findUserProfile(userId) {
             var url = userURL + '/profile/' + userId;
-            return $http.post(url, user)
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 }, function (error) {
