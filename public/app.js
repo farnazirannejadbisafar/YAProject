@@ -1652,9 +1652,6 @@
         $scope.closeSlideMenu = closeSlideMenu;
         $scope.connectTwitter = connectTwitter;
 
-        global.userId = $scope.userId;
-        global.token = $scope.token;
-
         function init() {
             userService.findUserById($scope.userId,$scope.token)
                 .then(displayUser, profileError);

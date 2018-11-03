@@ -82,8 +82,13 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
-        res.redirect('/user/' + global.userId, + '/' + global.token);
+        UserController.currentUser().then(validatedUser)
+
     });
+
+function validatedUser(user) {
+    $location.url('/user/' + user.userId, + '/' + user.token);
+}
 
 // Routes which should handle requests
 app.use("/api/filter", filterRoutes);
