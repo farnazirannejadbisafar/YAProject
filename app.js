@@ -82,8 +82,8 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
-        UserController.currentUser(req, res).then(user => {
-            res.redirect('/user/' + user.id + '/' + user.token)
+        UserController.currentUser(req1, res1).then(user => {
+            res1.redirect('/user/' + user.id + '/' + user.token)
         })
     });
 
