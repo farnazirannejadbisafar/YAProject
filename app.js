@@ -55,13 +55,12 @@ mongoose.Promise = global.Promise;
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use(require('express-session')({    secret: "catdogcat",
                                         resave: true,
                                         maxAge: 360*5,
                                         saveUninitialized: true,
-                                        cookie: {
-                                            secure: true
-                                        }
+
 }));
 
 app.use((req, res, next) => {
@@ -93,19 +92,19 @@ app.use("/api/user", userRoutes);
 
 app.use(express.static(__dirname + '/public'));
 
-app.use((req, res, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
-
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message
-    }
-  });
-});
+// app.use((req, res, next) => {
+//   const error = new Error("Not found");
+//   error.status = 404;
+//   next(error);
+// });
+//
+// app.use((error, req, res, next) => {
+//   res.status(error.status || 500);
+//   res.json({
+//     error: {
+//       message: error.message
+//     }
+//   });
+// });
 
 module.exports = app;
