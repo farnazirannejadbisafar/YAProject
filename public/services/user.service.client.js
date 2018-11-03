@@ -11,7 +11,8 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
-            connectTwitter: connectTwitter
+            connectTwitter: connectTwitter,
+            findUserProfile: findUserProfile
         };
         return api;
 
@@ -54,6 +55,16 @@
         // done
         function findUserByCredentials(user) {
             var url = userURL + '/login';
+            return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                }, function (error) {
+                    return error.data;
+                });
+        }
+
+        function findUserProfile(userId) {
+            var url = userURL + '/profile/' + userId;
             return $http.post(url, user)
                 .then(function (response) {
                     return response.data;
