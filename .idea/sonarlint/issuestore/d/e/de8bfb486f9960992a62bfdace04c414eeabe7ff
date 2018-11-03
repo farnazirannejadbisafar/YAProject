@@ -1,20 +1,0 @@
-
-tpython:S117"XRename this parameter "ACCESS_TOKEN" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒùèêûÿÿÿÿ
-{python:S117"_Rename this parameter "ACCESS_TOKEN_SECRET" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒùèêûÿÿÿÿ
-vpython:S1173"ZRename this local variable "finalList" to match the regular expression ^[_a-z][a-z0-9_]*$.(Óø£¾ùÿÿÿÿ
-wpython:S117:"[Rename this local variable "finalList2" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤ú’ûÿÿÿÿ
-qpython:S117?"URename this parameter "finalList" to match the regular expression ^[_a-z][a-z0-9_]*$.(›ŒÉ¾ûÿÿÿÿ
-python:S117O"cRename this local variable "followerConnection" to match the regular expression ^[_a-z][a-z0-9_]*$.(ááÆïşÿÿÿÿ
-ypython:S117#"]Rename this local variable "theFollowers" to match the regular expression ^[_a-z][a-z0-9_]*$.(”í¬şÿÿÿÿ
-tpython:S1172"XRename this parameter "ACCESS_TOKEN" to match the regular expression ^[_a-z][a-z0-9_]*$.(– ‚ÿÿÿÿÿ
-gpython:S1542"ORename function "Remove" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(°ãÁâ
-rpython:S1542"URename function "topFollowers" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ƒùèêûÿÿÿÿ
-wpython:S117L"[Rename this local variable "singleUser" to match the regular expression ^[_a-z][a-z0-9_]*$.(ò®åşøÿÿÿÿ
-€python:S1542?"cRename function "saveFinalMutualConnections" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(›ŒÉ¾ûÿÿÿÿ
-python:S15422"bRename function "getFinalMutualConnections" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(– ‚ÿÿÿÿÿ
-rpython:S117"VRename this parameter "screenName" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒùèêûÿÿÿÿ
-;python:S125
-"Remove this commented out code.(ğ©—ııÿÿÿÿ
-{python:S1172"_Rename this parameter "ACCESS_TOKEN_SECRET" to match the regular expression ^[_a-z][a-z0-9_]*$.(– ‚ÿÿÿÿÿ
-rpython:S117&"[Rename this local variable "returnList" to match the regular expression ^[_a-z][a-z0-9_]*$.(¬µï·
-rpython:S117?"VRename this parameter "screenName" to match the regular expression ^[_a-z][a-z0-9_]*$.(›ŒÉ¾ûÿÿÿÿ

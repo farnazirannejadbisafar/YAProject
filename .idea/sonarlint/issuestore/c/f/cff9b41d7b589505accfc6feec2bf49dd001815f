@@ -1,153 +1,0 @@
-
-mjavascript:S1854õ"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-]javascript:S1854½"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-djavascript:UnusedVariableÓ"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-djavascript:UnusedVariableµ"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-tjavascript:UnusedVariableî"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-yjavascript:UnusedVariable…"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-Ejavascript:S1116¬	"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-tjavascript:UnusedVariableÇ"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-ijavascript:S1854É"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-yjavascript:UnusedVariableª"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-djavascript:UnusedVariable˜"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-gjavascript:S2814û"CRename "i" as this name is already used in declaration at line 500.(îüŠï8¡È•»í,
-djavascript:UnusedVariableğ"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-ijavascript:S1854¤"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-ijavascript:S1854ˆ
-"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-ojavascript:UnusedVariableË	"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-]javascript:S1854˜"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-]javascript:S1854ü	"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-ojavascript:UnusedVariable¿"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-ijavascript:S1854›"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-hjavascript:S1854“"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-pjavascript:S2814«"GRename "user" as this name is already used in declaration at line 1577.(§âÉ™ùÿÿÿÿ8¡È•»í,
-hjavascript:S1854ö"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-xjavascript:UnusedVariable|"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-djavascript:S1854û"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-Ejavascript:S1116„"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-hjavascript:S1854¢"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-njavascript:UnusedVariable‰"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-hjavascript:S1854¿"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-hjavascript:S1854±"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-hjavascript:S1854„"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-ijavascript:S1854ü"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-javascript:S2703ô"]Add the "let", "const" or "var" keyword to this declaration of "mycolor" to make it explicit.( ö¬«8¡È•»í,
-yjavascript:UnusedVariableİ"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-njavascript:UnusedVariable•
-"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-djavascript:UnusedVariable½"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-kjavascript:UnusedVariableİ">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-rjavascript:S1854…"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-ojavascript:UnusedVariable„"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-ojavascript:UnusedVariableç"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-pjavascript:UnusedVariable¤">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-ojavascript:UnusedVariableö"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-kjavascript:UnusedVariableÀ">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-njavascript:UnusedVariableì"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-djavascript:S1854×"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-wjavascript:S2814ú"NRename "selectedData" as this name is already used in declaration at line 496.(¿û‰şùÿÿÿÿ8¡È•»í,
-hjavascript:S1854Î"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-gjavascript:S2814İ"CRename "i" as this name is already used in declaration at line 726.(îüŠï8¡È•»í,
-tjavascript:UnusedVariableõ"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-rjavascript:S1854À"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-gjavascript:S1854•
-"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-Djavascript:S1116"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-hjavascript:S1854Ú	"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-njavascript:UnusedVariableÖ"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-ujavascript:S28146"MRename "selectedData" as this name is already used in declaration at line 44.(¿û‰şùÿÿÿÿ8¡È•»í,
-pjavascript:UnusedVariableß">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-kjavascript:UnusedVariableû">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-rjavascript:S1854é	"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-djavascript:S1854¹"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-hjavascript:S1854›"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-njavascript:UnusedVariable±"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-mjavascript:S1854ä"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-ujavascript:UnusedVariableÇ"HRemove the declaration of the unused 'acquaintancesPetalsText' variable.(óË¨Ë8¡È•»í,
-pjavascript:UnusedVariableü">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-qjavascript:S1854|"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-rjavascript:S1854¢"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-djavascript:S1854İ"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-mjavascript:S1854Ñ"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-pjavascript:UnusedVariableÁ">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-qjavascript:UnusedVariable˜"DRemove the declaration of the unused 'acquaintancesPetals' variable.(©¦†ä8¡È•»í,
-gjavascript:S2814˜"CRename "i" as this name is already used in declaration at line 273.(îüŠï8¡È•»í,
-wjavascript:S2814—"NRename "selectedData" as this name is already used in declaration at line 269.(¿û‰şùÿÿÿÿ8¡È•»í,
-Ejavascript:S1116æ"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-ojavascript:UnusedVariable›"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-tjavascript:UnusedVariableÑ"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-Ejavascript:S1116"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-]javascript:S1854ğ"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-mjavascript:S1854µ
-"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-wjavascript:S2814Ü"NRename "selectedData" as this name is already used in declaration at line 722.(¿û‰şùÿÿÿÿ8¡È•»í,
-djavascript:S1854À"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-Ejavascript:S1116É"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-njavascript:UnusedVariable^"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-Djavascript:S1116@"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-djavascript:UnusedVariable"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-ojavascript:UnusedVariableÚ	"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-ojavascript:UnusedVariableÎ"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-gjavascript:S1854m"?Remove this useless assignment to local variable "bridgeDashes"(ì¨¬çıÿÿÿÿ8¡È•»í,
-hjavascript:S1854Ë	"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-hjavascript:S1854ç"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-gjavascript:S1854^"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-rjavascript:S1854İ"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-njavascript:UnusedVariable¨"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-yjavascript:UnusedVariableÀ"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-kjavascript:UnusedVariable¹">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-njavascript:S1854Ç"JRemove this useless assignment to local variable "acquaintancesPetalsText"(óË¨Ë8¡È•»í,
-mjavascript:S1854Ç"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-gjavascript:S2814À"CRename "i" as this name is already used in declaration at line 953.(îüŠï8¡È•»í,
-njavascript:UnusedVariableÎ"BRemove the declaration of the unused 'friendsPetalsText' variable.(»²„)8¡È•»í,
-tjavascript:UnusedVariableŒ"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-gjavascript:S1854‰"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-xjavascript:S2814¢	"ORename "selectedData" as this name is already used in declaration at line 1176.(¿û‰şùÿÿÿÿ8¡È•»í,
-njavascript:S1854©"JRemove this useless assignment to local variable "acquaintancesPetalsText"(óË¨Ë8¡È•»í,
-gjavascript:S1854ì"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-djavascript:S1854¤
-"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-mjavascript:S1854Œ"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-jjavascript:S1854·"FRemove this useless assignment to local variable "acquaintancesPetals"(©¦†ä8¡È•»í,
-jjavascript:S1854˜"FRemove this useless assignment to local variable "acquaintancesPetals"(©¦†ä8¡È•»í,
-djavascript:UnusedVariableü	"7Remove the declaration of the unused 'circle' variable.(áÜúÔ8¡È•»í,
-hjavascript:S2814£	"DRename "i" as this name is already used in declaration at line 1180.(îüŠï8¡È•»í,
-]javascript:S1854Ó"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-ijavascript:S1854Á"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-tjavascript:UnusedVariableµ
-"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-qjavascript:UnusedVariable·"DRemove the declaration of the unused 'acquaintancesPetals' variable.(©¦†ä8¡È•»í,
-ejavascript:S28147"BRename "i" as this name is already used in declaration at line 48.(îüŠï8¡È•»í,
-yjavascript:UnusedVariableé	"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-ijavascript:S1854ß"@Remove this useless assignment to local variable "friendsPetals"(æ²¿’üÿÿÿÿ8¡È•»í,
-yjavascript:UnusedVariable¢"LRemove the declaration of the unused 'bridgeToAcquaintancesDashes' variable.(­¼ğ‡8¡È•»í,
-ojavascript:UnusedVariable±"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-pjavascript:UnusedVariableˆ
-">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-hjavascript:S1854Œ"?Remove this useless assignment to local variable "friendsLines"(™ÙĞåùÿÿÿÿ8¡È•»í,
-mjavascript:S1854î"DRemove this useless assignment to local variable "bridgesPetalsText"(¡îÉŞùÿÿÿÿ8¡È•»í,
-kjavascript:UnusedVariableå">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-tjavascript:UnusedVariableä"BRemove the declaration of the unused 'bridgesPetalsText' variable.(¡îÉŞùÿÿÿÿ8¡È•»í,
-wjavascript:S2814¿"NRename "selectedData" as this name is already used in declaration at line 949.(¿û‰şùÿÿÿÿ8¡È•»í,
-kjavascript:UnusedVariable×">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-djavascript:S1854å"@Remove this useless assignment to local variable "bridgesPetals"(·¹´8¡È•»í,
-rjavascript:S1854ª"NRemove this useless assignment to local variable "bridgeToAcquaintancesDashes"(­¼ğ‡8¡È•»í,
-ojavascript:UnusedVariableŒ"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-pjavascript:UnusedVariableÉ">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-pjavascript:UnusedVariable›">Remove the declaration of the unused 'friendsPetals' variable.(æ²¿’üÿÿÿÿ8¡È•»í,
-]javascript:S1854µ"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-]javascript:S1854"9Remove this useless assignment to local variable "circle"(áÜúÔ8¡È•»í,
-Ejavascript:S1116¡"Remove this empty statement.(ôŸìúÿÿÿÿ8¡È•»í,
-pjavascript:S2814Æ"GRename "user" as this name is already used in declaration at line 1604.(§âÉ™ùÿÿÿÿ8¡È•»í,
-ujavascript:UnusedVariable©"HRemove the declaration of the unused 'acquaintancesPetalsText' variable.(óË¨Ë8¡È•»í,
-ojavascript:UnusedVariable“"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-njavascript:UnusedVariablem"=Remove the declaration of the unused 'bridgeDashes' variable.(ì¨¬çıÿÿÿÿ8¡È•»í,
-gjavascript:S1854Î"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-ojavascript:UnusedVariable¢"=Remove the declaration of the unused 'friendsLines' variable.(™ÙĞåùÿÿÿÿ8¡È•»í,
-kjavascript:UnusedVariable¤
-">Remove the declaration of the unused 'bridgesPetals' variable.(·¹´8¡È•»í,
-gjavascript:S1854¨"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-gjavascript:S1854Ö"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-gjavascript:S1854±"DRemove this useless assignment to local variable "friendsPetalsText"(»²„)8¡È•»í,
-pjavascript:S2814­"GRename "post" as this name is already used in declaration at line 1944.(«À±€üÿÿÿÿ8¡È•»í,
