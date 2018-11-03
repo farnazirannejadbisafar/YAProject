@@ -1640,8 +1640,14 @@
 
     function ProfileController($location, userService, $routeParams, $anchorScroll, $route, $scope) {
 
-        $scope.userId = $routeParams.userId;
-        $scope.token = $routeParams.token;
+        if(!$location.path().contains('/profile')){
+            $scope.userId = $routeParams.userId;
+            $scope.token = $routeParams.token;
+        }
+        else{
+            currentUser()
+        }
+
         $scope.twitterLogin = '/login/twitter';
         $scope.displayUser = displayUser;
         $scope.profileError = profileError;
@@ -1658,6 +1664,13 @@
         }
 
         init();
+
+        function currentUser(){
+            userService.currentUser().then(user => {
+                $scope.userId = user.userId;
+                $scope.token = user.token;
+            })
+        }
 
         function displayUser(user) {
             $scope.currentUser = user;
@@ -2498,6 +2511,9 @@
             })
             .when('/feed/:userId/:token', {
                 templateUrl: 'feed.html'
+            })
+            .when('/profile', {
+                templateUrl: 'profile.html'
             })
     }
 

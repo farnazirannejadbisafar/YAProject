@@ -10,7 +10,7 @@ router.post("/login", UserController.user_login);
 
 router.get("/profile/:userId", checkAuth, UserController.user_profile);
 
-router.get("/twitter", checkAuth, UserController.currentUser);
+router.get("/currentUser", checkAuth, UserController.currentUser);
 
 //router.post("/connect/twitter", checkAuth, UserController.user_connect_twitter);
 
