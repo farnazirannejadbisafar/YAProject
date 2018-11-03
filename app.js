@@ -20,6 +20,7 @@ passport.use(new Strategy({
         passReqToCallback : true
     },
     function (req, token, tokenSecret, profile, cb) {
+    alert("SSDFSDFSDF");
         console.log("req is ", req);
         console.log("token is ", token);
         console.log("the token secret is ", tokenSecret);
@@ -79,13 +80,11 @@ app.use((req, res, next) => {
 
 app.get('/login/twitter',passport.authenticate('twitter'));
 
-app.get('/login/twitter/return',
-    passport.authenticate('twitter', { failureRedirect: '/' }),
-    function(req, res) {
-        UserController.currentUser().then(user => {
-            $location.url('/user/' + user.id + '/' + user.token)
-        })
-    });
+// app.get('/login/twitter/return',
+//     passport.authenticate('twitter', { failureRedirect: '/' }),
+//     function(req, res) {
+//         res.redirect('/api/user/twitter');
+//     });
 
 // Routes which should handle requests
 app.use("/api/filter", filterRoutes);
