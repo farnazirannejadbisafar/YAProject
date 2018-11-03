@@ -8,7 +8,7 @@ router.post("/signup", UserController.user_signup);
 
 router.post("/login", UserController.user_login);
 
-router.get("/profile/:userId", checkAuth, UserController.user_profile);
+router.get("/profile/:userId", UserController.user_profile);
 
 //router.post("/connect/twitter", checkAuth, UserController.user_connect_twitter);
 
