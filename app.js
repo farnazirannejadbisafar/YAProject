@@ -87,15 +87,16 @@ app.get('/login/twitter',passport.authenticate('twitter'));
 //         });
 
 
-app.get('/login/twitter/return',
-        UserController.currentUser().then(user => {
-            $location.url('/user/' + user.userId, +'/' + user.token);
-        }))
+// app.get('/login/twitter/return',
+//         UserController.currentUser().then(user => {
+//             $location.url('/user/' + user.userId, +'/' + user.token);
+//         }))
 
 // Routes which should handle requests
 app.use("/api/filter", filterRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/user", userRoutes);
+app.use("/login/twitter/return", userRoutes);
 
 app.use(express.static(__dirname + '/public'));
 
