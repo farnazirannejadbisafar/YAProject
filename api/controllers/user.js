@@ -104,14 +104,12 @@ exports.user_profile = (req, res, next) => {
   User.findById(id)
     .exec()
     .then(user => {
-        let connectedval = (user.twitter.token !== 'token');
-    console.log("********** = " + connectedval);
       if (user) {
         res.status(200).json({
           profilepic: user.profilepic,
 		  name: user.name,
 		  username: user.username,
-          connected : (user.twitter.token !== 'token')
+          connected : (user.twitter.token === 'token')
         });
       } else {
         res
