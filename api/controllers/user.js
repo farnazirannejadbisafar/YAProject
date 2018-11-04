@@ -109,7 +109,7 @@ exports.user_profile = (req, res, next) => {
           profilepic: user.profilepic,
 		  name: user.name,
 		  username: user.username,
-          connected : (user.twitter.token === 'token')
+          connected : (user.twitter.token !== 'token')
         });
       } else {
         res
