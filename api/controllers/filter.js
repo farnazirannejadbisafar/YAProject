@@ -13,7 +13,7 @@ exports.filter_most_followers = (req, res, next) => {
       } else {
 		res.status(200).json({
             message: "most followers",
-            screennames: user.twitter.mutualconnections.slice(1).sort(sortit).slice(0, 5).map(a => a.screenname),
+            screennames: user.twitter.mutualconnections.slice(1).sort(sortit).slice(0, 5).map(a => a.screen_name),
             followerlength : user.twitter.mutualconnections.slice(1).sort(sortit).slice(0, 5).map(a => a.mutual_connection)
       });
 	  }
