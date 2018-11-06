@@ -11,6 +11,7 @@ exports.filter_most_followers = (req, res, next) => {
           message: "User not found"
         });
       } else {
+          console.log(JSON.stringyfy(user))
 		res.status(200).json({
             message: "most followers",
             screennames: user.twitter.mutualconnections.slice(1).sort(sortit).slice(0, 5).map(a => a.screen_name),
