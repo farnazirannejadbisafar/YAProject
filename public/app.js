@@ -1617,7 +1617,7 @@
                             drawConnections(scope.acquaintances, scope.bridges)
                         }
                         catch(err) {
-                            alert(err)
+                            console.log(err)
                         }
                     }, true);
 
@@ -1647,9 +1647,9 @@
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
-                        var margin = {top: 20, right: 15, bottom: 60, left: 60}
-                            , width = 960 - margin.left - margin.right
-                            , height = 500 - margin.top - margin.bottom
+                        // var margin = {top: 20, right: 15, bottom: 60, left: 60}
+                        var width = 360 //960 - margin.left - margin.right
+                        var height = 460; //500 - margin.top - margin.bottom
 
                         bridges = bridges.reduce(function (r, a, i) {
                                 if (i % 2) {
@@ -1659,8 +1659,6 @@
                                 }
                                 return r;
                             }, []);
-
-                        alert(bridges)
 
                         var x = d3.scaleLinear()
                             .domain([0, d3.max(bridges, function(d) { return d[0]; })])
@@ -1672,12 +1670,13 @@
 
                         var chart = d3.select(element[0])
                             .append('svg:svg')
-                            .attr('width', width + margin.right + margin.left)
-                            .attr('height', height + margin.top + margin.bottom)
+                            .attr('width', width) //+ margin.right + margin.left)
+                            .attr('height', height) // + margin.top + margin.bottom)
                             .attr('class', 'chart');
 
                         var main = chart.append('g')
-                            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+                            // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+                            .attr('transform', 'translate(' + 100 + ',' + 100 + ')')
                             .attr('width', width)
                             .attr('height', height)
                             .attr('class', 'main');
