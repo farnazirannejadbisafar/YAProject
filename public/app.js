@@ -1669,7 +1669,7 @@
                             .domain([0, d3.max(bridges, function(d) { return d[1]; })])
                             .range([ height, 0 ]);
 
-                        var chart = d3.select('body')
+                        var chart = d3.select(element[0])
                             .append('svg:svg')
                             .attr('width', width + margin.right + margin.left)
                             .attr('height', height + margin.top + margin.bottom)
@@ -1709,12 +1709,6 @@
                             .attr("cx", function (d,i) { return x(d[0]); } )
                             .attr("cy", function (d) { return y(d[1]); } )
                             .attr("r", 8);
-
-
-                        // Set the dimensions of the canvas / graph
-                        var	margin = {top: 30, right: 20, bottom: 30, left: 50},
-                            width = 400 - margin.left - margin.right,
-                            height = 220 - margin.top - margin.bottom;
 
                     }
                 }
