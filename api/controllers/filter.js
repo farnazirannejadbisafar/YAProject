@@ -157,9 +157,9 @@ exports.filter_all_followers = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "least followers",
+            message: "all followers",
             screennames: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.screen_name),
-            followerlength: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.mutual_connection)
+            followerlength: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.followers_count)
     });
     }
 })

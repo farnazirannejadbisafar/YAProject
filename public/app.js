@@ -1576,12 +1576,8 @@
                 restrict: 'E',
                 terminal: true,
                 scope: {
-                    acquaintancesinyourarea: '=',
-                    bridgesinyourarea: '=',
-                    colorsinyourarea: '=',
                     acquaintances: '=',
-                    bridges: '=',
-                    colors: '='
+                    bridges: '='
                 },
                 link: function (scope, element, attrs) {
 
@@ -1613,11 +1609,12 @@
                                 return d3.select(this).style("fill", color);
                             }
                         }
-                    };
+                    }
 
                     scope.$watch(function() {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawConnections(scope.acquaintances, scope.bridges)
                         }
                         catch(err) {
                         }
@@ -1642,155 +1639,20 @@
 
                         var rValue1 = 75;
                         var rValue2 = 150;
+                    }
 
-                        var friendsLines = canvas.selectAll("lines")
-                            .data(friends)
-                            .enter()
-                            .append("line")
-                            .attr("x1", function (d, i) {
-                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("y1", function (d, i) {
-                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("x2", myCx)
-                            .attr("y2", myCy)
-                            .attr("stroke-width", 1)
-                            .attr("stroke", "black");
+                    function drawConnections(acquaintances, bridges) {
+                        var inYourArea = d3.select(element[0]);
+                        var insideSVG = inYourArea.select("svg");
+                        insideSVG.remove();
 
-                        var bridgeDashes = canvas.selectAll("lines")
-                            .data(bridges)
-                            .enter()
-                            .append("line")
-                            .attr("x1", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("y1", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("x2", myCx)
-                            .attr("y2", myCy)
-                            .style("stroke-dasharray", "5 5")
-                            .attr("stroke", "black");
+                       alert(bridges)
 
-                        var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
-                            .data(bridges)
-                            .enter()
-                            .append("line")
-                            .attr("x1", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("y1", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("x2", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                            })
-                            .attr("y2", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                            })
-                            .style("stroke-dasharray", "5 5")
-                            .attr("stroke", "black");
+                        // Set the dimensions of the canvas / graph
+                        var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+                            width = 400 - margin.left - margin.right,
+                            height = 220 - margin.top - margin.bottom;
 
-                        var circle = canvas.append("circle")
-                            .attr("cx", myCx)
-                            .attr("cy", myCy)
-                            .attr("r", rValue)
-                            .style("fill", "black");
-
-                        canvas.append("text")
-                            .text("you")
-                            .attr("x", myCx - 15)
-                            .attr("y", myCy)
-                            .style('fill', 'white');
-
-                        var friendsPetals = canvas.selectAll("circles")
-                            .data(friends)
-                            .enter()
-                            .append("circle")
-                            .attr("cx", function (d, i) {
-                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("cy", function (d, i) {
-                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("r", rValue)
-                            .style("fill", "red");
-
-                        var friendsPetalsText = canvas.selectAll("circles")
-                            .data(friends)
-                            .enter()
-                            .append("text")
-                            .text(function (d) {
-                                return d;
-                            })
-                            .attr("x", function (d, i) {
-                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("y", function (d, i) {
-                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                            })
-                            .style("fill", "black");
-
-                        var acquaintancesPetals = canvas.selectAll("circles")
-                            .data(acquaintances)
-                            .enter()
-                            .append("circle")
-                            .attr("cx", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                            })
-                            .attr("cy", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                            })
-                            .attr("r", rValue)
-                            .style("fill", function (d, i) {
-                                return colors[i];
-                            })
-                            .on('click', toggleColor("red"));
-
-                        var acquaintancesPetalsText = canvas.selectAll("circles")
-                            .data(acquaintances)
-                            .enter()
-                            .append("text")
-                            .text(function (d) {
-                                return d;
-                            })
-                            .attr("x", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                            })
-                            .attr("y", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                            })
-                            .style("fill", "black");
-
-
-                        var bridgesPetals = canvas.selectAll("circles")
-                            .data(bridges)
-                            .enter()
-                            .append("circle")
-                            .attr("cx", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("cy", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("r", rValue)
-                            .style("fill", "gray");
-
-                        var bridgesPetalsText = canvas.selectAll("circles")
-                            .data(bridges)
-                            .enter()
-                            .append("text")
-                            .text(function (d) {
-                                return d;
-                            })
-                            .attr("x", function (d, i) {
-                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .attr("y", function (d, i) {
-                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                            })
-                            .style("fill", "black");
                     }
                 }
             }
@@ -2609,6 +2471,7 @@
 
         $scope.backtofilter = function() {
             $scope.mostfollowers = 1;
+            $scope.allfollowers = 1;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
             $scope.mostactivefollowers = undefined;
@@ -2686,11 +2549,8 @@
 
         function displayAllFollowers(followerArrray) {
             alert(JSON.stringify(followerArrray))
-            $scope.acquaintancesMostFollowers = followerArrray.screennames;
-            $scope.bridgesMostFollowers = followerArrray.followerlength;
-            if($scope.colorsMostFollowers === undefined){
-                $scope.colorsMostFollowers = Array.from(new Array(5), () => "red");
-            }
+            $scope.acquaintancesAllFollowers = followerArrray.screennames;
+            $scope.bridgesAllFollowers = followerArrray.followerlength;
         }
 
         function filterError() {
