@@ -1617,6 +1617,7 @@
                             drawConnections(scope.acquaintances, scope.bridges)
                         }
                         catch(err) {
+                            alert(err)
                         }
                     }, true);
 
