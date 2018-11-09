@@ -2685,6 +2685,7 @@
         }
 
         function displayAllFollowers(followerArrray) {
+            alert(JSON.stringify(followerArrray))
             $scope.acquaintancesMostFollowers = followerArrray.screennames;
             $scope.bridgesMostFollowers = followerArrray.followerlength;
             if($scope.colorsMostFollowers === undefined){
