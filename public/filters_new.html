@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "Yempo">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Filters</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=PT+Sans'>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/styleFilters.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+
+<body>
+
+<div class='container' ng-controller="FilterController">
+	<div ng-show="openslide" id="side-menu" class="side-nav">
+		<a class="btn-close" ng-click="closeSlideMenu()">&times;</a>
+		<span></br></br></span>
+		<a ng-click="openFeed()">Feed</a>
+		<a ng-click="openProfile()">Profile</a>
+		<a ng-click="openReach()">Reach</a>
+		<a href="#">Logout</a>
+	</div>
+	<div class='card'>
+		<div class="add-btn"><a class="fa fa-arrow-right" ng-click="openSlideMenu()"></a></div>
+
+		<div  id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+
+				<div ng-show="allFollowers" md-swipe-right="onSwipeRightMostFollowers($event, $target)" md-swipe-left="onSwipeLeftMostFollowers($event, $target)" class="carousel-item active">
+					<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">All Followers</h2>
+					<div class="row svg-class">
+							<div class="col-lg-8 mx-auto">
+								<div class="row justify-content-center">
+									<all-followers acquaintancesinyourarea="acquaintancesInYourArea"
+													bridges="bridgesMostFollowers"
+													colors="colorsMostFollowers"
+													acquaintances="acquaintancesMostFollowers"
+													bridgesinyourarea="bridgesInYourArea"
+													colorsinyourarea="colorsInYourArea" >
+									</all-followers>
+								</div>
+							</div>
+						</div>
+					<div class="row svg-class">
+						<div class="col-6 button-move">
+							<p>{{plusdesc}}</p>
+						</div>
+						<div class="col-2 button-mv">
+							<button class="w3-button w3-teal w3-circle" ng-click="onSelectAdd()">+</button>
+						</div>
+						<div class="col-2 button-mv">
+							<div class="circle" ng-if="dandelion">
+								<span ><i class="fa fa-circle"></i></span>
+							</div>
+							<div class="circlenum" ng-if="dandelion">
+								<span >{{acquaintancesInYourArea.length}}</span>
+							</div>
+							<button class="w3-button w3-teal" ng-if="dandelion" ng-click="onSelectMessage()">Go</button>
+						</div>
+					</div>
+				</div>
+
+				<div ng-show="messagefollowers" md-swipe-right="onSwipeRightMessageFollowers($event, $target)" md-swipe-left="onSwipeLeftMessageFollowers($event, $target)" class="carousel-item active">
+					<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">Message Followers</h2>
+					<div class="row svg-class">
+							<div class="col-lg-8 mx-auto">
+								<div class="row justify-content-center">
+									<message-followers
+											bridges="acquaintancesInYourArea"
+											acquaintances="acquaintancesInYourArea"
+											colors="colorsInYourArea"
+											sendmessage="sendmessage">
+									</message-followers>
+								</div>
+							</div>
+					</div>
+					<div class="row svg-class">
+						<div class="col-6 button-move">
+							{{sendmessage}}
+							<textarea class = 'form-control' ng-model="sendnewmessage" id="textpost" maxlength="280" ng-keypress="clicked()"></textarea>
+							<div class="row text-right">
+								<p>{{ 280 - sendmessage.length - sendnewmessage.length + ' Char left' }}</p></div>
+						</div>
+						<div class="col-4 button-mv">
+							<div class="row postbtn">
+								<button class="w3-button w3-teal " ng-click="sendMessage()">Tweet</button>
+							</div>
+							<div class="row postbtn">
+								<button class="w3-button w3-teal " ng-click="backtofilter()">Filters</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script src="js/indexFilters.js"></script>
+
+</body>
+
+</html>

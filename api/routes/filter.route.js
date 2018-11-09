@@ -16,4 +16,6 @@ router.get("/leastactive/:userId", checkAuth, FilterController.filter_least_acti
 
 router.get("/mostinteractive/:userId", checkAuth, FilterController.filter_most_interactive);
 
+router.get("/allfollowers/:userId", checkAuth, FilterController.filter_all_followers);
+
 module.exports = router;

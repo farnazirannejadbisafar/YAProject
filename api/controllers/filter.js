@@ -147,6 +147,30 @@ exports.filter_most_interactive = (req, res, next) => {
     });
 };
 
+exports.filter_all_followers = (req, res, next) => {
+    const id = req.params.userId;
+    User.findById(id)
+        .then(user => {
+        if (!user) {
+        return res.status(404).json({
+            message: "User not found"
+        });
+    } else {
+        res.status(200).json({
+            message: "least followers",
+            screennames: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.screen_name),
+            followerlength: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.mutual_connection)
+    });
+    }
+})
+.catch(err => {
+        console.log(err);
+    res.status(500).json({
+        error: err
+    });
+});
+};
+
 function sortit(a,b){
 	return(b.followers_count - a.followers_count)
 	}

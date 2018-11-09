@@ -12,6 +12,7 @@
         this.getMostActiveFollowers = getMostActiveFollowers;
         this.getLeastActiveFollowers = getLeastActiveFollowers;
         this.getMostInteractiveFollowers = getMostInteractiveFollowers;
+        this.getAllFollowers = getAllFollowers;
 
         var URL = '/api/filter';
 
@@ -84,6 +85,16 @@
         // Done
         function getMostInteractiveFollowers(userId, token) {
             var url = URL + '/mostinteractive/' + userId;
+            return $http.get(url,{
+                headers: {'Authorization': "Bearer "+token}
+            })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getAllFollowers(userId, token) {
+            var url = URL + '/allfollowers/' + userId;
             return $http.get(url,{
                 headers: {'Authorization': "Bearer "+token}
             })
