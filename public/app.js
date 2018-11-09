@@ -1674,16 +1674,16 @@
                             .append('svg:svg')
                             .attr('width', width + margin.right + margin.left)
                             .attr('height', height + margin.top + margin.bottom)
-                            .attr('class', 'chart')
+                            .attr('class', 'chart');
 
                         var main = chart.append('g')
                             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
                             .attr('width', width)
                             .attr('height', height)
-                            .attr('class', 'main')
+                            .attr('class', 'main');
 
                         // draw the x axis
-                        var xAxis = d3.svg.axis()
+                        var xAxis = d3.axisBottom()
                             .scale(x)
                             .orient('bottom');
 
@@ -1693,7 +1693,7 @@
                             .call(xAxis);
 
                         // draw the y axis
-                        var yAxis = d3.svg.axis()
+                        var yAxis = d3.axisLeft()
                             .scale(y)
                             .orient('left');
 
