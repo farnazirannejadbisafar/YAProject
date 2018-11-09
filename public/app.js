@@ -1646,7 +1646,18 @@
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
-                       alert(bridges)
+
+
+                        bridges = bridges.reduce(function (r, a, i) {
+                                if (i % 2) {
+                                    r.push([1]);
+                                } else {
+                                    r.push([0]);
+                                }
+                                return r;
+                            }, []);
+
+                        alert(bridges)
 
                         // Set the dimensions of the canvas / graph
                         var	margin = {top: 30, right: 20, bottom: 30, left: 50},
@@ -1774,7 +1785,6 @@
         }
 
         function openFilters_new(){
-            alert('inside')
             $location.url('/filternew/' + $scope.userId + '/' + $scope.token);
         }
 
@@ -2548,7 +2558,6 @@
         }
 
         function displayAllFollowers(followerArrray) {
-            alert(JSON.stringify(followerArrray))
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
             $scope.bridgesAllFollowers = followerArrray.followerlength;
         }
