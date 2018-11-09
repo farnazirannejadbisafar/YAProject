@@ -1662,11 +1662,11 @@
 
                         alert(bridges)
 
-                        var x = d3.scale.linear()
+                        var x = d3.scaleLinear()
                             .domain([0, d3.max(bridges, function(d) { return d[0]; })])
                             .range([ 0, width ]);
 
-                        var y = d3.scale.linear()
+                        var y = d3.scaleLinear()
                             .domain([0, d3.max(bridges, function(d) { return d[1]; })])
                             .range([ height, 0 ]);
 
