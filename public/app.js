@@ -1912,6 +1912,7 @@
         }
 
         function openFilters_new(){
+            alert('inside')
             $location.url('/filternew/' + $scope.userId + '/' + $scope.token);
         }
 
