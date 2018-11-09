@@ -1646,8 +1646,6 @@
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
-
-
                         bridges = bridges.reduce(function (r, a, i) {
                                 if (i % 2) {
                                     r.push([1]);
