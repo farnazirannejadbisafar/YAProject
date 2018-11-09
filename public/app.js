@@ -1684,8 +1684,7 @@
 
                         // draw the x axis
                         var xAxis = d3.axisBottom()
-                            .scale(x)
-                            .orient('bottom');
+                            .scale(x);
 
                         main.append('g')
                             .attr('transform', 'translate(0,' + height + ')')
@@ -1694,8 +1693,7 @@
 
                         // draw the y axis
                         var yAxis = d3.axisLeft()
-                            .scale(y)
-                            .orient('left');
+                            .scale(y);
 
                         main.append('g')
                             .attr('transform', 'translate(0,0)')
