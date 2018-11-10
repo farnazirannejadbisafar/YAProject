@@ -1652,14 +1652,16 @@
                             width = 960 - margin.left - margin.right,
                             height = 500 - margin.top - margin.bottom;
 
-                        bridges = bridges.reduce(function (r, a, i) {
-                            if (i % 2) {
-                                r[i] = [a, 10]
-                            } else {
-                                r[i] = [a, 5]
-                            }
-                            return r;
-                        }, []);
+                        if (bridges) {
+                            bridges = bridges.reduce(function (r, a, i) {
+                                if (i % 2) {
+                                    r[i] = [a, 10]
+                                } else {
+                                    r[i] = [a, 5]
+                                }
+                                return r;
+                            }, []);
+                        }
 
                         // set the ranges
                         var x = d3.scaleLinear().range([0, width]);
@@ -1687,7 +1689,7 @@
 
                         // Add the scatterplot
                         svg.selectAll("dot")
-                            .data(data)
+                            .data(bridges)
                             .enter().append("circle")
                             .attr("r", 5)
                             .attr("cx", function (d) { return x(d[0]); } )
