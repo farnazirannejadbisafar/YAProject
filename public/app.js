@@ -1658,7 +1658,6 @@
                         // var width = 360; //960 - margin.left - margin.right,
                         // var height = 460; //500 - margin.top - margin.bottom;
 
-
                         var split_index = bridges.length / 2;
                         if(bridges.length % 2 === 0){
                             split_index = split_index - 1;
