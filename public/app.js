@@ -1643,17 +1643,16 @@
                     }
 
                     function drawConnections(acquaintances, bridges) {
-                        var inYourArea = d3.select(element[0]);
+                        var inYourArea = d3.select('#left-followers');
                         var insideSVG = inYourArea.select("svg");
+                        insideSVG.remove();
+
+                        inYourArea = d3.select('#right-followers');
+                        insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
-
-                        // set the dimensions and margins of the graph
-                        // var margin = {top: 20, right: 20, bottom: 30, left: 50},
-                        // var width = 360; //960 - margin.left - margin.right,
-                        // var height = 460; //500 - margin.top - margin.bottom;
 
                         var split_index = bridges.length / 2;
                         if(bridges.length % 2 === 0){
@@ -1670,7 +1669,7 @@
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
-                            width = 320 - margin.left - margin.right,
+                            width = 400 - margin.left - margin.right,
                             height = 500 - margin.top - margin.bottom;
 
                         var left_bridges = bridges.slice(split_index);
