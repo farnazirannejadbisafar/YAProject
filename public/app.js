@@ -1669,31 +1669,36 @@
                             return r;
                         }, []);
 
+                        var margin = {top: 20, right: 10, bottom: 30, left: 10},
+                            width = 320 - margin.left - margin.right,
+                            height = 500 - margin.top - margin.bottom;
+
                         var left_bridges = bridges.slice(split_index);
                         var right_bridges = bridges.slice(split_index + 1, bridges.length);
 
                         // set the ranges
-                        var x_left = d3.scaleLinear().range([0, 100]);
-                        var y_left = d3.scaleLinear().range([460, 0]);
+                        var x_left = d3.scaleLinear().range([0, width]);
+                        var y_left = d3.scaleLinear().range([height, 0]);
 
-                        var x_right = d3.scaleLinear().range([0, 100]);
-                        var y_right = d3.scaleLinear().range([460, 0]);
+
+                        var x_right = d3.scaleLinear().range([0, width]);
+                        var y_right = d3.scaleLinear().range([height, 0]);
 
 
                         // append the svg obgect to the body of the page
                         // appends a 'group' element to 'svg'
                         // moves the 'group' element to the top left margin
-                        svg_left.attr("width", 100 + 10)
-                            .attr("height", 460 + 10)
+                        svg_left.attr("width", width + margin.left + margin.right)
+                            .attr("height", height + margin.top + margin.bottom)
                             .append("g")
                             .attr("transform",
-                                "translate(" + 10 + "," + 10 + ")");
+                                "translate(" + margin.left + "," + margin.top + ")");
 
-                        svg_right.attr("width", 100 + 10)
-                            .attr("height", 460 + 10)
+                        svg_right.attr("width", width + margin.left + margin.right)
+                            .attr("height", height + margin.top + margin.bottom)
                             .append("g")
                             .attr("transform",
-                                "translate(" + 10 + "," + 10 + ")");
+                                "translate(" + margin.left + "," + margin.top + ")");
 
 
                         // Scale the range of the data
