@@ -1648,7 +1648,7 @@
                         insideSVG.remove();
 
                         // var margin = {top: 20, right: 15, bottom: 60, left: 60}
-                        var width = 360 //960 - margin.left - margin.right
+                        var width = 360; //960 - margin.left - margin.right
                         var height = 460; //500 - margin.top - margin.bottom
 
                         bridges = bridges.reduce(function (r, a, i) {
@@ -1669,7 +1669,7 @@
                             .range([ height, 0 ]);
 
                         var chart = d3.select(element[0])
-                            .append('svg:svg')
+                            .append('svg')
                             .attr('width', width) //+ margin.right + margin.left)
                             .attr('height', height) // + margin.top + margin.bottom)
                             .attr('class', 'chart');
@@ -1682,31 +1682,29 @@
                             .attr('class', 'main');
 
                         // draw the x axis
-                        var xAxis = d3.axisBottom()
-                            .scale(x);
+                        var xAxis = d3.axisBottom(x);
 
                         main.append('g')
                             .attr('transform', 'translate(0,' + height + ')')
-                            .attr('class', 'main axis date')
+                            // .attr('class', 'main axis date')
                             .call(xAxis);
 
                         // draw the y axis
-                        var yAxis = d3.axisLeft()
-                            .scale(y);
+                        var yAxis = d3.axisLeft(y);
 
                         main.append('g')
                             .attr('transform', 'translate(0,0)')
-                            .attr('class', 'main axis date')
+                            // .attr('class', 'main axis date')
                             .call(yAxis);
 
-                        var g = main.append("svg:g");
+                        var g = main.append("g");
 
-                        g.selectAll("scatter-dots")
+                        g.selectAll("dot")
                             .data(bridges)
-                            .enter().append("svg:circle")
-                            .attr("cx", function (d,i) { return x(d[0]); } )
+                            .enter().append("circle")
+                            .attr("cx", function (d) { return x(d[0]); } )
                             .attr("cy", function (d) { return y(d[1]); } )
-                            .attr("r", 8);
+                            .attr("r", 5);
 
                     }
                 }
