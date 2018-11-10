@@ -1730,6 +1730,22 @@
                             .attr("r", 5)
                             .attr("cx", function (d) { return x_right(d[0]); } )
                             .   attr("cy", function (d) { return y_right(d[1]); } );
+
+                        // Add the X Axis
+                        svg_left.append("g")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(d3.axisBottom(x_left));
+
+                        svg_right.append("g")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(d3.axisBottom(x_right));
+
+                        // Add the Y Axis
+                        svg_left.append("g")
+                            .call(d3.axisLeft(y_left));
+
+                        svg_right.append("g")
+                            .call(d3.axisLeft(y_right));
                     }
                 }
             }
