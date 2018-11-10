@@ -1673,7 +1673,7 @@
                         }, []);
 
                         var left_bridges = bridges.slice(split_index);
-                        var right_bridges = bridges.slice(split_index + 1, bridges.length)
+                        var right_bridges = bridges.slice(split_index + 1, bridges.length);
 
                         // set the ranges
                         var x_left = d3.scaleLinear().range([0, left_dimensions.width]);
@@ -1719,15 +1719,15 @@
                             .data(left_bridges)
                             .enter().append("circle")
                             .attr("r", 5)
-                            .attr("cx", function (d) { return x(d[0]); } )
-                            .   attr("cy", function (d) { return y(d[1]); } );
+                            .attr("cx", function (d) { return x_left(d[0]); } )
+                            .   attr("cy", function (d) { return y_left(d[1]); } );
 
                         svg_right.selectAll("dot")
                             .data(right_bridges)
                             .enter().append("circle")
                             .attr("r", 5)
-                            .attr("cx", function (d) { return x(d[0]); } )
-                            .   attr("cy", function (d) { return y(d[1]); } );
+                            .attr("cx", function (d) { return x_right(d[0]); } )
+                            .   attr("cy", function (d) { return y_right(d[1]); } );
                     }
                 }
             }
