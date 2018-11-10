@@ -1650,8 +1650,8 @@
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
 
-                        var left_dimensions = svg_left.node().getBBox();
-                        var right_dimensions = svg_right.node().getBBox();
+                        var left_dimensions = svg_left.getBoundingClientRect();
+                        var right_dimensions = svg_right.getBoundingClientRect();
 
                         // set the dimensions and margins of the graph
                         // var margin = {top: 20, right: 20, bottom: 30, left: 50},
