@@ -1693,7 +1693,7 @@
                             .enter().append("circle")
                             .attr("r", 5)
                             .attr("cx", function (d) { return x(d[0]); } )
-                            .attr("cy", function (d) { return y(d[1]); } );
+                            .   attr("cy", function (d) { return y(d[1]); } );
 
                         // Add the X Axis
                         svg.append("g")
