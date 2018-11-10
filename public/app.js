@@ -1,17 +1,17 @@
 (function (app) {
     angular
         .module("Yempo", ['ngRoute', 'ngMaterial', 'ngMessages'])
-        .controller("LoginController",LoginController)
-        .controller("ProfileController",ProfileController)
-        .controller("RegisterController",RegisterController)
-        .controller("ReachController",ReachController)
-        .controller("FeedController",FeedController)
-        .controller("FilterController",FilterController)
-        .directive('fileModel', ['$parse', function($parse) {
+        .controller("LoginController", LoginController)
+        .controller("ProfileController", ProfileController)
+        .controller("RegisterController", RegisterController)
+        .controller("ReachController", ReachController)
+        .controller("FeedController", FeedController)
+        .controller("FilterController", FilterController)
+        .directive('fileModel', ['$parse', function ($parse) {
             function fn_link(scope, element, attrs) {
                 var onChange = $parse(attrs.fileModel);
                 element.on('change', function (event) {
-                    onChange(scope, { $files: event.target.files });
+                    onChange(scope, {$files: event.target.files});
                 });
             };
             return {
@@ -33,16 +33,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -53,7 +53,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -63,11 +63,11 @@
                         }
                     };
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors, []);
                         }
-                        catch(err) {
+                        catch (err) {
                         }
                     }, true);
 
@@ -258,16 +258,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -278,7 +278,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -288,185 +288,185 @@
                         }
                     };
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors, []);
                         }
-                        catch(err) {
+                        catch (err) {
                         }
                     }, true);
 
-                function drawDandelion(acquaintances, bridges, colors, friends) {
+                    function drawDandelion(acquaintances, bridges, colors, friends) {
 
-                    var inYourArea = d3.select(element[0]);
-                    var insideSVG = inYourArea.select("svg");
-                    insideSVG.remove();
+                        var inYourArea = d3.select(element[0]);
+                        var insideSVG = inYourArea.select("svg");
+                        insideSVG.remove();
 
-                    var angle = 360 / (friends.length + acquaintances.length);
+                        var angle = 360 / (friends.length + acquaintances.length);
 
-                    var canvas = d3.select(element[0])
-                        .append("svg")
-                        .attr("width", 360)
-                        .attr("height", 460);//change to dynamic
+                        var canvas = d3.select(element[0])
+                            .append("svg")
+                            .attr("width", 360)
+                            .attr("height", 460);//change to dynamic
 
-                    var myCx = 360 / 2;
-                    var myCy = 460 / 2;
-                    var rValue = 20;
+                        var myCx = 360 / 2;
+                        var myCy = 460 / 2;
+                        var rValue = 20;
 
-                    var rValue1 = 75;
-                    var rValue2 = 150;
+                        var rValue1 = 75;
+                        var rValue2 = 150;
 
-                    var friendsLines = canvas.selectAll("lines")
-                        .data(friends)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", myCx)
-                        .attr("y2", myCy)
-                        .attr("stroke-width", 1)
-                        .attr("stroke", "black");
+                        var friendsLines = canvas.selectAll("lines")
+                            .data(friends)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", myCx)
+                            .attr("y2", myCy)
+                            .attr("stroke-width", 1)
+                            .attr("stroke", "black");
 
-                    var bridgeDashes = canvas.selectAll("lines")
-                        .data(bridges)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", myCx)
-                        .attr("y2", myCy)
-                        .style("stroke-dasharray", "5 5")
-                        .attr("stroke", "black");
+                        var bridgeDashes = canvas.selectAll("lines")
+                            .data(bridges)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", myCx)
+                            .attr("y2", myCy)
+                            .style("stroke-dasharray", "5 5")
+                            .attr("stroke", "black");
 
-                    var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
-                        .data(bridges)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("y2", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .style("stroke-dasharray", "5 5")
-                        .attr("stroke", "black");
+                        var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
+                            .data(bridges)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("y2", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .style("stroke-dasharray", "5 5")
+                            .attr("stroke", "black");
 
-                    var circle = canvas.append("circle")
-                        .attr("cx", myCx)
-                        .attr("cy", myCy)
-                        .attr("r", rValue)
-                        .style("fill", "black");
+                        var circle = canvas.append("circle")
+                            .attr("cx", myCx)
+                            .attr("cy", myCy)
+                            .attr("r", rValue)
+                            .style("fill", "black");
 
-                    canvas.append("text")
-                        .text("you")
-                        .attr("x", myCx - 15)
-                        .attr("y", myCy)
-                        .style('fill', 'white');
+                        canvas.append("text")
+                            .text("you")
+                            .attr("x", myCx - 15)
+                            .attr("y", myCy)
+                            .style('fill', 'white');
 
-                    var friendsPetals = canvas.selectAll("circles")
-                        .data(friends)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", "red");
+                        var friendsPetals = canvas.selectAll("circles")
+                            .data(friends)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", "red");
 
-                    var friendsPetalsText = canvas.selectAll("circles")
-                        .data(friends)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .style("fill", "black");
+                        var friendsPetalsText = canvas.selectAll("circles")
+                            .data(friends)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .style("fill", "black");
 
-                    var acquaintancesPetals = canvas.selectAll("circles")
-                        .data(acquaintances)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                        var acquaintancesPetals = canvas.selectAll("circles")
+                            .data(acquaintances)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
 
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", function (d, i) {
-                            return colors[i];
-                        })
-                        .on('click', toggleColor("deepskyblue"));
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", function (d, i) {
+                                return colors[i];
+                            })
+                            .on('click', toggleColor("deepskyblue"));
 
-                    var acquaintancesPetalsText = canvas.selectAll("circles")
-                        .data(acquaintances)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .style("fill", "black");
+                        var acquaintancesPetalsText = canvas.selectAll("circles")
+                            .data(acquaintances)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .style("fill", "black");
 
 
-                    var bridgesPetals = canvas.selectAll("circles")
-                        .data(bridges)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        var bridgesPetals = canvas.selectAll("circles")
+                            .data(bridges)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
 
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", "gray");
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", "gray");
 
-                    var bridgesPetalsText = canvas.selectAll("circles")
-                        .data(bridges)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .style("fill", "black");
-                }
+                        var bridgesPetalsText = canvas.selectAll("circles")
+                            .data(bridges)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .style("fill", "black");
+                    }
                 }
             }
         })
@@ -485,16 +485,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -505,7 +505,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -515,184 +515,184 @@
                         }
                     };
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors, []);
                         }
-                        catch(err) {
+                        catch (err) {
                         }
                     }, true);
 
-                function drawDandelion(acquaintances, bridges, colors, friends) {
+                    function drawDandelion(acquaintances, bridges, colors, friends) {
 
-                    var inYourArea = d3.select(element[0]);
-                    var insideSVG = inYourArea.select("svg");
-                    insideSVG.remove();
+                        var inYourArea = d3.select(element[0]);
+                        var insideSVG = inYourArea.select("svg");
+                        insideSVG.remove();
 
-                    var angle = 360 / (friends.length + acquaintances.length);
+                        var angle = 360 / (friends.length + acquaintances.length);
 
-                    var canvas = d3.select(element[0])
-                        .append("svg")
-                        .attr("width", 360)
-                        .attr("height", 460);//change to dynamic
+                        var canvas = d3.select(element[0])
+                            .append("svg")
+                            .attr("width", 360)
+                            .attr("height", 460);//change to dynamic
 
-                    var myCx = 360 / 2;
-                    var myCy = 460 / 2;
-                    var rValue = 20;
+                        var myCx = 360 / 2;
+                        var myCy = 460 / 2;
+                        var rValue = 20;
 
-                    var rValue1 = 75;
-                    var rValue2 = 150;
+                        var rValue1 = 75;
+                        var rValue2 = 150;
 
-                    var friendsLines = canvas.selectAll("lines")
-                        .data(friends)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", myCx)
-                        .attr("y2", myCy)
-                        .attr("stroke-width", 1)
-                        .attr("stroke", "black");
+                        var friendsLines = canvas.selectAll("lines")
+                            .data(friends)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", myCx)
+                            .attr("y2", myCy)
+                            .attr("stroke-width", 1)
+                            .attr("stroke", "black");
 
-                    var bridgeDashes = canvas.selectAll("lines")
-                        .data(bridges)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", myCx)
-                        .attr("y2", myCy)
-                        .style("stroke-dasharray", "5 5")
-                        .attr("stroke", "black");
+                        var bridgeDashes = canvas.selectAll("lines")
+                            .data(bridges)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", myCx)
+                            .attr("y2", myCy)
+                            .style("stroke-dasharray", "5 5")
+                            .attr("stroke", "black");
 
-                    var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
-                        .data(bridges)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("y2", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .style("stroke-dasharray", "5 5")
-                        .attr("stroke", "black");
+                        var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
+                            .data(bridges)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("y2", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .style("stroke-dasharray", "5 5")
+                            .attr("stroke", "black");
 
-                    var circle = canvas.append("circle")
-                        .attr("cx", myCx)
-                        .attr("cy", myCy)
-                        .attr("r", rValue)
-                        .style("fill", "black");
+                        var circle = canvas.append("circle")
+                            .attr("cx", myCx)
+                            .attr("cy", myCy)
+                            .attr("r", rValue)
+                            .style("fill", "black");
 
-                    canvas.append("text")
-                        .text("you")
-                        .attr("x", myCx - 15)
-                        .attr("y", myCy)
-                        .style('fill', 'white');
+                        canvas.append("text")
+                            .text("you")
+                            .attr("x", myCx - 15)
+                            .attr("y", myCy)
+                            .style('fill', 'white');
 
-                    var friendsPetals = canvas.selectAll("circles")
-                        .data(friends)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", "red");
+                        var friendsPetals = canvas.selectAll("circles")
+                            .data(friends)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", "red");
 
-                    var friendsPetalsText = canvas.selectAll("circles")
-                        .data(friends)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .style("fill", "black");
+                        var friendsPetalsText = canvas.selectAll("circles")
+                            .data(friends)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .style("fill", "black");
 
-                    var bridgesPetals = canvas.selectAll("circles")
-                        .data(acquaintances)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                        var bridgesPetals = canvas.selectAll("circles")
+                            .data(acquaintances)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
 
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", function (d, i) {
-                            return colors[i];
-                        })
-                        .on('click', toggleColor("royalblue"));
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", function (d, i) {
+                                return colors[i];
+                            })
+                            .on('click', toggleColor("royalblue"));
 
-                    var bridgesPetalsText = canvas.selectAll("circles")
-                        .data(acquaintances)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .style("fill", "black");
+                        var bridgesPetalsText = canvas.selectAll("circles")
+                            .data(acquaintances)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .style("fill", "black");
 
-            //        var bridgesPetals = canvas.selectAll("circles")
-            //            .data(bridges)
-            //            .enter()
-            //            .append("circle")
-            //            .attr("cx", function (d, i) {
-            //                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        var bridgesPetals = canvas.selectAll("circles")
+                        //            .data(bridges)
+                        //            .enter()
+                        //            .append("circle")
+                        //            .attr("cx", function (d, i) {
+                        //                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
 //
-            //            })
-            //            .attr("cy", function (d, i) {
-            //                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-            //            })
-            //            .attr("r", rValue)
-            //            .style("fill", "gray");
+                        //            })
+                        //            .attr("cy", function (d, i) {
+                        //                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //            })
+                        //            .attr("r", rValue)
+                        //            .style("fill", "gray");
 //
-            //        var bridgesPetalsText = canvas.selectAll("circles")
-            //            .data(bridges)
-            //            .enter()
-            //            .append("text")
-            //            .text(function (d) {
-            //                return d;
-            //            })
-            //            .attr("x", function (d, i) {
-            //                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-            //            })
-            //            .attr("y", function (d, i) {
-            //                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-            //            })
-            //            .style("fill", "black");
-                }
+                        //        var bridgesPetalsText = canvas.selectAll("circles")
+                        //            .data(bridges)
+                        //            .enter()
+                        //            .append("text")
+                        //            .text(function (d) {
+                        //                return d;
+                        //            })
+                        //            .attr("x", function (d, i) {
+                        //                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //            })
+                        //            .attr("y", function (d, i) {
+                        //                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //            })
+                        //            .style("fill", "black");
+                    }
                 }
             }
         })
@@ -711,16 +711,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -731,7 +731,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -741,11 +741,11 @@
                         }
                     };
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors, []);
                         }
-                        catch(err) {
+                        catch (err) {
                         }
                     }, true);
 
@@ -891,34 +891,34 @@
                             .style("fill", "black");
 
 
-                    //    var bridgesPetals = canvas.selectAll("circles")
-                    //        .data(bridges)
-                    //        .enter()
-                    //        .append("circle")
-                    //        .attr("cx", function (d, i) {
-                    //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //
-                    //        })
-                    //        .attr("cy", function (d, i) {
-                    //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .attr("r", rValue)
-                    //        .style("fill", mycolor);
+                        //    var bridgesPetals = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("circle")
+                        //        .attr("cx", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //
+                        //        })
+                        //        .attr("cy", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("r", rValue)
+                        //        .style("fill", mycolor);
 
-                    //    var bridgesPetalsText = canvas.selectAll("circles")
-                    //        .data(bridges)
-                    //        .enter()
-                    //        .append("text")
-                    //        .text(function (d) {
-                    //            return d;
-                    //        })
-                    //        .attr("x", function (d, i) {
-                    //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .attr("y", function (d, i) {
-                    //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .style("fill", mycolor);
+                        //    var bridgesPetalsText = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("text")
+                        //        .text(function (d) {
+                        //            return d;
+                        //        })
+                        //        .attr("x", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("y", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .style("fill", mycolor);
                     }
                 }
             }
@@ -938,16 +938,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -958,7 +958,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -968,11 +968,11 @@
                         }
                     };
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors, []);
                         }
-                        catch(err) {
+                        catch (err) {
                         }
                     }, true);
 
@@ -1118,34 +1118,34 @@
                             .style("fill", "black");
 
 
-                    //    var bridgesPetals = canvas.selectAll("circles")
-                    //        .data(bridges)
-                    //        .enter()
-                    //        .append("circle")
-                    //        .attr("cx", function (d, i) {
-                    //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //    var bridgesPetals = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("circle")
+                        //        .attr("cx", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
 //
-                    //        })
-                    //        .attr("cy", function (d, i) {
-                    //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .attr("r", rValue)
-                    //        .style("fill", "gray");
+                        //        })
+                        //        .attr("cy", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("r", rValue)
+                        //        .style("fill", "gray");
 //
-                    //    var bridgesPetalsText = canvas.selectAll("circles")
-                    //        .data(bridges)
-                    //        .enter()
-                    //        .append("text")
-                    //        .text(function (d) {
-                    //            return d;
-                    //        })
-                    //        .attr("x", function (d, i) {
-                    //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .attr("y", function (d, i) {
-                    //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .style("fill", "black");
+                        //    var bridgesPetalsText = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("text")
+                        //        .text(function (d) {
+                        //            return d;
+                        //        })
+                        //        .attr("x", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("y", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .style("fill", "black");
                     }
                 }
             }
@@ -1165,16 +1165,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -1185,7 +1185,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -1195,186 +1195,186 @@
                         }
                     };
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
-                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            drawDandelion(scope.acquaintances, scope.bridges, scope.colors, []);
                         }
-                        catch(err) {
+                        catch (err) {
                         }
                     }, true);
 
 
-                function drawDandelion(acquaintances, bridges, colors, friends) {
+                    function drawDandelion(acquaintances, bridges, colors, friends) {
 
-                    var inYourArea = d3.select(element[0]);
-                    var insideSVG = inYourArea.select("svg");
-                    insideSVG.remove();
+                        var inYourArea = d3.select(element[0]);
+                        var insideSVG = inYourArea.select("svg");
+                        insideSVG.remove();
 
-                    var angle = 360 / (friends.length + acquaintances.length);
+                        var angle = 360 / (friends.length + acquaintances.length);
 
-                    var canvas = d3.select(element[0])
-                        .append("svg")
-                        .attr("width", 360)
-                        .attr("height", 460);//change to dynamic
+                        var canvas = d3.select(element[0])
+                            .append("svg")
+                            .attr("width", 360)
+                            .attr("height", 460);//change to dynamic
 
-                    var myCx = 360 / 2;
-                    var myCy = 460 / 2;
-                    var rValue = 20;
+                        var myCx = 360 / 2;
+                        var myCy = 460 / 2;
+                        var rValue = 20;
 
-                    var rValue1 = 75;
-                    var rValue2 = 150;
+                        var rValue1 = 75;
+                        var rValue2 = 150;
 
-                    var friendsLines = canvas.selectAll("lines")
-                        .data(friends)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", myCx)
-                        .attr("y2", myCy)
-                        .attr("stroke-width", 1)
-                        .attr("stroke", "black");
+                        var friendsLines = canvas.selectAll("lines")
+                            .data(friends)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", myCx)
+                            .attr("y2", myCy)
+                            .attr("stroke-width", 1)
+                            .attr("stroke", "black");
 
-                    var bridgeDashes = canvas.selectAll("lines")
-                        .data(bridges)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", myCx)
-                        .attr("y2", myCy)
-                        .style("stroke-dasharray", "5 5")
-                        .attr("stroke", "black");
+                        var bridgeDashes = canvas.selectAll("lines")
+                            .data(bridges)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", myCx)
+                            .attr("y2", myCy)
+                            .style("stroke-dasharray", "5 5")
+                            .attr("stroke", "black");
 
-                    var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
-                        .data(bridges)
-                        .enter()
-                        .append("line")
-                        .attr("x1", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y1", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("x2", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("y2", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .style("stroke-dasharray", "5 5")
-                        .attr("stroke", "black");
+                        var bridgeToAcquaintancesDashes = canvas.selectAll("lines")
+                            .data(bridges)
+                            .enter()
+                            .append("line")
+                            .attr("x1", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y1", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("x2", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("y2", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .style("stroke-dasharray", "5 5")
+                            .attr("stroke", "black");
 
-                    var circle = canvas.append("circle")
-                        .attr("cx", myCx)
-                        .attr("cy", myCy)
-                        .attr("r", rValue)
-                        .style("fill", "black");
+                        var circle = canvas.append("circle")
+                            .attr("cx", myCx)
+                            .attr("cy", myCy)
+                            .attr("r", rValue)
+                            .style("fill", "black");
 
-                    canvas.append("text")
-                        .text("you")
-                        .attr("x", myCx - 15)
-                        .attr("y", myCy)
-                        .style('fill', 'white');
+                        canvas.append("text")
+                            .text("you")
+                            .attr("x", myCx - 15)
+                            .attr("y", myCy)
+                            .style('fill', 'white');
 
-                    var friendsPetals = canvas.selectAll("circles")
-                        .data(friends)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", "red");
+                        var friendsPetals = canvas.selectAll("circles")
+                            .data(friends)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", "red");
 
-                    var friendsPetalsText = canvas.selectAll("circles")
-                        .data(friends)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
-                        })
-                        .style("fill", "black");
+                        var friendsPetalsText = canvas.selectAll("circles")
+                            .data(friends)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin(i * Math.PI * angle / 180) * rValue1;
+                            })
+                            .style("fill", "black");
 
-                    var bridgesPetals = canvas.selectAll("circles")
-                        .data(acquaintances)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                        var bridgesPetals = canvas.selectAll("circles")
+                            .data(acquaintances)
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
 
-                        })
-                        .attr("cy", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("r", rValue)
-                        .style("fill", function (d, i) {
-                            return colors[i];
-                        })
-                        .on('click', toggleColor("gold"));
+                            })
+                            .attr("cy", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("r", rValue)
+                            .style("fill", function (d, i) {
+                                return colors[i];
+                            })
+                            .on('click', toggleColor("gold"));
 
-                    var bridgesPetalsText = canvas.selectAll("circles")
-                        .data(acquaintances)
-                        .enter()
-                        .append("text")
-                        .text(function (d) {
-                            return d;
-                        })
-                        .attr("x", function (d, i) {
-                            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .attr("y", function (d, i) {
-                            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
-                        })
-                        .style("fill", "black");
+                        var bridgesPetalsText = canvas.selectAll("circles")
+                            .data(acquaintances)
+                            .enter()
+                            .append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .attr("y", function (d, i) {
+                                return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue2;
+                            })
+                            .style("fill", "black");
 
 
-                //    var bridgesPetals = canvas.selectAll("circles")
-                //        .data(bridges)
-                //        .enter()
-                //        .append("circle")
-                //        .attr("cx", function (d, i) {
-                //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //    var bridgesPetals = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("circle")
+                        //        .attr("cx", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
 //
-                //        })
-                //        .attr("cy", function (d, i) {
-                //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                //        })
-                //        .attr("r", rValue)
-                //        .style("fill", "gray");
+                        //        })
+                        //        .attr("cy", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("r", rValue)
+                        //        .style("fill", "gray");
 //
-                //    var bridgesPetalsText = canvas.selectAll("circles")
-                //        .data(bridges)
-                //        .enter()
-                //        .append("text")
-                //        .text(function (d) {
-                //            return d;
-                //        })
-                //        .attr("x", function (d, i) {
-                //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                //        })
-                //        .attr("y", function (d, i) {
-                //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                //        })
-                //        .style("fill", "black");
-                }
+                        //    var bridgesPetalsText = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("text")
+                        //        .text(function (d) {
+                        //            return d;
+                        //        })
+                        //        .attr("x", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("y", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .style("fill", "black");
+                    }
                 }
             }
         })
@@ -1392,8 +1392,8 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    scope.$watch(function() {
-                            drawDandelion(scope.acquaintances, [], scope.colors);
+                    scope.$watch(function () {
+                        drawDandelion(scope.acquaintances, [], scope.colors);
                     }, true);
 
                     function drawDandelion(acquaintances, bridges, colors) {
@@ -1538,34 +1538,34 @@
                             .style("fill", "black");
 
 
-                    //    var bridgesPetals = canvas.selectAll("circles")
-                    //        .data(bridges)
-                    //        .enter()
-                    //        .append("circle")
-                    //        .attr("cx", function (d, i) {
-                    //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //    var bridgesPetals = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("circle")
+                        //        .attr("cx", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
 //
-                    //        })
-                    //        .attr("cy", function (d, i) {
-                    //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .attr("r", rValue)
-                    //        .style("fill", "gray");
+                        //        })
+                        //        .attr("cy", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("r", rValue)
+                        //        .style("fill", "gray");
 //
-                    //    var bridgesPetalsText = canvas.selectAll("circles")
-                    //        .data(bridges)
-                    //        .enter()
-                    //        .append("text")
-                    //        .text(function (d) {
-                    //            return d;
-                    //        })
-                    //        .attr("x", function (d, i) {
-                    //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .attr("y", function (d, i) {
-                    //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
-                    //        })
-                    //        .style("fill", "black");
+                        //    var bridgesPetalsText = canvas.selectAll("circles")
+                        //        .data(bridges)
+                        //        .enter()
+                        //        .append("text")
+                        //        .text(function (d) {
+                        //            return d;
+                        //        })
+                        //        .attr("x", function (d, i) {
+                        //            return myCx + Math.cos((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .attr("y", function (d, i) {
+                        //            return myCy + Math.sin((friends.length + i) * Math.PI * angle / 180) * rValue1;
+                        //        })
+                        //        .style("fill", "black");
                     }
                 }
             }
@@ -1581,16 +1581,16 @@
                 },
                 link: function (scope, element, attrs) {
 
-                    function toggleColor(color){
+                    function toggleColor(color) {
                         var currentColor = color;
-                        return function(){
+                        return function () {
                             var col = d3.select(this).style('fill').toString();
                             var colStr = d3.rgb(col).toString();
                             var magenta = d3.rgb("magenta").toString();
 
-                            if(colStr != magenta){
+                            if (colStr != magenta) {
                                 var selectedData = d3.select(this).data();
-                                if(scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1){
+                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
                                     scope.acquaintancesinyourarea.push(selectedData[0]);
                                     scope.colorsinyourarea.push(color);
                                     var i = scope.acquaintances.indexOf(selectedData[0]);
@@ -1601,7 +1601,7 @@
                             } else {
                                 var selectedData = d3.select(this).data();
                                 var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if(i != -1) {
+                                if (i != -1) {
                                     scope.acquaintancesinyourarea.splice(i, 1);
                                     scope.colorsinyourarea.splice(i, 1);
                                     scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
@@ -1611,12 +1611,12 @@
                         }
                     }
 
-                    scope.$watch(function() {
+                    scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
                             drawConnections(scope.acquaintances, scope.bridges)
                         }
-                        catch(err) {
+                        catch (err) {
                             console.log(err)
                         }
                     }, true);
@@ -1647,64 +1647,60 @@
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
-                        // var margin = {top: 20, right: 15, bottom: 60, left: 60}
-                        var width = 360; //960 - margin.left - margin.right
-                        var height = 460; //500 - margin.top - margin.bottom
+                        // set the dimensions and margins of the graph
+                        var margin = {top: 20, right: 20, bottom: 30, left: 50},
+                            width = 960 - margin.left - margin.right,
+                            height = 500 - margin.top - margin.bottom;
 
                         bridges = bridges.reduce(function (r, a, i) {
-                                if (i % 2) {
-                                    r[i] = [a, 10]
-                                } else {
-                                    r[i] = [a, 5]
-                                }
-                                return r;
-                            }, []);
+                            if (i % 2) {
+                                r[i] = [a, 10]
+                            } else {
+                                r[i] = [a, 5]
+                            }
+                            return r;
+                        }, []);
 
-                        var x = d3.scaleLinear()
-                            .domain([0, d3.max(bridges, function(d) { return d[0]; })])
-                            .range([ 0, width ]);
+                        // set the ranges
+                        var x = d3.scaleLinear().range([0, width]);
+                        var y = d3.scaleLinear().range([height, 0]);
 
-                        var y = d3.scaleLinear()
-                            .domain([0, d3.max(bridges, function(d) { return d[1]; })])
-                            .range([ height, 0 ]);
 
-                        var chart = d3.select(element[0])
-                            .append('svg')
-                            .attr('width', width) //+ margin.right + margin.left)
-                            .attr('height', height) // + margin.top + margin.bottom)
-                            .attr('class', 'chart');
+                        // append the svg obgect to the body of the page
+                        // appends a 'group' element to 'svg'
+                        // moves the 'group' element to the top left margin
+                        var svg = d3.select(element[0]).append("svg")
+                            .attr("width", width + margin.left + margin.right)
+                            .attr("height", height + margin.top + margin.bottom)
+                            .append("g")
+                            .attr("transform",
+                                "translate(" + margin.left + "," + margin.top + ")");
 
-                        var main = chart.append('g')
-                            // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-                            .attr('transform', 'translate(' + 100 + ',' + 100 + ')')
-                            .attr('width', width)
-                            .attr('height', height)
-                            .attr('class', 'main');
 
-                        // draw the x axis
-                        var xAxis = d3.axisBottom(x);
+                        // Scale the range of the data
+                        x.domain([0, d3.max(bridges, function (d) {
+                            return d[0];
+                        })])
+                        y.domain([0, d3.max(bridges, function (d) {
+                            return d[1];
+                        })]);
 
-                        main.append('g')
-                            .attr('transform', 'translate(0,' + height + ')')
-                            // .attr('class', 'main axis date')
-                            .call(xAxis);
-
-                        // draw the y axis
-                        var yAxis = d3.axisLeft(y);
-
-                        main.append('g')
-                            .attr('transform', 'translate(0,0)')
-                            // .attr('class', 'main axis date')
-                            .call(yAxis);
-
-                        var g = main.append("g");
-
-                        g.selectAll("dot")
-                            .data(bridges)
+                        // Add the scatterplot
+                        svg.selectAll("dot")
+                            .data(data)
                             .enter().append("circle")
+                            .attr("r", 5)
                             .attr("cx", function (d) { return x(d[0]); } )
-                            .attr("cy", function (d) { return y(d[1]); } )
-                            .attr("r", 5);
+                            .attr("cy", function (d) { return y(d[1]); } );
+
+                        // Add the X Axis
+                        svg.append("g")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(d3.axisBottom(x));
+
+                        // Add the Y Axis
+                        svg.append("g")
+                            .call(d3.axisLeft(y));
 
                     }
                 }
@@ -1712,13 +1708,14 @@
         })
         .config(AppConfig);
 
-    function LoginController($scope,userService,$location, $anchorScroll) {
+    function LoginController($scope, userService, $location, $anchorScroll) {
         $scope.login = login;
+
         function login(user) {
             $scope.error = null;
             var user = {
-                email : user.username,
-                password : user.password
+                email: user.username,
+                password: user.password
             }
             userService.findUserByCredentials(user)
                 .then(function (userResponse) {
@@ -1744,16 +1741,16 @@
         function register(user) {
             $scope.error = null;
             var user = {
-                email : user.username,
-                password : user.password,
-                verifypassword : user.verifypassword,
-                registrationkey : user.registrationkey,
-                name : user.name,
-                screenname : user.screenname
+                email: user.username,
+                password: user.password,
+                verifypassword: user.verifypassword,
+                registrationkey: user.registrationkey,
+                name: user.name,
+                screenname: user.screenname
             };
             if (user.password !== user.verifypassword) {
                 $scope.error = {
-                    "message" : " Passwords does not match "
+                    "message": " Passwords does not match "
                 };
                 $anchorScroll('top');
             }
@@ -1762,9 +1759,9 @@
                     .then(function (userResponse) {
                         if (userResponse.message === "User already registered.") {
                             $scope.error = userResponse;
-                        }else if (userResponse.message !== "Incorrect Registration Key") {
+                        } else if (userResponse.message !== "Incorrect Registration Key") {
                             $location.url('/');
-                        }else {
+                        } else {
                             if (userResponse) {
                                 $scope.error = userResponse;
                             }
@@ -1814,28 +1811,28 @@
             $anchorScroll('top');
         }
 
-        function openReach(){
+        function openReach() {
             $location.url('/reach/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openFeed(){
+        function openFeed() {
             $location.url('/feed/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openFilters(){
+        function openFilters() {
             $location.url('/filter/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openFilters_new(){
+        function openFilters_new() {
             $location.url('/filternew/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openSlideMenu(){
+        function openSlideMenu() {
             $scope.openslide = "open";
             document.getElementById('side-menu').style.width = '50vw';
         }
 
-        function closeSlideMenu(){
+        function closeSlideMenu() {
             $scope.openslide = null;
             document.getElementById('side-menu').style.width = '0';
         }
@@ -1865,9 +1862,11 @@
         function displayReachLikes(likes) {
             $scope.likes = likes;
         }
+
         function displayReachComments(comments) {
             $scope.comments = comments;
         }
+
         function displayReachShares(shares) {
             $scope.shares = shares;
         }
@@ -1877,24 +1876,24 @@
             $anchorScroll('top');
         }
 
-        function openProfile(){
+        function openProfile() {
             $location.url('/user/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openFeed(){
+        function openFeed() {
             $location.url('/feed/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openFilters(){
+        function openFilters() {
             $location.url('/filter/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openSlideMenu(){
+        function openSlideMenu() {
             $scope.openslide = "open";
             document.getElementById('side-menu').style.width = '50vw';
         }
 
-        function closeSlideMenu(){
+        function closeSlideMenu() {
             $scope.openslide = null;
             document.getElementById('side-menu').style.width = '0';
         }
@@ -1907,7 +1906,7 @@
         $scope.mediaid = 'null';
 
         var formData = new FormData();
-        $scope.myFiles = function($files) {
+        $scope.myFiles = function ($files) {
             formData.append('image', $files[0]);
             $scope.form = "defined";
         }
@@ -1919,25 +1918,27 @@
             right: true
         };
 
-        $scope.toastPosition = angular.extend({},last);
+        $scope.toastPosition = angular.extend({}, last);
 
-        $scope.getToastPosition = function() {
+        $scope.getToastPosition = function () {
             sanitizePosition();
 
             return Object.keys($scope.toastPosition)
-                .filter(function(pos) { return $scope.toastPosition[pos]; })
+                .filter(function (pos) {
+                    return $scope.toastPosition[pos];
+                })
                 .join(' ');
         };
 
         function sanitizePosition() {
             var current = $scope.toastPosition;
 
-            if ( current.bottom && last.top ) current.top = false;
-            if ( current.top && last.bottom ) current.bottom = false;
-            if ( current.right && last.left ) current.left = false;
-            if ( current.left && last.right ) current.right = false;
+            if (current.bottom && last.top) current.top = false;
+            if (current.top && last.bottom) current.bottom = false;
+            if (current.right && last.left) current.left = false;
+            if (current.left && last.right) current.right = false;
 
-            last = angular.extend({},current);
+            last = angular.extend({}, current);
         }
 
         $scope.showSimpleToast = showSimpleToast;
@@ -1972,9 +1973,9 @@
         $scope.selectSort = selectSort;
 
         function init() {
-            postService.getFeed($scope.userId,$scope.token)
+            postService.getFeed($scope.userId, $scope.token)
                 .then(displayFeed, feedError);
-            userService.findUserById($scope.userId,$scope.token)
+            userService.findUserById($scope.userId, $scope.token)
                 .then(displayUser, profileError);
             $scope.selectsort = "sort";
             $scope.postit = "create";
@@ -1985,57 +1986,59 @@
 
         function searchPost() {
             console.log("inside searchPost");
-            if($scope.search !== ""){
-                postService.getFeed($scope.userId,$scope.token)
-                    .then(feed => {
-                        var feedList = feed.posts;
-                        var filteredFeed = [];
-                        for(var i = 0; i < feedList.length; i++) {
-                            if (feedList[i].text.toLowerCase().includes($scope.search.toLowerCase())
-                                || feedList[i].username.toLowerCase().includes($scope.search.toLowerCase())) {
-                                filteredFeed.push(feedList[i]);
-                            }
-                        }
-                        if($scope.search) {
-                            $scope.currentFeed = filteredFeed;
-                        }else{
-                            init();
-                        }
-                    });
-            }else {
-                postService.getFeed($scope.userId,$scope.token)
-                    .then(feed => {
-                        $scope.currentFeed = feed.posts;
-                    });
+            if ($scope.search !== "") {
+                postService.getFeed($scope.userId, $scope.token)
+                    .then(feed = > {
+                    var feedList = feed.posts;
+                var filteredFeed = [];
+                for (var i = 0; i < feedList.length; i++) {
+                    if (feedList[i].text.toLowerCase().includes($scope.search.toLowerCase())
+                        || feedList[i].username.toLowerCase().includes($scope.search.toLowerCase())) {
+                        filteredFeed.push(feedList[i]);
+                    }
+                }
+                if ($scope.search) {
+                    $scope.currentFeed = filteredFeed;
+                } else {
+                    init();
+                }
+            })
+                ;
+            } else {
+                postService.getFeed($scope.userId, $scope.token)
+                    .then(feed = > {
+                    $scope.currentFeed = feed.posts;
+            })
+                ;
             }
         }
 
         function selectSort() {
             var actualFeed = $scope.currentFeed;
-            if($scope.selectsort == "favorites"){
+            if ($scope.selectsort == "favorites") {
                 actualFeed.sort(sortfavorites);
                 $scope.currentFeed = actualFeed;
             }
-            if($scope.selectsort == "retweets"){
+            if ($scope.selectsort == "retweets") {
                 actualFeed.sort(sortretweets);
                 $scope.currentFeed = actualFeed;
             }
-            if($scope.selectsort == "claps"){
+            if ($scope.selectsort == "claps") {
                 actualFeed.sort(sortclaps);
                 $scope.currentFeed = actualFeed;
             }
         }
 
-        function sortfavorites(a,b){
-            return(b.favorites - a.favorites)
+        function sortfavorites(a, b) {
+            return (b.favorites - a.favorites)
         }
 
-        function sortretweets(a,b){
-            return(b.retweets - a.retweets)
+        function sortretweets(a, b) {
+            return (b.retweets - a.retweets)
         }
 
-        function sortclaps(a,b){
-            return(b.claps - a.claps)
+        function sortclaps(a, b) {
+            return (b.claps - a.claps)
         }
 
         function displayFeed(feed) {
@@ -2056,33 +2059,33 @@
             $anchorScroll('top');
         }
 
-        function openReach(){
+        function openReach() {
             $location.url('/reach/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openProfile(){
+        function openProfile() {
             $location.url('/user/' + $scope.userId + '/' + $scope.token);
         }
 
-        function enlarge(id){
-            if(document.getElementById(id).style.height!='auto'){
-                document.getElementById(id).style.height='auto';
+        function enlarge(id) {
+            if (document.getElementById(id).style.height != 'auto') {
+                document.getElementById(id).style.height = 'auto';
             } else {
-                document.getElementById(id).style.height='12vw';
+                document.getElementById(id).style.height = '12vw';
             }
         }
 
-        function openFilters(){
+        function openFilters() {
             $location.url('/filter/' + $scope.userId + '/' + $scope.token);
         }
 
         function createPost(newpost) {
             $scope.error = null;
-            console.log("$scope.postit is ",$scope.postit);
-            console.log("$scope.form is ",$scope.form);
-            if($scope.postit!= undefined) {
+            console.log("$scope.postit is ", $scope.postit);
+            console.log("$scope.form is ", $scope.form);
+            if ($scope.postit != undefined) {
                 $scope.postit = undefined;
-                if($scope.form != undefined){
+                if ($scope.form != undefined) {
                     postService.createImage(formData, $scope.userId, $scope.token)
                         .then(function (postResponse) {
                             if (postResponse) {
@@ -2154,7 +2157,7 @@
         }
 
 
-        function typing(){
+        function typing() {
             $scope.createPost = "defined";
         }
 
@@ -2177,7 +2180,7 @@
         function favoritePost(postId, favorited) {
             $scope.error = null;
 
-            if(favorited){
+            if (favorited) {
                 postService.unfavoritePostById($scope.userId, $scope.token, postId)
                     .then(function (resp) {
                         if (resp) {
@@ -2190,7 +2193,7 @@
                         }
                         init();
                     })
-            }else{
+            } else {
                 postService.favoritePostById($scope.userId, $scope.token, postId)
                     .then(function (resp) {
                         if (resp) {
@@ -2208,7 +2211,7 @@
 
         function clapPost(postId, clapped) {
             $scope.error = null;
-            if(clapped){
+            if (clapped) {
                 postService.unclapPostById($scope.userId, $scope.token, postId)
                     .then(function (resp) {
                         if (resp) {
@@ -2236,7 +2239,7 @@
         function retweetPost(postId, retweeted) {
             $scope.error = null;
 
-            if(retweeted){
+            if (retweeted) {
                 postService.unretweetPostById($scope.userId, $scope.token, postId)
                     .then(function (resp) {
                         if (resp) {
@@ -2247,7 +2250,7 @@
                         }
                         init();
                     })
-            }else{
+            } else {
                 postService.retweetPostById($scope.userId, $scope.token, postId)
                     .then(function (resp) {
                         if (resp) {
@@ -2261,42 +2264,42 @@
             }
         }
 
-        function openSlideMenu(){
+        function openSlideMenu() {
             $scope.openslide = "open";
             document.getElementById('side-menu').style.width = '50vw';
         }
 
-        function closeSlideMenu(){
+        function closeSlideMenu() {
             $scope.openslide = null;
             document.getElementById('side-menu').style.width = '0';
         }
 
-        function openWritePost(){
+        function openWritePost() {
             document.getElementById("textpost").style.width = '78vw';
-            document.getElementById('textpost').style.height='20vw';
-            document.getElementById('writepost').style.height='76vw';
-            document.getElementById('closepost').style.visibility='visible';
-            document.getElementById('blackline').style.visibility='visible';
-            document.getElementById('fbicon').style.visibility='visible';
-            document.getElementById('twiticon').style.visibility='visible';
-            document.getElementById('facecheck').style.visibility='visible';
-            document.getElementById('twitcheck').style.visibility='visible';
-            document.getElementById('sharebt').style.visibility='visible';
-            document.getElementById('shpost').style.visibility='visible';
+            document.getElementById('textpost').style.height = '20vw';
+            document.getElementById('writepost').style.height = '76vw';
+            document.getElementById('closepost').style.visibility = 'visible';
+            document.getElementById('blackline').style.visibility = 'visible';
+            document.getElementById('fbicon').style.visibility = 'visible';
+            document.getElementById('twiticon').style.visibility = 'visible';
+            document.getElementById('facecheck').style.visibility = 'visible';
+            document.getElementById('twitcheck').style.visibility = 'visible';
+            document.getElementById('sharebt').style.visibility = 'visible';
+            document.getElementById('shpost').style.visibility = 'visible';
         }
 
-        function closeWritePost(){
+        function closeWritePost() {
             document.getElementById("textpost").style.width = '78vw';
-            document.getElementById('textpost').style.height='10vw';
-            document.getElementById('writepost').style.height='28vw';
-            document.getElementById('closepost').style.visibility='hidden';
-            document.getElementById('blackline').style.visibility='hidden';
-            document.getElementById('fbicon').style.visibility='hidden';
-            document.getElementById('twiticon').style.visibility='hidden';
-            document.getElementById('facecheck').style.visibility='hidden';
-            document.getElementById('twitcheck').style.visibility='hidden';
-            document.getElementById('sharebt').style.visibility='hidden';
-            document.getElementById('shpost').style.visibility='hidden';
+            document.getElementById('textpost').style.height = '10vw';
+            document.getElementById('writepost').style.height = '28vw';
+            document.getElementById('closepost').style.visibility = 'hidden';
+            document.getElementById('blackline').style.visibility = 'hidden';
+            document.getElementById('fbicon').style.visibility = 'hidden';
+            document.getElementById('twiticon').style.visibility = 'hidden';
+            document.getElementById('facecheck').style.visibility = 'hidden';
+            document.getElementById('twitcheck').style.visibility = 'hidden';
+            document.getElementById('sharebt').style.visibility = 'hidden';
+            document.getElementById('shpost').style.visibility = 'hidden';
         }
 
     }
@@ -2337,7 +2340,7 @@
         $scope.clicked = clicked;
         $scope.onSelectAdd = onSelectAdd;
 
-        $scope.onSwipeLeftMostFollowers = function(ev, target) {
+        $scope.onSwipeLeftMostFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = 1;
             $scope.gatewayfollowers = undefined;
@@ -2348,7 +2351,7 @@
 
         };
 
-        $scope.onSwipeRightMostFollowers = function(ev, target) {
+        $scope.onSwipeRightMostFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2359,7 +2362,7 @@
 
         };
 
-        $scope.onSwipeLeftLeastFollowers = function(ev, target) {
+        $scope.onSwipeLeftLeastFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = 1;
@@ -2370,7 +2373,7 @@
         };
 
 
-        $scope.onSwipeRightLeastFollowers = function(ev, target) {
+        $scope.onSwipeRightLeastFollowers = function (ev, target) {
             $scope.mostfollowers = 1;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2380,7 +2383,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeLeftGatewayFollowers = function(ev, target) {
+        $scope.onSwipeLeftGatewayFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2390,7 +2393,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeRightGatewayFollowers = function(ev, target) {
+        $scope.onSwipeRightGatewayFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = 1;
             $scope.gatewayfollowers = undefined;
@@ -2400,7 +2403,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeLeftMostActiveFollowers = function(ev, target) {
+        $scope.onSwipeLeftMostActiveFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2410,7 +2413,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeRightMostActiveFollowers = function(ev, target) {
+        $scope.onSwipeRightMostActiveFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = 1;
@@ -2420,7 +2423,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeLeftLeastActiveFollowers = function(ev, target) {
+        $scope.onSwipeLeftLeastActiveFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2430,7 +2433,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeRightLeastActiveFollowers = function(ev, target) {
+        $scope.onSwipeRightLeastActiveFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2440,7 +2443,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeLeftMostInteractiveFollowers = function(ev, target) {
+        $scope.onSwipeLeftMostInteractiveFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2450,7 +2453,7 @@
             $scope.messagefollowers = 1;
         };
 
-        $scope.onSelectMessage = function(ev, target) {
+        $scope.onSelectMessage = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2460,7 +2463,7 @@
             $scope.messagefollowers = 1;
         };
 
-        $scope.onSwipeRightMostInteractiveFollowers = function(ev, target) {
+        $scope.onSwipeRightMostInteractiveFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2470,7 +2473,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeLeftMessageFollowers = function(ev, target) {
+        $scope.onSwipeLeftMessageFollowers = function (ev, target) {
             $scope.mostfollowers = 1;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2480,7 +2483,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeRightMessageFollowers = function(ev, target) {
+        $scope.onSwipeRightMessageFollowers = function (ev, target) {
             $scope.mostfollowers = undefined;
             $scope.leastfollowers = undefined;
             $scope.gatewayfollowers = undefined;
@@ -2491,26 +2494,26 @@
         };
 
         function init() {
-            filterService.getMostFollowers($scope.userId,$scope.token)
+            filterService.getMostFollowers($scope.userId, $scope.token)
                 .then(displayMostFollowers, filterError);
-            filterService.getLeastFollowers($scope.userId,$scope.token)
+            filterService.getLeastFollowers($scope.userId, $scope.token)
                 .then(displayLeastFollowers, filterError);
-            filterService.getGatewayFollowers($scope.userId,$scope.token)
+            filterService.getGatewayFollowers($scope.userId, $scope.token)
                 .then(displayGatewayFollowers, filterError);
-            filterService.getMostActiveFollowers($scope.userId,$scope.token)
+            filterService.getMostActiveFollowers($scope.userId, $scope.token)
                 .then(displayMostActiveFollowers, filterError);
-            filterService.getLeastActiveFollowers($scope.userId,$scope.token)
+            filterService.getLeastActiveFollowers($scope.userId, $scope.token)
                 .then(displayLeastActiveFollowers, filterError);
-            filterService.getMostInteractiveFollowers($scope.userId,$scope.token)
+            filterService.getMostInteractiveFollowers($scope.userId, $scope.token)
                 .then(displayMostInteractiveFollowers, filterError);
-            filterService.getAllFollowers($scope.userId,$scope.token)
+            filterService.getAllFollowers($scope.userId, $scope.token)
                 .then(displayAllFollowers, filterError);
         }
 
         init();
 
         function clicked() {
-            var tags = "@"+$scope.acquaintancesInYourArea.join(" @")+" ";
+            var tags = "@" + $scope.acquaintancesInYourArea.join(" @") + " ";
             $scope.sendmessage = tags;
         }
 
@@ -2521,7 +2524,7 @@
             init();
         }
 
-        $scope.backtofilter = function() {
+        $scope.backtofilter = function () {
             $scope.mostfollowers = 1;
             $scope.allfollowers = 1;
             $scope.leastfollowers = undefined;
@@ -2532,9 +2535,9 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.sendMessage = function() {
+        $scope.sendMessage = function () {
             var post = {
-                text : $scope.sendmessage + $scope.sendnewmessage
+                text: $scope.sendmessage + $scope.sendnewmessage
             }
             postService.createPost(post, $scope.userId, $scope.token)
                 .then(function (postResponse) {
@@ -2554,48 +2557,60 @@
         function displayMostFollowers(followerArrray) {
             $scope.acquaintancesMostFollowers = followerArrray.screennames;
             $scope.bridgesMostFollowers = followerArrray.followerlength;
-            if($scope.colorsMostFollowers === undefined){
-                $scope.colorsMostFollowers = Array.from(new Array(5), () => "red");
+            if ($scope.colorsMostFollowers === undefined) {
+                $scope.colorsMostFollowers = Array.from(new Array(5), () = > "red"
+            )
+                ;
             }
         }
 
         function displayLeastFollowers(followerArrray) {
             $scope.acquaintancesLeastFollowers = followerArrray.screennames;
             $scope.bridgesLeastFollowers = followerArrray.followerlength;
-            if($scope.colorsLeastFollowers === undefined){
-                $scope.colorsLeastFollowers = Array.from(new Array(5), () => "deepskyblue");
+            if ($scope.colorsLeastFollowers === undefined) {
+                $scope.colorsLeastFollowers = Array.from(new Array(5), () = > "deepskyblue"
+            )
+                ;
             }
         }
 
         function displayGatewayFollowers(followerArrray) {
             $scope.acquaintancesGatewayFollowers = followerArrray.screennames;
             $scope.bridgesGatewayFollowers = followerArrray.followerlength;
-            if($scope.colorsGatewayFollowers === undefined){
-                $scope.colorsGatewayFollowers = Array.from(new Array(5), () => "royalblue");
+            if ($scope.colorsGatewayFollowers === undefined) {
+                $scope.colorsGatewayFollowers = Array.from(new Array(5), () = > "royalblue"
+            )
+                ;
             }
         }
 
         function displayMostActiveFollowers(followerArrray) {
             $scope.acquaintancesMostactiveFollowers = followerArrray.screennames;
             $scope.bridgesMostactiveFollowers = followerArrray.followerlength;
-            if($scope.colorsMostactiveFollowers === undefined){
-                $scope.colorsMostactiveFollowers = Array.from(new Array(5), () => "orange");
+            if ($scope.colorsMostactiveFollowers === undefined) {
+                $scope.colorsMostactiveFollowers = Array.from(new Array(5), () = > "orange"
+            )
+                ;
             }
         }
 
         function displayLeastActiveFollowers(followerArrray) {
             $scope.acquaintancesLeastactiveFollowers = followerArrray.screennames;
             $scope.bridgesLeastactiveFollowers = followerArrray.followerlength;
-            if($scope.colorsLeastactiveFollowers === undefined){
-                $scope.colorsLeastactiveFollowers = Array.from(new Array(5), () => "crimson");
+            if ($scope.colorsLeastactiveFollowers === undefined) {
+                $scope.colorsLeastactiveFollowers = Array.from(new Array(5), () = > "crimson"
+            )
+                ;
             }
         }
 
         function displayMostInteractiveFollowers(followerArrray) {
             $scope.acquaintancesMostInteractiveFollowers = followerArrray.screennames;
             $scope.bridgesMostInteractiveFollowers = followerArrray.followerlength;
-            if($scope.colorsMostInteractiveFollowers === undefined){
-                $scope.colorsMostInteractiveFollowers = Array.from(new Array(5), () => "gold");
+            if ($scope.colorsMostInteractiveFollowers === undefined) {
+                $scope.colorsMostInteractiveFollowers = Array.from(new Array(5), () = > "gold"
+            )
+                ;
             }
         }
 
@@ -2609,24 +2624,24 @@
             $anchorScroll('top');
         }
 
-        function openProfile(){
+        function openProfile() {
             $location.url('/user/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openReach(){
+        function openReach() {
             $location.url('/reach/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openFeed(){
+        function openFeed() {
             $location.url('/feed/' + $scope.userId + '/' + $scope.token);
         }
 
-        function openSlideMenu(){
+        function openSlideMenu() {
             $scope.openslide = "open";
             document.getElementById('side-menu').style.width = '50vw';
         }
 
-        function closeSlideMenu(){
+        function closeSlideMenu() {
             $scope.openslide = null;
             document.getElementById('side-menu').style.width = '0';
         }
@@ -2646,7 +2661,7 @@
                 templateUrl: 'register.html'
             })
             .when('/filter/:userId/:token', {
-            templateUrl: 'filters.html'
+                templateUrl: 'filters.html'
             })
             .when('/reach/:userId/:token', {
                 templateUrl: 'myreach.html'
