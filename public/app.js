@@ -1643,67 +1643,91 @@
                     }
 
                     function drawConnections(acquaintances, bridges) {
-                        var inYourArea = d3.select(element[0]);
-                        var insideSVG = inYourArea.select("svg");
-                        insideSVG.remove();
+                        // var inYourArea = d3.select(element[0]);
+                        // var insideSVG = inYourArea.select("svg");
+                        // insideSVG.remove();
+
+                        var svg_left = d3.select('#left-followers').append("svg");
+                        var svg_right = d3.select('#right-followers').append("svg");
+
+                        var left_dimensions = svg_left.getBBox()
+                        var right_dimensions = svg_right.getBBox()
 
                         // set the dimensions and margins of the graph
-                        var margin = {top: 20, right: 20, bottom: 30, left: 50},
-                            width = 960 - margin.left - margin.right,
-                            height = 500 - margin.top - margin.bottom;
+                        // var margin = {top: 20, right: 20, bottom: 30, left: 50},
+                        // var width = 360; //960 - margin.left - margin.right,
+                        // var height = 460; //500 - margin.top - margin.bottom;
 
-                        if (bridges) {
-                            bridges = bridges.reduce(function (r, a, i) {
-                                if (i % 2) {
-                                    r[i] = [a, 10]
-                                } else {
-                                    r[i] = [a, 5]
-                                }
-                                return r;
-                            }, []);
+                        var split_index = bridges.length / 2;
+                        if(bridges.length % 2 === 0){
+                            split_index = split_index - 1;
                         }
 
+                        bridges = bridges.reduce(function (r, a, i) {
+                            if (i % 2) {
+                                r[i] = [a, 10]
+                            } else {
+                                r[i] = [a, 5]
+                            }
+                            return r;
+                        }, []);
+
+                        var left_bridges = bridges.slice(split_index);
+                        var right_bridges = bridges.slice(split_index + 1, bridges.length)
+
                         // set the ranges
-                        var x = d3.scaleLinear().range([0, width]);
-                        var y = d3.scaleLinear().range([height, 0]);
+                        var x_left = d3.scaleLinear().range([0, left_dimensions.width]);
+                        var y_left = d3.scaleLinear().range([left_dimensions.height, 0]);
+
+                        var x_right = d3.scaleLinear().range([0, right_dimensions.width]);
+                        var y_right = d3.scaleLinear().range([right_dimensions.height, 0]);
 
 
                         // append the svg obgect to the body of the page
                         // appends a 'group' element to 'svg'
                         // moves the 'group' element to the top left margin
-                        var svg = d3.select(element[0]).append("svg")
-                            .attr("width", width + margin.left + margin.right)
-                            .attr("height", height + margin.top + margin.bottom)
+                        svg_left.attr("width", left_dimensions.width + 10)
+                            .attr("height", left_dimensions.height + 10)
                             .append("g")
                             .attr("transform",
-                                "translate(" + margin.left + "," + margin.top + ")");
+                                "translate(" + 10 + "," + 10 + ")");
+
+                        svg_right.attr("width", right_dimensions.width + 10)
+                            .attr("height", right_dimensions.height + 10)
+                            .append("g")
+                            .attr("transform",
+                                "translate(" + 10 + "," + 10 + ")");
 
 
                         // Scale the range of the data
-                        x.domain([0, d3.max(bridges, function (d) {
+                        x_left.domain([0, d3.max(left_bridges, function (d) {
                             return d[0];
-                        })])
-                        y.domain([0, d3.max(bridges, function (d) {
+                        })]);
+                        y_left.domain([0, d3.max(left_bridges, function (d) {
+                            return d[1];
+                        })]);
+
+                        x_right.domain([0, d3.max(right_bridges, function (d) {
+                            return d[0];
+                        })]);
+                        y_right.domain([0, d3.max(right_bridges, function (d) {
                             return d[1];
                         })]);
 
                         // Add the scatterplot
-                        svg.selectAll("dot")
-                            .data(bridges)
+                        svg_left.selectAll("dot")
+                            .data(left_bridges)
                             .enter().append("circle")
                             .attr("r", 5)
                             .attr("cx", function (d) { return x(d[0]); } )
                             .   attr("cy", function (d) { return y(d[1]); } );
 
-                        // Add the X Axis
-                        svg.append("g")
-                            .attr("transform", "translate(0," + height + ")")
-                            .call(d3.axisBottom(x));
-
-                        // Add the Y Axis
-                        svg.append("g")
-                            .call(d3.axisLeft(y));
-
+                        svg_right.selectAll("dot")
+                            .data(right_bridges)
+                            .enter().append("circle")
+                            .attr("r", 5)
+                            .attr("cx", function (d) { return x(d[0]); } )
+                            .   attr("cy", function (d) { return y(d[1]); } );
                     }
                 }
             }
@@ -2324,7 +2348,7 @@
 
         // display most followers
         $scope.mostfollowers = 1;
-        $scope.allfollowers = 1;
+        $scope.allfollowers = undefined;
 
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
@@ -2619,6 +2643,7 @@
         function displayAllFollowers(followerArrray) {
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
             $scope.bridgesAllFollowers = followerArrray.followerlength;
+            $scope.allfollowers = followerArrray.screennames.length
         }
 
         function filterError() {
