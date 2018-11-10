@@ -1650,9 +1650,6 @@
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
 
-                        var left_dimensions = document.getElementById('left-followers').getBoundingClientRect();
-                        var right_dimensions = document.getElementById('right-followers').getBoundingClientRect();
-
                         // set the dimensions and margins of the graph
                         // var margin = {top: 20, right: 20, bottom: 30, left: 50},
                         // var width = 360; //960 - margin.left - margin.right,
@@ -1676,24 +1673,24 @@
                         var right_bridges = bridges.slice(split_index + 1, bridges.length);
 
                         // set the ranges
-                        var x_left = d3.scaleLinear().range([0, left_dimensions.width]);
-                        var y_left = d3.scaleLinear().range([left_dimensions.height, 0]);
+                        var x_left = d3.scaleLinear().range([0, 100]);
+                        var y_left = d3.scaleLinear().range([460, 0]);
 
-                        var x_right = d3.scaleLinear().range([0, right_dimensions.width]);
-                        var y_right = d3.scaleLinear().range([right_dimensions.height, 0]);
+                        var x_right = d3.scaleLinear().range([0, 100]);
+                        var y_right = d3.scaleLinear().range([460, 0]);
 
 
                         // append the svg obgect to the body of the page
                         // appends a 'group' element to 'svg'
                         // moves the 'group' element to the top left margin
-                        svg_left.attr("width", left_dimensions.width + 10)
-                            .attr("height", left_dimensions.height + 10)
+                        svg_left.attr("width", 100 + 10)
+                            .attr("height", 460 + 10)
                             .append("g")
                             .attr("transform",
                                 "translate(" + 10 + "," + 10 + ")");
 
-                        svg_right.attr("width", right_dimensions.width + 10)
-                            .attr("height", right_dimensions.height + 10)
+                        svg_right.attr("width", 100 + 10)
+                            .attr("height", 460 + 10)
                             .append("g")
                             .attr("transform",
                                 "translate(" + 10 + "," + 10 + ")");
