@@ -1988,7 +1988,7 @@
             console.log("inside searchPost");
             if ($scope.search !== "") {
                 postService.getFeed($scope.userId, $scope.token)
-                    .then(feed = > {
+                    .then(feed => {
                     var feedList = feed.posts;
                 var filteredFeed = [];
                 for (var i = 0; i < feedList.length; i++) {
@@ -2006,7 +2006,7 @@
                 ;
             } else {
                 postService.getFeed($scope.userId, $scope.token)
-                    .then(feed = > {
+                    .then(feed => {
                     $scope.currentFeed = feed.posts;
             })
                 ;
@@ -2558,7 +2558,7 @@
             $scope.acquaintancesMostFollowers = followerArrray.screennames;
             $scope.bridgesMostFollowers = followerArrray.followerlength;
             if ($scope.colorsMostFollowers === undefined) {
-                $scope.colorsMostFollowers = Array.from(new Array(5), () = > "red"
+                $scope.colorsMostFollowers = Array.from(new Array(5), () => "red"
             )
                 ;
             }
@@ -2568,7 +2568,7 @@
             $scope.acquaintancesLeastFollowers = followerArrray.screennames;
             $scope.bridgesLeastFollowers = followerArrray.followerlength;
             if ($scope.colorsLeastFollowers === undefined) {
-                $scope.colorsLeastFollowers = Array.from(new Array(5), () = > "deepskyblue"
+                $scope.colorsLeastFollowers = Array.from(new Array(5), () => "deepskyblue"
             )
                 ;
             }
@@ -2578,7 +2578,7 @@
             $scope.acquaintancesGatewayFollowers = followerArrray.screennames;
             $scope.bridgesGatewayFollowers = followerArrray.followerlength;
             if ($scope.colorsGatewayFollowers === undefined) {
-                $scope.colorsGatewayFollowers = Array.from(new Array(5), () = > "royalblue"
+                $scope.colorsGatewayFollowers = Array.from(new Array(5), () => "royalblue"
             )
                 ;
             }
@@ -2588,7 +2588,7 @@
             $scope.acquaintancesMostactiveFollowers = followerArrray.screennames;
             $scope.bridgesMostactiveFollowers = followerArrray.followerlength;
             if ($scope.colorsMostactiveFollowers === undefined) {
-                $scope.colorsMostactiveFollowers = Array.from(new Array(5), () = > "orange"
+                $scope.colorsMostactiveFollowers = Array.from(new Array(5), () => "orange"
             )
                 ;
             }
@@ -2598,7 +2598,7 @@
             $scope.acquaintancesLeastactiveFollowers = followerArrray.screennames;
             $scope.bridgesLeastactiveFollowers = followerArrray.followerlength;
             if ($scope.colorsLeastactiveFollowers === undefined) {
-                $scope.colorsLeastactiveFollowers = Array.from(new Array(5), () = > "crimson"
+                $scope.colorsLeastactiveFollowers = Array.from(new Array(5), () => "crimson"
             )
                 ;
             }
@@ -2608,7 +2608,7 @@
             $scope.acquaintancesMostInteractiveFollowers = followerArrray.screennames;
             $scope.bridgesMostInteractiveFollowers = followerArrray.followerlength;
             if ($scope.colorsMostInteractiveFollowers === undefined) {
-                $scope.colorsMostInteractiveFollowers = Array.from(new Array(5), () = > "gold"
+                $scope.colorsMostInteractiveFollowers = Array.from(new Array(5), () => "gold"
             )
                 ;
             }
