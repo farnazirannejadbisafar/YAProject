@@ -1623,7 +1623,7 @@
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
 
-                        alert(document.getElementById('myDiv').clientHeight)
+                        alert(document.getElementById('left-followers').clientHeight)
 
                         var split_index = bridges.length / 2;
                         if(bridges.length % 2 === 0){
