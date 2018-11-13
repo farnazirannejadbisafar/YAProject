@@ -1623,7 +1623,7 @@
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
 
-                        alert(document.getElementById('left-followers').clientHeight)
+
 
                         var split_index = bridges.length / 2;
                         if(bridges.length % 2 === 0){
@@ -1640,8 +1640,8 @@
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
-                            width = 400 - margin.left - margin.right,
-                            height = 500 - margin.top - margin.bottom;
+                            width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
+                            height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom;
 
                         var left_bridges = bridges.slice(split_index);
                         var right_bridges = bridges.slice(split_index + 1, bridges.length);
