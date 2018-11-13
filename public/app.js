@@ -1580,37 +1580,6 @@
                     bridges: '='
                 },
                 link: function (scope, element, attrs) {
-
-                    function toggleColor(color) {
-                        var currentColor = color;
-                        return function () {
-                            var col = d3.select(this).style('fill').toString();
-                            var colStr = d3.rgb(col).toString();
-                            var magenta = d3.rgb("magenta").toString();
-
-                            if (colStr != magenta) {
-                                var selectedData = d3.select(this).data();
-                                if (scope.acquaintancesinyourarea.indexOf(selectedData[0]) == -1) {
-                                    scope.acquaintancesinyourarea.push(selectedData[0]);
-                                    scope.colorsinyourarea.push(color);
-                                    var i = scope.acquaintances.indexOf(selectedData[0]);
-                                    scope.colors[i] = "magenta";
-                                    currentColor = "magenta";
-                                    return d3.select(this).style("fill", currentColor);
-                                }
-                            } else {
-                                var selectedData = d3.select(this).data();
-                                var i = scope.acquaintancesinyourarea.indexOf(selectedData[0]);
-                                if (i != -1) {
-                                    scope.acquaintancesinyourarea.splice(i, 1);
-                                    scope.colorsinyourarea.splice(i, 1);
-                                    scope.colors[scope.acquaintances.indexOf(selectedData[0])] = color;
-                                }
-                                return d3.select(this).style("fill", color);
-                            }
-                        }
-                    }
-
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
@@ -1653,6 +1622,8 @@
 
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
+
+                        alert(document.getElementById('myDiv').clientHeight)
 
                         var split_index = bridges.length / 2;
                         if(bridges.length % 2 === 0){
