@@ -1612,6 +1612,7 @@
                     }
 
                     function drawConnections(acquaintances1, middle) {
+                        var acquaintances = acquaintances1;
                         var inYourArea = d3.select('#left-followers');
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
@@ -1623,7 +1624,7 @@
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
 
-                        var acquaintances = acquaintances1.reduce(function (r, a, i) {
+                        acquaintances = acquaintances.reduce(function (r, a, i) {
                             r[i] = [10, i*5]
                         }, []);
 
