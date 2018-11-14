@@ -1635,8 +1635,10 @@
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
-                            width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
-                            height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom;
+                            left_width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
+                            left_height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom,
+                            right_width = document.getElementById('right-followers').clientWidth - margin.left - margin.right,
+                            right_height = document.getElementById('right-followers').clientHeight - margin.top - margin.bottom;
 
                         var left_bridges = acquaintances.slice(middle);
                         var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
@@ -1645,12 +1647,12 @@
                         // var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
 
                         // set the ranges
-                        var x_left = d3.scaleLinear().range([0, width]);
-                        var y_left = d3.scaleLinear().range([height, 0]);
+                        var x_left = d3.scaleLinear().range([0, left_width]);
+                        var y_left = d3.scaleLinear().range([left_height, 0]);
 
 
-                        var x_right = d3.scaleLinear().range([0, width]);
-                        var y_right = d3.scaleLinear().range([height, 0]);
+                        var x_right = d3.scaleLinear().range([0, right_width]);
+                        var y_right = d3.scaleLinear().range([right_height, 0]);
 
                         // var tooltip_left = d3.select("left-followers").append("div")
                         //     .attr("class", "tooltip")
@@ -1664,14 +1666,14 @@
                         // append the svg obgect to the body of the page
                         // appends a 'group' element to 'svg'
                         // moves the 'group' element to the top left margin
-                        svg_left.attr("width", width + margin.left + margin.right)
-                            .attr("height", height + margin.top + margin.bottom)
+                        svg_left.attr("width", left_width + margin.left + margin.right)
+                            .attr("height", left_height + margin.top + margin.bottom)
                             .append("g")
                             .attr("transform",
                                 "translate(" + margin.left + "," + margin.top + ")");
 
-                        svg_right.attr("width", width + margin.left + margin.right)
-                            .attr("height", height + margin.top + margin.bottom)
+                        svg_right.attr("width", right_width + margin.left + margin.right)
+                            .attr("height", right_height + margin.top + margin.bottom)
                             .append("g")
                             .attr("transform",
                                 "translate(" + margin.left + "," + margin.top + ")");
@@ -2562,6 +2564,23 @@
             $scope.messagefollowers = undefined;
         };
 
+        $scope.onSwipeLeftAllFollowers = function (ev, target) {
+            if ($scope.middle < $scope.len){
+                $scope.middle = $scope.middle + 1;
+                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+                    .then(displayMiddleUser, filterError);
+            }
+        };
+
+        $scope.onSwipeRightAllFollowers = function (ev, target) {
+            if ($scope.middle > 0){
+                $scope.middle = $scope.middle - 1;
+                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+                    .then(displayMiddleUser, filterError);
+            }
+
+        };
+
         function init() {
             filterService.getMostFollowers($scope.userId, $scope.token)
                 .then(displayMostFollowers, filterError);
@@ -2690,14 +2709,14 @@
             // $scope.bridgesAllFollowers = followerArrray.followerlength;
             $scope.allfollowers = followerArrray.screennames.length;
 
-            var len = $scope.acquaintancesAllFollowers.length;
+            $scope.len = $scope.acquaintancesAllFollowers.length;
             $scope.middle = 0;
 
-            if (len % 2 === 0){
-                $scope.middle = Math.floor((len - 1) / 2);
+            if ($scope.len % 2 === 0){
+                $scope.middle = Math.floor(($scope.len - 1) / 2);
             }
             else{
-                $scope.middle = Math.round((len - 1) / 2);
+                $scope.middle = Math.round(($scope.len - 1) / 2);
             }
 
             filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)

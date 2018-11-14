@@ -29,7 +29,7 @@
 		<div  id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 
-				<div ng-show="allfollowers" md-swipe-right="onSwipeRightMostFollowers($event, $target)" md-swipe-left="onSwipeLeftMostFollowers($event, $target)" class="carousel-item active">
+				<div ng-show="allfollowers" md-swipe-right="onSwipeRightAllFollowers($event, $target)" md-swipe-left="onSwipeLeftAllFollowers($event, $target)" class="carousel-item active">
 					<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">All Followers</h2>
 					<div class="svg-class">
 							<!--<div class="col-lg-8 mx-auto">-->
@@ -39,7 +39,7 @@
 										<div class="row">
 											<div id="left-followers" class="col-4"></div>
 											<div class="col-4">
-												<h5>{{xyz}}</h5>
+												<h5>Hi, {{xyz}}</h5>
 												<h5>{{middleUser.name}}</h5>
 											</div>
 											<div id="right-followers" class="col-4"></div>
@@ -48,23 +48,23 @@
 								<!--</div>-->
 							<!--</div>-->
 						</div>
-					<div class="row svg-class">
-						<div class="col-6 button-move">
-							<p>{{plusdesc}}</p>
-						</div>
-						<div class="col-2 button-mv">
-							<button class="w3-button w3-teal w3-circle" ng-click="onSelectAdd()">+</button>
-						</div>
-						<div class="col-2 button-mv">
-							<div class="circle" ng-if="dandelion">
-								<span ><i class="fa fa-circle"></i></span>
-							</div>
-							<div class="circlenum" ng-if="dandelion">
-								<span >{{acquaintancesInYourArea.length}}</span>
-							</div>
-							<button class="w3-button w3-teal" ng-if="dandelion" ng-click="onSelectMessage()">Go</button>
-						</div>
-					</div>
+					<!--<div class="row svg-class">-->
+						<!--<div class="col-6 button-move">-->
+							<!--<p>{{plusdesc}}</p>-->
+						<!--</div>-->
+						<!--<div class="col-2 button-mv">-->
+							<!--<button class="w3-button w3-teal w3-circle" ng-click="onSelectAdd()">+</button>-->
+						<!--</div>-->
+						<!--<div class="col-2 button-mv">-->
+							<!--<div class="circle" ng-if="dandelion">-->
+								<!--<span ><i class="fa fa-circle"></i></span>-->
+							<!--</div>-->
+							<!--<div class="circlenum" ng-if="dandelion">-->
+								<!--<span >{{acquaintancesInYourArea.length}}</span>-->
+							<!--</div>-->
+							<!--<button class="w3-button w3-teal" ng-if="dandelion" ng-click="onSelectMessage()">Go</button>-->
+						<!--</div>-->
+					<!--</div>-->
 				</div>
 
 				<div ng-show="messagefollowers" md-swipe-right="onSwipeRightMessageFollowers($event, $target)" md-swipe-left="onSwipeLeftMessageFollowers($event, $target)" class="carousel-item active">
