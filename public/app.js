@@ -2389,6 +2389,8 @@
         $scope.middle = 0;
         $scope.middleUser = {};
 
+        $scope.xyz = 'xyz';
+
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
         $scope.displayGatewayFollowers = displayGatewayFollowers;
