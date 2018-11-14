@@ -1575,7 +1575,6 @@
             return {
                 restrict: 'E',
                 terminal: true,
-                bindToController: true,
                 scope: {
                     acquaintances: '=',
                     bridges: '=',
