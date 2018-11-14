@@ -1631,12 +1631,7 @@
                         }
 
                         bridges = bridges.reduce(function (r, a, i) {
-                            if (i % 2) {
-                                r[i] = [a, 10]
-                            } else {
-                                r[i] = [a, 5]
-                            }
-                            return r;
+                            r[i] = [a, 10]
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
@@ -1702,20 +1697,20 @@
                             .   attr("cy", function (d) { return y_right(d[1]); } );
 
                         // Add the X Axis
-                        svg_left.append("g")
-                            .attr("transform", "translate(0," + height + ")")
-                            .call(d3.axisBottom(x_left));
-
-                        svg_right.append("g")
-                            .attr("transform", "translate(0," + height + ")")
-                            .call(d3.axisBottom(x_right));
-
-                        // Add the Y Axis
-                        svg_left.append("g")
-                            .call(d3.axisLeft(y_left));
-
-                        svg_right.append("g")
-                            .call(d3.axisLeft(y_right));
+                        // svg_left.append("g")
+                        //     .attr("transform", "translate(0," + height + ")")
+                        //     .call(d3.axisBottom(x_left));
+                        //
+                        // svg_right.append("g")
+                        //     .attr("transform", "translate(0," + height + ")")
+                        //     .call(d3.axisBottom(x_right));
+                        //
+                        // // Add the Y Axis
+                        // svg_left.append("g")
+                        //     .call(d3.axisLeft(y_left));
+                        //
+                        // svg_right.append("g")
+                        //     .call(d3.axisLeft(y_right));
                     }
                 }
             }
@@ -2345,6 +2340,8 @@
         $scope.displayLeastActiveFollowers = displayLeastActiveFollowers;
         $scope.displayMostInteractiveFollowers = displayMostInteractiveFollowers;
         $scope.displayAllFollowers = displayAllFollowers;
+        $scope.displayAllActive = displayAllActive;
+        $scope.displayMiddleUser = displayMiddleUser;
         $scope.filterError = filterError;
         $scope.openReach = openReach;
         $scope.openFeed = openFeed;
@@ -2522,6 +2519,8 @@
                 .then(displayMostInteractiveFollowers, filterError);
             filterService.getAllFollowers($scope.userId, $scope.token)
                 .then(displayAllFollowers, filterError);
+            filterService.getAllActive($scope.userId, $scope.token)
+                .then(displayAllActive, filterError);
         }
 
         init();
@@ -2629,6 +2628,33 @@
         }
 
         function displayAllFollowers(followerArrray) {
+            $scope.acquaintancesAllFollowers = followerArrray.screennames;
+            $scope.bridgesAllFollowers = followerArrray.followerlength;
+            $scope.allfollowers = followerArrray.screennames.length;
+
+            var len = $scope.acquaintancesAllFollowers.length;
+            var middle = 0;
+
+            if (len % 2 === 0){
+                middle = Math.floor((len - 1) / 2);
+            }
+            else{
+                middle = Math.round((len - 1) / 2);
+            }
+
+            filterService.getMiddleFollower($scope.userId, middle)
+                .then(displayMiddleUser, filterError);
+
+        }
+
+        function displayMiddleUser(followerArrray) {
+            $scope.middleUserName = followerArrray.userdetails.name;
+            $scope.middleUserScreenName = followerArrray.userdetails.screen_name;
+            $scope.middleUserFavouritesCount = followerArrray.userdetails.favourites_count;
+            $scope.middleUserFollowersCount = followerArrray.userdetails.followers_count;
+        }
+
+        function displayAllActive(followerArrray) {
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
             $scope.bridgesAllFollowers = followerArrray.followerlength;
             $scope.allfollowers = followerArrray.screennames.length

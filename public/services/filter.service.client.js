@@ -13,6 +13,9 @@
         this.getLeastActiveFollowers = getLeastActiveFollowers;
         this.getMostInteractiveFollowers = getMostInteractiveFollowers;
         this.getAllFollowers = getAllFollowers;
+        this.getAllActive = getAllActive;
+        this.getMiddleActive = getMiddleActive;
+        this.getMiddleFollower = getMiddleFollower;
 
         var URL = '/api/filter';
 
@@ -95,6 +98,36 @@
 
         function getAllFollowers(userId, token) {
             var url = URL + '/allfollowers/' + userId;
+            return $http.get(url,{
+                headers: {'Authorization': "Bearer "+token}
+            })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getAllActive(userId, token) {
+            var url = URL + '/allactive/' + userId;
+            return $http.get(url,{
+                headers: {'Authorization': "Bearer "+token}
+            })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getMiddleFollower(userId, index, token) {
+            var url = URL + '/middleuserfollowers/' + userId + '/' + index;
+            return $http.get(url,{
+                headers: {'Authorization': "Bearer "+token}
+            })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getMiddleActive(userId, index, token) {
+            var url = URL + '/middleuseractive/' + userId + '/' + index;
             return $http.get(url,{
                 headers: {'Authorization': "Bearer "+token}
             })

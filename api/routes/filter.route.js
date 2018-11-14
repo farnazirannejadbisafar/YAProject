@@ -18,4 +18,10 @@ router.get("/mostinteractive/:userId", checkAuth, FilterController.filter_most_i
 
 router.get("/allfollowers/:userId", checkAuth, FilterController.filter_all_followers);
 
+router.get("/allactive/:userId", checkAuth, FilterController.filter_all_active);
+
+router.get("/middleuserfollowers/:userId/:index", checkAuth, FilterController.filter_middle_followers);
+
+router.get("/middleuseractive/:userId/:index", checkAuth, FilterController.filter_middle_active);
+
 module.exports = router;
