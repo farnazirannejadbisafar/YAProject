@@ -234,7 +234,7 @@ exports.filter_middle_followers = (req, res, next) => {
     } else {
         res.status(200).json({
             message: "middle user followers",
-            userdetails: user.twitter.mutualconnections.sort(sortit)[index]
+            userdetails: user.twitter.mutualconnections.sort(sortit)
     });
     }
 })
