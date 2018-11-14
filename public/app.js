@@ -1612,13 +1612,13 @@
                         var rValue2 = 150;
                     }
 
-                    function drawConnections(acquaintances1, middle) {
+                    function drawConnections(acquaintances1, middle, middleUser) {
                         var acquaintances = acquaintances1;
                         var inYourArea = d3.select('#left-followers');
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
-
+                        alert(middleUser)
                         inYourArea = d3.select('#right-followers');
                         insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
@@ -1751,22 +1751,6 @@
                             //         .duration(500)
                             //         .style("opacity", 0);
                             // });
-
-                        // Add the X Axis
-                        // svg_left.append("g")
-                        //     .attr("transform", "translate(0," + height + ")")
-                        //     .call(d3.axisBottom(x_left));
-                        //
-                        // svg_right.append("g")
-                        //     .attr("transform", "translate(0," + height + ")")
-                        //     .call(d3.axisBottom(x_right));
-                        //
-                        // // Add the Y Axis
-                        // svg_left.append("g")
-                        //     .call(d3.axisLeft(y_left));
-                        //
-                        // svg_right.append("g")
-                        //     .call(d3.axisLeft(y_right));
                     }
                 }
             }
@@ -2727,7 +2711,6 @@
 
         function displayMiddleUser(followerArrray) {
             $scope.middleUser = followerArrray.userdetails;
-            alert($scope.middleUser.name)
         }
 
         function displayAllActive(followerArrray) {
