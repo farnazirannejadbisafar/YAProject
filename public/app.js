@@ -1578,13 +1578,14 @@
                 scope: {
                     acquaintances: '=',
                     bridges: '=',
-                    middleUser: '='
+                    middleUser: '=',
+                    middle: '='
                 },
                 link: function (scope, element, attrs) {
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
-                            drawConnections(scope.acquaintances, scope.bridges, scope.middleUser)
+                            drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
                         }
                         catch (err) {
                             console.log(err)
@@ -1612,7 +1613,7 @@
                         var rValue2 = 150;
                     }
 
-                    function drawConnections(acquaintances1, middle, middleUser) {
+                    function drawConnections(acquaintances1, bridges, middle, middleUser) {
 
                         document.getElementById("mu-name").innerHTML = middleUser.name;
                         document.getElementById("mu-follower-count").innerHTML = middleUser.followers_count;
@@ -1641,96 +1642,101 @@
                         var left_bridges = acquaintances.slice(middle);
                         var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
 
-                        var left_len = left_bridges.length;
-                        var right_len = right_bridges.length;
+                        // var left_len = left_bridges.length;
+                        // var right_len = right_bridges.length;
+                        //
+                        // for(var i = 2, s = Math.sqrt(left_len); i <= s; i++)
+                        //     if(left_len % i === 0)
+                        //         break;
+                        // var left_isPrime = left_len !== 1 && left_len !== 0;
+                        //
+                        // for(i = 2, s = Math.sqrt(right_len); i <= s; i++)
+                        //     if(right_len % i === 0)
+                        //         break;
+                        // var right_isPrime = left_len !== 1 && left_len !== 0;
+                        //
+                        // var left_x_y_ratio = left_width/left_height;
+                        // var left_min = Number.POSITIVE_INFINITY;
+                        //
+                        // var right_x_y_ratio = right_width/right_height;
+                        // var right_min = Number.POSITIVE_INFINITY;
+                        //
+                        // if (left_isPrime){
+                        //     var left_a = 0, left_b = 1;
+                        //
+                        //     for(i = 2, s = Math.sqrt(left_len); i <= s; i++){
+                        //         if(left_len % i === 0){
+                        //             var left_temp_a = i;
+                        //             var left_temp_b = left_len/i;
+                        //             var left_temp_ratio = left_temp_a/left_temp_b;
+                        //
+                        //             if(Math.abs(left_x_y_ratio - left_temp_ratio) < left_min){
+                        //                 left_min = Math.abs(left_x_y_ratio - left_temp_ratio);
+                        //                 left_a = left_temp_a;
+                        //                 left_b = left_temp_b;
+                        //             }
+                        //         }
+                        //     }
+                        // }
+                        //
+                        // if (right_isPrime){
+                        //     var right_a = 0, right_b = 1;
+                        //
+                        //     for(i = 2, s = Math.sqrt(right_len); i <= s; i++){
+                        //         if(right_len % i === 0){
+                        //             var right_temp_a = i;
+                        //             var right_temp_b = left_len/i;
+                        //
+                        //             var right_temp_ratio = right_temp_a/right_temp_b;
+                        //
+                        //             if(Math.abs(right_x_y_ratio - right_temp_ratio) < right_min){
+                        //                 right_min = Math.abs(right_x_y_ratio - right_temp_ratio);
+                        //                 right_a = right_temp_a;
+                        //                 right_b = right_temp_b;
+                        //             }
+                        //         }
+                        //     }
+                        // }
 
-                        for(var i = 2, s = Math.sqrt(left_len); i <= s; i++)
-                            if(left_len % i === 0)
-                                break;
-                        var left_isPrime = left_len !== 1 && left_len !== 0;
+                        // var left_radius = 0.1 * Math.min((left_width / left_a), (left_height/left_b));
+                        // var right_radius = 0.1 * Math.min((left_width / left_a), (left_height/left_b));
+                        //
+                        // var left_y_b = left_height / left_b;
+                        // var left_x_a = left_width / left_a;
+                        //
+                        // var right_y_b = right_height / right_b;
+                        // var right_x_a = right_width / right_a;
 
-                        for(i = 2, s = Math.sqrt(right_len); i <= s; i++)
-                            if(right_len % i === 0)
-                                break;
-                        var right_isPrime = left_len !== 1 && left_len !== 0;
+                        // for (i = 0; i < left_b; i + left_a){
+                        //     for(j = 0; j < left_a; j ++){
+                        //         left_bridges[j*left_b + i] = [1.5 * j * left_x_a, 1.5 * i * left_y_b] // add the base value
+                        //     }
+                        // }
+                        //
+                        // i=0;
+                        // for (i = 0; i < right_b; i + right_a){
+                        //     for(var j = 0; j < right_a; j ++){
+                        //         right_bridges[j*right_b + i] = [1.5 * j * right_x_a, 1.5 * i * right_y_b] // add the base value
+                        //     }
+                        // }
 
-                        var left_x_y_ratio = left_width/left_height;
-                        var left_min = Number.POSITIVE_INFINITY;
+                        right_bridges = right_bridges.reduce(function (r, a, i) {
+                            // if (i % 2) {
+                            r[i] = [10, i*5];
+                            // } else {
+                            //     r[i] =[10, 5]
+                            // }
+                            return r;
+                        }, []);
 
-                        var right_x_y_ratio = right_width/right_height;
-                        var right_min = Number.POSITIVE_INFINITY;
-
-                        if (left_isPrime){
-                            var left_a = 0, left_b = 1;
-
-                            for(i = 2, s = Math.sqrt(left_len); i <= s; i++){
-                                if(left_len % i === 0){
-                                    var left_temp_a = i;
-                                    var left_temp_b = left_len/i;
-                                    var left_temp_ratio = left_temp_a/left_temp_b;
-
-                                    if(Math.abs(left_x_y_ratio - left_temp_ratio) < left_min){
-                                        left_min = Math.abs(left_x_y_ratio - left_temp_ratio);
-                                        left_a = left_temp_a;
-                                        left_b = left_temp_b;
-                                    }
-                                }
-                            }
-                        }
-
-                        if (right_isPrime){
-                            var right_a = 0, right_b = 1;
-
-                            for(i = 2, s = Math.sqrt(right_len); i <= s; i++){
-                                if(right_len % i === 0){
-                                    var right_temp_a = i;
-                                    var right_temp_b = left_len/i;
-
-                                    var right_temp_ratio = right_temp_a/right_temp_b;
-
-                                    if(Math.abs(right_x_y_ratio - right_temp_ratio) < right_min){
-                                        right_min = Math.abs(right_x_y_ratio - right_temp_ratio);
-                                        right_a = right_temp_a;
-                                        right_b = right_temp_b;
-                                    }
-                                }
-                            }
-                        }
-
-                        var left_radius = 0.1 * Math.min((left_width / left_a), (left_height/left_b));
-                        var right_radius = 0.1 * Math.min((left_width / left_a), (left_height/left_b));
-
-                        var left_y_b = left_height / left_b;
-                        var left_x_a = left_width / left_a;
-
-                        var right_y_b = right_height / right_b;
-                        var right_x_a = right_width / right_a;
-
-                        for (i = 0; i < left_b; i + left_a){
-                            for(j = 0; j < left_a; j ++){
-                                left_bridges[j*left_b + i] = [1.5 * j * left_x_a, 1.5 * i * left_y_b] // add the base value
-                            }
-                        }
-
-                        i=0;
-                        for (i = 0; i < right_b; i + right_a){
-                            for(var j = 0; j < right_a; j ++){
-                                right_bridges[j*right_b + i] = [1.5 * j * right_x_a, 1.5 * i * right_y_b] // add the base value
-                            }
-                        }
-
-                        // right_bridges = right_bridges.reduce(function (r, a, i) {
-                        //     // if (i % 2) {
-                        //     r[i] = [10, i*5];
-                        //     // } else {
-                        //     //     r[i] =[10, 5]
-                        //     // }
-                        //     return r;
-                        // }, []);
-
-
-                        // var left_acquaintances = acquaintances1.slice(middle);
-                        // var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
+                        left_bridges = left_bridges.reduce(function (r, a, i) {
+                            // if (i % 2) {
+                            r[i] = [10, i*5];
+                            // } else {
+                            //     r[i] =[10, 5]
+                            // }
+                            return r;
+                        }, []);
 
                         // set the ranges
                         var x_left = d3.scaleLinear().range([0, left_width]);
@@ -1785,7 +1791,7 @@
                         svg_left.selectAll("dot")
                             .data(left_bridges)
                             .enter().append("circle")
-                            .attr("r", left_radius)
+                            .attr("r", 10)
                             .attr("cx", function (d) { return x_left(d[0]); } )
                             .attr("cy", function (d) { return y_left(d[1]); } );
                             // .style("fill", function(d) { return color(colorVal);})
@@ -1806,7 +1812,7 @@
                         svg_right.selectAll("dot")
                             .data(right_bridges)
                             .enter().append("circle")
-                            .attr("r", right_radius)
+                            .attr("r", 10)
                             .attr("cx", function (d) { return x_right(d[0]); } )
                             .attr("cy", function (d) { return y_right(d[1]); } );
                             // .style("fill", function(d) { return color(colorVal);})
@@ -2763,7 +2769,7 @@
 
         function displayAllFollowers(followerArrray) {
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
-            // $scope.bridgesAllFollowers = followerArrray.followerlength;
+            $scope.bridgesAllFollowers = followerArrray.followerlength;
             $scope.allfollowers = followerArrray.screennames.length;
 
             $scope.len = $scope.acquaintancesAllFollowers.length;
