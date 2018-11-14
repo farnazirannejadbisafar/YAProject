@@ -2386,6 +2386,9 @@
         $scope.mostfollowers = 1;
         $scope.allfollowers = undefined;
 
+        $scope.middle = 0;
+        $scope.middleUser = {};
+
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
         $scope.displayGatewayFollowers = displayGatewayFollowers;
@@ -2701,10 +2704,7 @@
         }
 
         function displayMiddleUser(followerArrray) {
-            $scope.middleUserName = followerArrray.userdetails.name;
-            $scope.middleUserScreenName = followerArrray.userdetails.screen_name;
-            $scope.middleUserFavouritesCount = followerArrray.userdetails.favourites_count;
-            $scope.middleUserFollowersCount = followerArrray.userdetails.followers_count;
+            $scope.middleUser = followerArrray.userdetails;
         }
 
         function displayAllActive(followerArrray) {
