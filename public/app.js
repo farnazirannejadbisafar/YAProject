@@ -2726,7 +2726,7 @@
 
         function displayMiddleUser(followerArrray) {
             $scope.middleUser = followerArrray.userdetails;
-            $scope.$apply();
+            alert($scope.middleUser.name)
         }
 
         function displayAllActive(followerArrray) {
