@@ -1634,8 +1634,8 @@
                         var left_bridges = acquaintances.slice(middle);
                         var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
 
-                        var left_acquaintances = acquaintances1.slice(middle);
-                        var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
+                        // var left_acquaintances = acquaintances1.slice(middle);
+                        // var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
 
                         // set the ranges
                         var x_left = d3.scaleLinear().range([0, width]);
@@ -1645,13 +1645,13 @@
                         var x_right = d3.scaleLinear().range([0, width]);
                         var y_right = d3.scaleLinear().range([height, 0]);
 
-                        var tooltip_left = d3.select("left-followers").append("div")
-                            .attr("class", "tooltip")
-                            .style("opacity", 0);
-
-                        var tooltip_right = d3.select("right-followers").append("div")
-                            .attr("class", "tooltip")
-                            .style("opacity", 0);
+                        // var tooltip_left = d3.select("left-followers").append("div")
+                        //     .attr("class", "tooltip")
+                        //     .style("opacity", 0);
+                        //
+                        // var tooltip_right = d3.select("right-followers").append("div")
+                        //     .attr("class", "tooltip")
+                        //     .style("opacity", 0);
 
 
                         // append the svg obgect to the body of the page
