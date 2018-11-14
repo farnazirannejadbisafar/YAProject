@@ -1582,13 +1582,10 @@
                     middleUser: '='
                 },
                 link: function (scope, element, attrs) {
-                    scope.$watch('middleUser', function(middleUser){
-                        console.log('watch', middleUser);
-                    });
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
-                            drawConnections(scope.acquaintances, scope.bridges)
+                            drawConnections(scope.acquaintances, scope.bridges, scope.middleUser)
                         }
                         catch (err) {
                             console.log(err)
