@@ -1575,12 +1575,16 @@
             return {
                 restrict: 'E',
                 terminal: true,
+                bindToController: true,
                 scope: {
                     acquaintances: '=',
                     bridges: '=',
                     middleUser: '='
                 },
                 link: function (scope, element, attrs) {
+                    scope.$watch('middleUser', function(middleUser){
+                        console.log('watch', middleUser);
+                    });
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
@@ -1618,7 +1622,6 @@
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
-                        alert(middleUser)
                         inYourArea = d3.select('#right-followers');
                         insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
