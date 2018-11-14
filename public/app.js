@@ -1705,7 +1705,7 @@
                             .enter().append("circle")
                             .attr("r", r)
                             .attr("cx", function (d) { return x_left(d[0]); } )
-                            .attr("cy", function (d) { return y_left(d[1]); } );
+                            .attr("cy", function (d) { return y_left(d[1]); } )
                             .style("fill", function(d) { return color(colorVal);})
                             .on("mouseover", function(d) {
                                 tooltip_left.transition()
