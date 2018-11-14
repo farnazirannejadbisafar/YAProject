@@ -1613,6 +1613,9 @@
                     }
 
                     function drawConnections(acquaintances1, middle, middleUser) {
+
+                        document.getElementById("mu-name").innerHTML = middleUser.name;
+
                         var acquaintances = acquaintances1;
                         var inYourArea = d3.select('#left-followers');
                         var insideSVG = inYourArea.select("svg");
