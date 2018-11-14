@@ -1626,9 +1626,9 @@
 
                         acquaintances = acquaintances.reduce(function (r, a, i) {
                             if (i % 2) {
-                                r[i] = [a, 10]
+                                r[i] = [10, 10]
                             } else {
-                                r[i] = [a, 5]
+                                r[i] =, 5]
                             }
                             return r;
                         }, []);
