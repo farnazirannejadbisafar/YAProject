@@ -1617,6 +1617,7 @@
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
 
+
                         inYourArea = d3.select('#right-followers');
                         insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
