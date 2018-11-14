@@ -1705,42 +1705,42 @@
                             .enter().append("circle")
                             .attr("r", r)
                             .attr("cx", function (d) { return x_left(d[0]); } )
-                            .attr("cy", function (d) { return y_left(d[1]); } )
-                            .style("fill", function(d) { return color(colorVal);})
-                            .on("mouseover", function(d) {
-                                tooltip_left.transition()
-                                    .duration(200)
-                                    .style("opacity", .9);
-                                tooltip_left.html(left_acquaintances)
-                                    .style("left", (d3.event.pageX + 5) + "px")
-                                    .style("top", (d3.event.pageY - 28) + "px");
-                            })
-                            .on("mouseout", function(d) {
-                                tooltip_left.transition()
-                                    .duration(500)
-                                    .style("opacity", 0);
-                            });
+                            .attr("cy", function (d) { return y_left(d[1]); } );
+                            // .style("fill", function(d) { return color(colorVal);})
+                            // .on("mouseover", function(d) {
+                            //     tooltip_left.transition()
+                            //         .duration(200)
+                            //         .style("opacity", .9);
+                            //     tooltip_left.html(left_acquaintances)
+                            //         .style("left", (d3.event.pageX + 5) + "px")
+                            //         .style("top", (d3.event.pageY - 28) + "px");
+                            // })
+                            // .on("mouseout", function(d) {
+                            //     tooltip_left.transition()
+                            //         .duration(500)
+                            //         .style("opacity", 0);
+                            // });
 
                         svg_right.selectAll("dot")
                             .data(right_bridges)
                             .enter().append("circle")
                             .attr("r", 5)
                             .attr("cx", function (d) { return x_right(d[0]); } )
-                            .attr("cy", function (d) { return y_right(d[1]); } )
-                            .style("fill", function(d) { return color(colorVal);})
-                            .on("mouseover", function(d) {
-                                tooltip_right.transition()
-                                    .duration(200)
-                                    .style("opacity", .9);
-                                tooltip_right.html(left_acquaintances)
-                                    .style("left", (d3.event.pageX + 5) + "px")
-                                    .style("top", (d3.event.pageY - 28) + "px");
-                            })
-                            .on("mouseout", function(d) {
-                                tooltip_right.transition()
-                                    .duration(500)
-                                    .style("opacity", 0);
-                            });
+                            .attr("cy", function (d) { return y_right(d[1]); } );
+                            // .style("fill", function(d) { return color(colorVal);})
+                            // .on("mouseover", function(d) {
+                            //     tooltip_right.transition()
+                            //         .duration(200)
+                            //         .style("opacity", .9);
+                            //     tooltip_right.html(left_acquaintances)
+                            //         .style("left", (d3.event.pageX + 5) + "px")
+                            //         .style("top", (d3.event.pageY - 28) + "px");
+                            // })
+                            // .on("mouseout", function(d) {
+                            //     tooltip_right.transition()
+                            //         .duration(500)
+                            //         .style("opacity", 0);
+                            // });
 
                         // Add the X Axis
                         // svg_left.append("g")
