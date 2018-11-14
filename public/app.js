@@ -1615,6 +1615,10 @@
                     function drawConnections(acquaintances1, middle, middleUser) {
 
                         document.getElementById("mu-name").innerHTML = middleUser.name;
+                        document.getElementById("mu-follower-count").innerHTML = middleUser.followers_count;
+                        document.getElementById("mu-screen-name").innerHTML = middleUser.screen_name;
+                        document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
+
 
                         var acquaintances = acquaintances1;
                         var inYourArea = d3.select('#left-followers');
