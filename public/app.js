@@ -1660,7 +1660,7 @@
                         var right_x_y_ratio = right_width/right_height;
                         var right_min = Number.POSITIVE_INFINITY;
 
-                        if (!left_isPrime){
+                        if (left_isPrime){
                             var left_a = 0, left_b = 1;
 
                             for(i = 2, s = Math.sqrt(left_len); i <= s; i++){
@@ -1678,7 +1678,7 @@
                             }
                         }
 
-                        if (!right_isPrime){
+                        if (right_isPrime){
                             var right_a = 0, right_b = 1;
 
                             for(i = 2, s = Math.sqrt(right_len); i <= s; i++){
