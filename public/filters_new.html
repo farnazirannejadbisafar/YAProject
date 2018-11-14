@@ -32,9 +32,6 @@
 			<div ng-show="allfollowers" md-swipe-right="onSwipeRightAllFollowers($event, $target)" md-swipe-left="onSwipeLeftAllFollowers($event, $target)">
 				<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">All Followers</h2>
 				<div class="svg-class" style="height: 100vh">
-					<!--<div class="col-lg-8 mx-auto">-->
-					<!--<div class="row justify-content-center">-->
-					<h5>Hi, {{xyz}}</h5>
 					<all-followers acquaintances="acquaintancesAllFollowers"
 								   bridges="bridgesMostFollowers"
 								   middle="middle"
@@ -42,13 +39,24 @@
 						<div class="row h-100">
 							<div id="left-followers" class="col-4"></div>
 							<div class="col-4">
-								<h5>{{middleUser.name}}</h5>
+								<div class="row">
+									<div class="card">
+										<div class="avatar">
+											<img alt="" src="" id="mu-profile-pic">
+										</div>
+										<div class="info">
+											<div class="title">
+												<h5 id="mu-name"></h5>
+											</div>
+											<div class="desc"><h6 id="mu-screen-name"></h6></div>
+											<div class="desc"><h6 id="mu-follower-count"></h6></div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div id="right-followers" class="col-4"></div>
 						</div>
 					</all-followers>
-					<!--</div>-->
-					<!--</div>-->
 				</div>
 				<!--<div class="row svg-class">-->
 				<!--<div class="col-6 button-move">-->
