@@ -1731,7 +1731,7 @@
                         svg_right.selectAll("dot")
                             .data(right_bridges)
                             .enter().append("circle")
-                            .attr("r", 5)
+                            .attr("r", r)
                             .attr("cx", function (d) { return x_right(d[0]); } )
                             .attr("cy", function (d) { return y_right(d[1]); } );
                             // .style("fill", function(d) { return color(colorVal);})
