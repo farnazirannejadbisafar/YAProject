@@ -1625,7 +1625,12 @@
                         var svg_right = d3.select('#right-followers').append("svg");
 
                         acquaintances = acquaintances.reduce(function (r, a, i) {
-                            r[i] = [10, i*5]
+                            if (i % 2) {
+                                r[i] = [a, 10]
+                            } else {
+                                r[i] = [a, 5]
+                            }
+                            return r;
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
