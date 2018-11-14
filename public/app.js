@@ -1577,7 +1577,8 @@
                 terminal: true,
                 scope: {
                     acquaintances: '=',
-                    bridges: '='
+                    bridges: '=',
+                    middleUser: '='
                 },
                 link: function (scope, element, attrs) {
                     scope.$watch(function () {
