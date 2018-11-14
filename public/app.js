@@ -1626,11 +1626,11 @@
 
                         acquaintances = acquaintances.reduce(function (r, a, i) {
                             // if (i % 2) {
-                                r[i] = [10, 10];
+                                r[i] = [10, i*5];
                             // } else {
                             //     r[i] =[10, 5]
                             // }
-                            // return r;
+                             return r;
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
