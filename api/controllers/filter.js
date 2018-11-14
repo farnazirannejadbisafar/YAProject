@@ -223,7 +223,7 @@ exports.filter_middle_active = (req, res, next) => {
 
 exports.filter_middle_followers = (req, res, next) => {
     const id = req.params.userId;
-    const index = req.param.index;
+    const index = req.params.index;
 
     User.findById(id)
         .then(user => {
@@ -234,7 +234,7 @@ exports.filter_middle_followers = (req, res, next) => {
     } else {
         res.status(200).json({
             message: "middle user followers",
-            userdetails: user.twitter.mutualconnections.sort(sortit)[1]
+            userdetails: user.twitter.mutualconnections.sort(sortit)[index]
     });
     }
 })

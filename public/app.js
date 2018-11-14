@@ -1611,7 +1611,7 @@
                         var rValue2 = 150;
                     }
 
-                    function drawConnections(acquaintances, bridges) {
+                    function drawConnections(acquaintances1, middle) {
                         var inYourArea = d3.select('#left-followers');
                         var insideSVG = inYourArea.select("svg");
                         insideSVG.remove();
@@ -1623,23 +1623,19 @@
                         var svg_left = d3.select('#left-followers').append("svg");
                         var svg_right = d3.select('#right-followers').append("svg");
 
-
-
-                        var split_index = bridges.length / 2;
-                        if(bridges.length % 2 === 0){
-                            split_index = split_index - 1;
-                        }
-
-                        bridges = bridges.reduce(function (r, a, i) {
-                            r[i] = [a, 10]
+                        var acquaintances = acquaintances1.reduce(function (r, a, i) {
+                            r[i] = [10, i*5]
                         }, []);
 
                         var margin = {top: 20, right: 10, bottom: 30, left: 10},
                             width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
                             height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom;
 
-                        var left_bridges = bridges.slice(split_index);
-                        var right_bridges = bridges.slice(split_index + 1, bridges.length);
+                        var left_bridges = acquaintances.slice(middle);
+                        var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
+
+                        var left_acquaintances = acquaintances1.slice(middle);
+                        var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
 
                         // set the ranges
                         var x_left = d3.scaleLinear().range([0, width]);
@@ -1648,6 +1644,14 @@
 
                         var x_right = d3.scaleLinear().range([0, width]);
                         var y_right = d3.scaleLinear().range([height, 0]);
+
+                        var tooltip_left = d3.select("left-followers").append("div")
+                            .attr("class", "tooltip")
+                            .style("opacity", 0);
+
+                        var tooltip_right = d3.select("right-followers").append("div")
+                            .attr("class", "tooltip")
+                            .style("opacity", 0);
 
 
                         // append the svg obgect to the body of the page
@@ -1681,20 +1685,62 @@
                             return d[1];
                         })]);
 
+                        var r, colorVal;
+                        if (acquaintances.length < 50){
+                            r = 15;
+                            colorVal = 'red';
+                        }
+                        else if (acquaintances.length < 100 && acquaintances.length >= 50){
+                            r = 10;
+                            colorVal = 'blue';
+                        }
+                        else{
+                            r = 5;
+                            colorVal = 'green';
+                        }
+
                         // Add the scatterplot
                         svg_left.selectAll("dot")
                             .data(left_bridges)
                             .enter().append("circle")
-                            .attr("r", 5)
+                            .attr("r", r)
                             .attr("cx", function (d) { return x_left(d[0]); } )
-                            .   attr("cy", function (d) { return y_left(d[1]); } );
+                            .attr("cy", function (d) { return y_left(d[1]); } );
+                            .style("fill", function(d) { return color(colorVal);})
+                            .on("mouseover", function(d) {
+                                tooltip_left.transition()
+                                    .duration(200)
+                                    .style("opacity", .9);
+                                tooltip_left.html(left_acquaintances)
+                                    .style("left", (d3.event.pageX + 5) + "px")
+                                    .style("top", (d3.event.pageY - 28) + "px");
+                            })
+                            .on("mouseout", function(d) {
+                                tooltip_left.transition()
+                                    .duration(500)
+                                    .style("opacity", 0);
+                            });
 
                         svg_right.selectAll("dot")
                             .data(right_bridges)
                             .enter().append("circle")
                             .attr("r", 5)
                             .attr("cx", function (d) { return x_right(d[0]); } )
-                            .   attr("cy", function (d) { return y_right(d[1]); } );
+                            .attr("cy", function (d) { return y_right(d[1]); } )
+                            .style("fill", function(d) { return color(colorVal);})
+                            .on("mouseover", function(d) {
+                                tooltip_right.transition()
+                                    .duration(200)
+                                    .style("opacity", .9);
+                                tooltip_right.html(left_acquaintances)
+                                    .style("left", (d3.event.pageX + 5) + "px")
+                                    .style("top", (d3.event.pageY - 28) + "px");
+                            })
+                            .on("mouseout", function(d) {
+                                tooltip_right.transition()
+                                    .duration(500)
+                                    .style("opacity", 0);
+                            });
 
                         // Add the X Axis
                         // svg_left.append("g")
@@ -2629,20 +2675,20 @@
 
         function displayAllFollowers(followerArrray) {
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
-            $scope.bridgesAllFollowers = followerArrray.followerlength;
+            // $scope.bridgesAllFollowers = followerArrray.followerlength;
             $scope.allfollowers = followerArrray.screennames.length;
 
             var len = $scope.acquaintancesAllFollowers.length;
-            var middle = 0;
+            $scope.middle = 0;
 
             if (len % 2 === 0){
-                middle = Math.floor((len - 1) / 2);
+                $scope.middle = Math.floor((len - 1) / 2);
             }
             else{
-                middle = Math.round((len - 1) / 2);
+                $scope.middle = Math.round((len - 1) / 2);
             }
 
-            filterService.getMiddleFollower($scope.userId, middle, $scope.token)
+            filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
                 .then(displayMiddleUser, filterError);
 
         }
