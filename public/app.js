@@ -2642,7 +2642,7 @@
                 middle = Math.round((len - 1) / 2);
             }
 
-            filterService.getMiddleFollower($scope.userId, middle)
+            filterService.getMiddleFollower($scope.userId, middle, $scope.token)
                 .then(displayMiddleUser, filterError);
 
         }
