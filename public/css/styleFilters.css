@@ -447,7 +447,7 @@ a:not([href]):not([tabindex]){
   height: 568px;
 }
 
-#semi-cicle{
+#semi-circle{
   width: 320px;
   height: 140px;
 }
@@ -475,4 +475,8 @@ a:not([href]):not([tabindex]){
 #middle-follower-card{
   width: 105px;
   height: 300px;
+}
+
+.arc {
+  fill: blue;
 }
