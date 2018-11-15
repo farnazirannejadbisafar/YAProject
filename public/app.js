@@ -1692,6 +1692,9 @@
                                 return r;
                             }, []);
 
+                            left_bridges.slice(0, left_bridges.length - 2);
+                            right_bridges.slice(0, right_bridges.length - 2);
+
                             var margin = {top: 20, right: 10, bottom: 30, left: 10},
                                 left_width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
                                 left_height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom,
