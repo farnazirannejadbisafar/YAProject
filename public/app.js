@@ -1657,12 +1657,12 @@
                             }
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [3, (i * 3) + 2, left_b[i], left_color[i]];
+                                r[i] = [3, (i * 1) + 1, left_b[i], left_color[i]];
                                 return r;
                             }, []);
 
                             var right_bridges = right_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [3, (i * 3) + 2, right_b[i], right_color[i]];
+                                r[i] = [3, (i * 1) + 1, right_b[i], right_color[i]];
                                 return r;
                             }, []);
 
