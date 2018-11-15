@@ -1727,9 +1727,9 @@
                                 .range([0, slider_width]) //
                                 .clamp(true);
 
-                            // var area1 = d3.select('#follower-slider');
-                            // var insideSvg1 = area1.select("svg");
-                            // insideSvg1.remove();
+                            var area1 = d3.select('#follower-slider');
+                            var insideSvg1 = area1.select("svg");
+                            insideSvg1.remove();
 
                             var follower_slider = d3.select('#follower-slider').append('svg')
                                 .attr('width', slider_width)
@@ -1737,7 +1737,7 @@
 
                             var slider = follower_slider.append("g")
                                 .attr("class", "slider")
-                                .attr("transform", "translate(" + slider_width + "," + slider_height + ")");
+                                .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
                             slider.append("line")
                                 .attr("class", "track")
