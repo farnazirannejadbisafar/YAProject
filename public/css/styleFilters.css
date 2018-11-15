@@ -451,33 +451,39 @@ a:not([href]):not([tabindex]){
 #semi-circle{
   width: 320px;
   height: 140px;
+  text-align: center;
 }
 
 #left-followers{
   width: 105px;
   height: 480px;
+  text-align: center;
 }
 
 #right-followers{
   width: 105px;
   height: 480px;
+  text-align: center;
 }
 
 #middle-follower{
   width: 105px;
   height: 480px;
+  text-align: center;
 }
 
 #follower-slider{
   width: 105px;
   height: 30px;
+  text-align: center;
 }
 
 #middle-follower-card{
   width: 105px;
   height: 300px;
+  text-align: center;
 }
 
 .arc {
-  fill: blue;
+  fill: yellow;
 }
