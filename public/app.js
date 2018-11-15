@@ -1615,203 +1615,215 @@
 
                     function drawConnections(acquaintances1, bridges, middle, middleUser) {
 
-                        document.getElementById("mu-name").innerHTML = middleUser.name;
-                        document.getElementById("mu-follower-count").innerHTML = "#Followers " +  middleUser.followers_count;
-                        document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
-
-                        if(middleUser !== undefined && middleUser.profile_image_url_https !== undefined){
-                            document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
-                        }
-
-                        var acquaintances = acquaintances1;
-                        var inYourArea = d3.select('#left-followers');
-                        var insideSVG = inYourArea.select("svg");
-                        insideSVG.remove();
-
-                        inYourArea = d3.select('#right-followers');
-                        insideSVG = inYourArea.select("svg");
-                        insideSVG.remove();
-
-                        var svg_left = d3.select('#left-followers').append("svg");
-                        var svg_right = d3.select('#right-followers').append("svg");
-
-                        acquaintances = acquaintances.reduce(function (r, a, i) {
-                            // if (i % 2) {
-                            r[i] = [10, i*5];
-                            // } else {
-                            //     r[i] =[10, 5]
-                            // }
-                            return r;
-                        }, []);
-
-                        var margin = {top: 20, right: 10, bottom: 30, left: 10},
-                            left_width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
-                            left_height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom,
-                            right_width = document.getElementById('right-followers').clientWidth - margin.left - margin.right,
-                            right_height = document.getElementById('right-followers').clientHeight - margin.top - margin.bottom;
-
-                        var left_bridges = acquaintances.slice(middle);
-                        var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
-
-                        // var left_acquaintances = acquaintances1.slice(middle);
-                        // var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
-
-                        // set the ranges
-                        var x_left = d3.scaleLinear().range([0, left_width]);
-                        var y_left = d3.scaleLinear().range([left_height, 0]);
+                        if (acquaintances1 !== undefined) {
 
 
-                        var x_right = d3.scaleLinear().range([0, right_width]);
-                        var y_right = d3.scaleLinear().range([right_height, 0]);
+                            document.getElementById("mu-name").innerHTML = middleUser.name;
+                            document.getElementById("mu-follower-count").innerHTML = "#Followers " + middleUser.followers_count;
+                            document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
 
-                        // var tooltip_left = d3.select("left-followers").append("div")
-                        //     .attr("class", "tooltip")
-                        //     .style("opacity", 0);
-                        //
-                        // var tooltip_right = d3.select("right-followers").append("div")
-                        //     .attr("class", "tooltip")
-                        //     .style("opacity", 0);
+                            if (middleUser !== undefined && middleUser.profile_image_url_https !== undefined) {
+                                document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
+                            }
+
+                            var acquaintances = acquaintances1;
+                            var inYourArea = d3.select('#left-followers');
+                            var insideSVG = inYourArea.select("svg");
+                            insideSVG.remove();
+
+                            inYourArea = d3.select('#right-followers');
+                            insideSVG = inYourArea.select("svg");
+                            insideSVG.remove();
+
+                            var svg_left = d3.select('#left-followers').append("svg");
+                            var svg_right = d3.select('#right-followers').append("svg");
+
+                            acquaintances = acquaintances.reduce(function (r, a, i) {
+                                // if (i % 2) {
+                                r[i] = [10, i * 5];
+                                // } else {
+                                //     r[i] =[10, 5]
+                                // }
+                                return r;
+                            }, []);
+
+                            var margin = {top: 20, right: 10, bottom: 30, left: 10},
+                                left_width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
+                                left_height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom,
+                                right_width = document.getElementById('right-followers').clientWidth - margin.left - margin.right,
+                                right_height = document.getElementById('right-followers').clientHeight - margin.top - margin.bottom;
+
+                            var left_bridges = acquaintances.slice(middle);
+                            var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
+
+                            // var left_acquaintances = acquaintances1.slice(middle);
+                            // var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
+
+                            // set the ranges
+                            var x_left = d3.scaleLinear().range([0, left_width]);
+                            var y_left = d3.scaleLinear().range([left_height, 0]);
 
 
-                        // append the svg obgect to the body of the page
-                        // appends a 'group' element to 'svg'
-                        // moves the 'group' element to the top left margin
-                        svg_left.attr("width", left_width + margin.left + margin.right)
-                            .attr("height", left_height + margin.top + margin.bottom)
-                            .append("g")
-                            .attr("transform",
-                                "translate(" + margin.left + "," + margin.top + ")");
+                            var x_right = d3.scaleLinear().range([0, right_width]);
+                            var y_right = d3.scaleLinear().range([right_height, 0]);
 
-                        svg_right.attr("width", right_width + margin.left + margin.right)
-                            .attr("height", right_height + margin.top + margin.bottom)
-                            .append("g")
-                            .attr("transform",
-                                "translate(" + margin.left + "," + margin.top + ")");
+                            // var tooltip_left = d3.select("left-followers").append("div")
+                            //     .attr("class", "tooltip")
+                            //     .style("opacity", 0);
+                            //
+                            // var tooltip_right = d3.select("right-followers").append("div")
+                            //     .attr("class", "tooltip")
+                            //     .style("opacity", 0);
 
 
-                        // Scale the range of the data
-                        x_left.domain([0, d3.max(left_bridges, function (d) {
-                            return d[0];
-                        })]);
-                        y_left.domain([0, d3.max(left_bridges, function (d) {
-                            return d[1];
-                        })]);
+                            // append the svg obgect to the body of the page
+                            // appends a 'group' element to 'svg'
+                            // moves the 'group' element to the top left margin
+                            svg_left.attr("width", left_width + margin.left + margin.right)
+                                .attr("height", left_height + margin.top + margin.bottom)
+                                .append("g")
+                                .attr("transform",
+                                    "translate(" + margin.left + "," + margin.top + ")");
 
-                        x_right.domain([0, d3.max(right_bridges, function (d) {
-                            return d[0];
-                        })]);
-                        y_right.domain([0, d3.max(right_bridges, function (d) {
-                            return d[1];
-                        })]);
+                            svg_right.attr("width", right_width + margin.left + margin.right)
+                                .attr("height", right_height + margin.top + margin.bottom)
+                                .append("g")
+                                .attr("transform",
+                                    "translate(" + margin.left + "," + margin.top + ")");
 
-                        var r, colorVal;
-                        if (acquaintances.length < 50){
-                            r = 15;
-                            colorVal = 'red';
-                        }
-                        else if (acquaintances.length < 100 && acquaintances.length >= 50){
-                            r = 10;
-                            colorVal = 'blue';
-                        }
-                        else{
-                            r = 5;
-                            colorVal = 'green';
-                        }
 
-                        // Add the scatterplot
-                        svg_left.selectAll("dot")
-                            .data(left_bridges)
-                            .enter().append("circle")
-                            .attr("r", r)
-                            .attr("cx", function (d) { return x_left(d[0]); } )
-                            .attr("cy", function (d) { return y_left(d[1]); } );
-                        // .style("fill", function(d) { return color(colorVal);})
-                        // .on("mouseover", function(d) {
-                        //     tooltip_left.transition()
-                        //         .duration(200)
-                        //         .style("opacity", .9);
-                        //     tooltip_left.html(left_acquaintances)
-                        //         .style("left", (d3.event.pageX + 5) + "px")
-                        //         .style("top", (d3.event.pageY - 28) + "px");
-                        // })
-                        // .on("mouseout", function(d) {
-                        //     tooltip_left.transition()
-                        //         .duration(500)
-                        //         .style("opacity", 0);
-                        // });
+                            // Scale the range of the data
+                            x_left.domain([0, d3.max(left_bridges, function (d) {
+                                return d[0];
+                            })]);
+                            y_left.domain([0, d3.max(left_bridges, function (d) {
+                                return d[1];
+                            })]);
 
-                        svg_right.selectAll("dot")
-                            .data(right_bridges)
-                            .enter().append("circle")
-                            .attr("r", r)
-                            .attr("cx", function (d) { return x_right(d[0]); } )
-                            .attr("cy", function (d) { return y_right(d[1]); } );
-                        // .style("fill", function(d) { return color(colorVal);})
-                        // .on("mouseover", function(d) {
-                        //     tooltip_right.transition()
-                        //         .duration(200)
-                        //         .style("opacity", .9);
-                        //     tooltip_right.html(left_acquaintances)
-                        //         .style("left", (d3.event.pageX + 5) + "px")
-                        //         .style("top", (d3.event.pageY - 28) + "px");
-                        // })
-                        // .on("mouseout", function(d) {
-                        //     tooltip_right.transition()
-                        //         .duration(500)
-                        //         .style("opacity", 0);
-                        // });
+                            x_right.domain([0, d3.max(right_bridges, function (d) {
+                                return d[0];
+                            })]);
+                            y_right.domain([0, d3.max(right_bridges, function (d) {
+                                return d[1];
+                            })]);
 
-                        //slider start
+                            var r, colorVal;
+                            if (acquaintances.length < 50) {
+                                r = 15;
+                                colorVal = 'red';
+                            }
+                            else if (acquaintances.length < 100 && acquaintances.length >= 50) {
+                                r = 10;
+                                colorVal = 'blue';
+                            }
+                            else {
+                                r = 5;
+                                colorVal = 'green';
+                            }
 
-                        var slider_width = document.getElementById('follower-slider').clientWidth;
-                        var slider_height = document.getElementById('follower-slider').clientHeight;
-
-                        var sliderScale = d3.scaleLinear()
-                            .domain([0, 255]) // Red component goes from 0 to 255
-                            .range([0, 200]) // Width of slider is 200 px
-                            .clamp(true);
-
-                        var follower_slider = d3.select('#follower-slider').append('svg')
-                            .attr('width', slider_width)
-                            .attr('height', slider_height);
-
-                        var slider = follower_slider.append("g")
-                            .attr("class", "slider")
-                            .attr("transform", "translate(" + 13 + "," + 200 + ")");
-
-                        slider.append("line")
-                            .attr("class", "track")
-                            .attr("x1", sliderScale.range()[0])
-                            .attr("x2", sliderScale.range()[1])
-                            .select(function() {
-                                return this.parentNode;
-                            })
-                            .append("line")
-                            .attr("x1", sliderScale.range()[0])
-                            .attr("x2", sliderScale.range()[1])
-                            .attr("class", "track-inset")
-                            .select(function() {
-                                return this.parentNode;
-                            })
-                            .append("line")
-                            .attr("x1", sliderScale.range()[0])
-                            .attr("x2", sliderScale.range()[1])
-                            .attr("class", "track-overlay")
-                            .call(d3.drag()
-                                .on("start.interrupt", function() {
-                                    slider.interrupt();
+                            // Add the scatterplot
+                            svg_left.selectAll("dot")
+                                .data(left_bridges)
+                                .enter().append("circle")
+                                .attr("r", r)
+                                .attr("cx", function (d) {
+                                    return x_left(d[0]);
                                 })
-                                .on("start drag", function() {
-                                    changeRed(sliderScale.invert(d3.event.x));
-                                }));
+                                .attr("cy", function (d) {
+                                    return y_left(d[1]);
+                                });
+                            // .style("fill", function(d) { return color(colorVal);})
+                            // .on("mouseover", function(d) {
+                            //     tooltip_left.transition()
+                            //         .duration(200)
+                            //         .style("opacity", .9);
+                            //     tooltip_left.html(left_acquaintances)
+                            //         .style("left", (d3.event.pageX + 5) + "px")
+                            //         .style("top", (d3.event.pageY - 28) + "px");
+                            // })
+                            // .on("mouseout", function(d) {
+                            //     tooltip_left.transition()
+                            //         .duration(500)
+                            //         .style("opacity", 0);
+                            // });
 
-                        var handle = slider.insert("circle", ".track-overlay")
-                            .attr("class", "handle")
-                            .attr("r", 9);
+                            svg_right.selectAll("dot")
+                                .data(right_bridges)
+                                .enter().append("circle")
+                                .attr("r", r)
+                                .attr("cx", function (d) {
+                                    return x_right(d[0]);
+                                })
+                                .attr("cy", function (d) {
+                                    return y_right(d[1]);
+                                });
+                            // .style("fill", function(d) { return color(colorVal);})
+                            // .on("mouseover", function(d) {
+                            //     tooltip_right.transition()
+                            //         .duration(200)
+                            //         .style("opacity", .9);
+                            //     tooltip_right.html(left_acquaintances)
+                            //         .style("left", (d3.event.pageX + 5) + "px")
+                            //         .style("top", (d3.event.pageY - 28) + "px");
+                            // })
+                            // .on("mouseout", function(d) {
+                            //     tooltip_right.transition()
+                            //         .duration(500)
+                            //         .style("opacity", 0);
+                            // });
 
-                        function changeRed(h) {
-                            handle.attr("cx", sliderScale(h));
-                            // fillCircle(h);
+                            //slider start
+
+                            var slider_width = document.getElementById('follower-slider').clientWidth;
+                            var slider_height = document.getElementById('follower-slider').clientHeight;
+
+                            var sliderScale = d3.scaleLinear()
+                                .domain([0, 255]) // Red component goes from 0 to 255
+                                .range([0, 200]) // Width of slider is 200 px
+                                .clamp(true);
+
+                            var follower_slider = d3.select('#follower-slider').append('svg')
+                                .attr('width', slider_width)
+                                .attr('height', slider_height);
+
+                            var slider = follower_slider.append("g")
+                                .attr("class", "slider")
+                                .attr("transform", "translate(" + 13 + "," + 200 + ")");
+
+                            slider.append("line")
+                                .attr("class", "track")
+                                .attr("x1", sliderScale.range()[0])
+                                .attr("x2", sliderScale.range()[1])
+                                .select(function () {
+                                    return this.parentNode;
+                                })
+                                .append("line")
+                                .attr("x1", sliderScale.range()[0])
+                                .attr("x2", sliderScale.range()[1])
+                                .attr("class", "track-inset")
+                                .select(function () {
+                                    return this.parentNode;
+                                })
+                                .append("line")
+                                .attr("x1", sliderScale.range()[0])
+                                .attr("x2", sliderScale.range()[1])
+                                .attr("class", "track-overlay")
+                                .call(d3.drag()
+                                    .on("start.interrupt", function () {
+                                        slider.interrupt();
+                                    })
+                                    .on("start drag", function () {
+                                        changeRed(sliderScale.invert(d3.event.x));
+                                    }));
+
+                            var handle = slider.insert("circle", ".track-overlay")
+                                .attr("class", "handle")
+                                .attr("r", 9);
+
+                            function changeRed(h) {
+                                handle.attr("cx", sliderScale(h));
+                                // fillCircle(h);
+                            }
                         }
 
                         // slider end
