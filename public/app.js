@@ -1632,7 +1632,7 @@
                             var arc = d3.arc();
 
                             var halfcircle = function(x,y,rad) {
-                                return svg.append('path')
+                                return semi_circle_svg.append('path')
                                     .attr('transform', 'translate('+[x,y]+')')
                                     .attr('d', arc({
                                         innerRadius: 0,
