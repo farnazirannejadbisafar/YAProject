@@ -407,3 +407,41 @@ a:not([href]):not([tabindex]){
 .w3-btn,.w3-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
 .w3-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
 .w3-btn,.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+
+.ticks {
+  font: 10px sans-serif;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+#follower-slider {
+  background-color: pink;
+}
