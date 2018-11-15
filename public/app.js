@@ -1635,7 +1635,7 @@
                             var svg_left = d3.select('#left-followers').append("svg");
                             var svg_right = d3.select('#right-followers').append("svg");
 
-                            var left_acquaintances = acquaintances.slice(middle);
+                            var left_acquaintances = acquaintances.slice(0, middle);
                             var right_acquaintances = acquaintances.slice(middle + 1, acquaintances.length);
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
@@ -1696,7 +1696,6 @@
                             svg_left.selectAll("dot")
                                 .data(left_bridges)
                                 .enter().append("circle")
-                                .attr("class", function(d) { return "abc_" + d[2] + " dot"; })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
@@ -1708,7 +1707,6 @@
                             svg_right.selectAll("dot")
                                 .data(right_bridges)
                                 .enter().append("circle")
-                                .attr("class", function(d) { return "abc_" + d[2] + " dot"; })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_right(d[0]);
@@ -1723,8 +1721,8 @@
                             var slider_height = document.getElementById('follower-slider').clientHeight;
 
                             var sliderScale = d3.scaleLinear()
-                                .domain([0, bridges[0]]) //
-                                .range([0, slider_width]) //
+                                .domain([bridges[bridges.length - 1], bridges[0]]) //
+                                .range([0, 15]) //
                                 .clamp(true);
 
                             var area1 = d3.select('#follower-slider');
@@ -1737,7 +1735,7 @@
 
                             var slider = follower_slider.append("g")
                                 .attr("class", "slider")
-                                .attr("transform", "translate(" + slider_height + "," + slider_width + ")");
+                                .attr("transform", "translate(15,15)");
 
                             slider.append("line")
                                 .attr("class", "track")
@@ -1767,14 +1765,11 @@
 
                             var handle = slider.insert("circle", ".track-overlay")
                                 .attr("class", "handle")
-                                .attr("r", 9);
+                                .attr("r", 8);
 
                             function changeRed(h) {
                                 handle.attr("cx", sliderScale(h));
                                 d3.selectAll('.dot')
-                                    .transition()
-                                    .attr("r", 10);
-                                d3.selectAll('.abc_' + h)
                                     .transition()
                                     .attr("r", 30);
                             }
