@@ -1632,7 +1632,7 @@
                             insideSVG = inYourArea.select("svg");
                             insideSVG.remove();
 
-                            var color = d3.scale.linear().domain([0,bridges.length])
+                            var color = d3.scaleLinear().domain([0,bridges.length])
                                 .range(['#bae4dd', '#547e77']);
 
                             var svg_left = d3.select('#left-followers').append("svg");
