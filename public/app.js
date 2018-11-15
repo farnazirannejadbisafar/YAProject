@@ -1638,7 +1638,7 @@
 
                             acquaintances = acquaintances.reduce(function (r, a, i) {
                                 // if (i % 2) {
-                                r[i] = [10, i * 5];
+                                r[i] = [10, i * 5, bridges[i]];
                                 // } else {
                                 //     r[i] =[10, 5]
                                 // }
@@ -1705,45 +1705,18 @@
                                 return d[1];
                             })]);
 
-                            var r, colorVal;
-                            if (acquaintances.length < 50) {
-                                r = 15;
-                                colorVal = 'red';
-                            }
-                            else if (acquaintances.length < 100 && acquaintances.length >= 50) {
-                                r = 10;
-                                colorVal = 'blue';
-                            }
-                            else {
-                                r = 5;
-                                colorVal = 'green';
-                            }
-
                             // Add the scatterplot
                             svg_left.selectAll("dot")
                                 .data(left_bridges)
                                 .enter().append("circle")
-                                .attr("r", r)
+                                .attr("class", function(d) { return "abc_" + d[1] + " dot"; })
+                                .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
                                 })
                                 .attr("cy", function (d) {
                                     return y_left(d[1]);
                                 });
-                            // .style("fill", function(d) { return color(colorVal);})
-                            // .on("mouseover", function(d) {
-                            //     tooltip_left.transition()
-                            //         .duration(200)
-                            //         .style("opacity", .9);
-                            //     tooltip_left.html(left_acquaintances)
-                            //         .style("left", (d3.event.pageX + 5) + "px")
-                            //         .style("top", (d3.event.pageY - 28) + "px");
-                            // })
-                            // .on("mouseout", function(d) {
-                            //     tooltip_left.transition()
-                            //         .duration(500)
-                            //         .style("opacity", 0);
-                            // });
 
                             svg_right.selectAll("dot")
                                 .data(right_bridges)
@@ -1755,20 +1728,6 @@
                                 .attr("cy", function (d) {
                                     return y_right(d[1]);
                                 });
-                            // .style("fill", function(d) { return color(colorVal);})
-                            // .on("mouseover", function(d) {
-                            //     tooltip_right.transition()
-                            //         .duration(200)
-                            //         .style("opacity", .9);
-                            //     tooltip_right.html(left_acquaintances)
-                            //         .style("left", (d3.event.pageX + 5) + "px")
-                            //         .style("top", (d3.event.pageY - 28) + "px");
-                            // })
-                            // .on("mouseout", function(d) {
-                            //     tooltip_right.transition()
-                            //         .duration(500)
-                            //         .style("opacity", 0);
-                            // });
 
                             //slider start
 
@@ -1776,13 +1735,13 @@
                             var slider_height = document.getElementById('follower-slider').clientHeight;
 
                             var sliderScale = d3.scaleLinear()
-                                .domain([0, 255]) // Red component goes from 0 to 255
-                                .range([0, 200]) // Width of slider is 200 px
+                                .domain([0, bridges[0]]) //
+                                .range([0, slider_width]) //
                                 .clamp(true);
 
-                            var area1 = d3.select('#follower-slider');
-                            var insideSvg1 = area1.select("svg");
-                            insideSvg1.remove();
+                            // var area1 = d3.select('#follower-slider');
+                            // var insideSvg1 = area1.select("svg");
+                            // insideSvg1.remove();
 
                             var follower_slider = d3.select('#follower-slider').append('svg')
                                 .attr('width', slider_width)
@@ -1824,7 +1783,8 @@
 
                             function changeRed(h) {
                                 handle.attr("cx", sliderScale(h));
-                                // fillCircle(h);
+                                d3.selectAll('.dot').classed('active', false);
+                                d3.select('.' + h).classed('active',true);
                             }
                         }
 
