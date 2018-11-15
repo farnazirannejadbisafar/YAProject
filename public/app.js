@@ -1709,7 +1709,7 @@
                             svg_left.selectAll("dot")
                                 .data(left_bridges)
                                 .enter().append("circle")
-                                .attr("class", function(d) { return "abc_" + d[1] + " dot"; })
+                                .attr("class", function(d) { return "abc_" + d[2] + " dot"; })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
@@ -1721,7 +1721,8 @@
                             svg_right.selectAll("dot")
                                 .data(right_bridges)
                                 .enter().append("circle")
-                                .attr("r", r)
+                                .attr("class", function(d) { return "abc_" + d[2] + " dot"; })
+                                .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_right(d[0]);
                                 })
@@ -1783,8 +1784,12 @@
 
                             function changeRed(h) {
                                 handle.attr("cx", sliderScale(h));
-                                d3.selectAll('.dot').classed('active', false);
-                                d3.select('.' + h).classed('active',true);
+                                d3.selectAll('.dot')
+                                    .transition()
+                                    .attr("r", 10);
+                                d3.selectAll('.abc_' + h)
+                                    .transition()
+                                    .attr("r", 30);
                             }
                         }
 
