@@ -1737,7 +1737,7 @@
 
                             var slider = follower_slider.append("g")
                                 .attr("class", "slider")
-                                .attr("transform", "translate(" + 230 + "," + 20 + ")");
+                                .attr("transform", "translate(" + slider_height + "," + slider_width + ")");
 
                             slider.append("line")
                                 .attr("class", "track")
