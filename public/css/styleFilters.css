@@ -465,3 +465,8 @@ a:not([href]):not([tabindex]){
   height: 667px;
   width: 180px;
 }
+
+#follower-slider{
+  width: 180px;
+  height: 30px;
+}
