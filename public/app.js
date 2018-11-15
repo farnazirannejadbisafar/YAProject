@@ -1613,9 +1613,9 @@
                         var rValue2 = 150;
                     }
 
-                    function drawConnections(acquaintances1, bridges, middle, middleUser) {
+                    function drawConnections(acquaintances, bridges, middle, middleUser) {
 
-                        if (acquaintances1 !== undefined) {
+                        if (acquaintances !== undefined) {
                             document.getElementById("mu-name").innerHTML = middleUser.name;
                             document.getElementById("mu-follower-count").innerHTML = "#Followers " + middleUser.followers_count;
                             document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
@@ -1624,7 +1624,6 @@
                                 document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
                             }
 
-                            var acquaintances = acquaintances1;
                             var inYourArea = d3.select('#left-followers');
                             var insideSVG = inYourArea.select("svg");
                             insideSVG.remove();
@@ -1636,12 +1635,16 @@
                             var svg_left = d3.select('#left-followers').append("svg");
                             var svg_right = d3.select('#right-followers').append("svg");
 
-                            acquaintances = acquaintances.reduce(function (r, a, i) {
-                                // if (i % 2) {
+                            var left_acquaintances = acquaintances.slice(middle);
+                            var right_acquaintances = acquaintances.slice(middle + 1, acquaintances.length);
+
+                            var left_bridges = left_acquaintances.reduce(function (r, a, i) {
                                 r[i] = [10, i * 5, bridges[i]];
-                                // } else {
-                                //     r[i] =[10, 5]
-                                // }
+                                return r;
+                            }, []);
+
+                            var right_bridges = right_acquaintances.reduce(function (r, a, i) {
+                                r[i] = [10, i * 5, bridges[i]];
                                 return r;
                             }, []);
 
@@ -1651,28 +1654,12 @@
                                 right_width = document.getElementById('right-followers').clientWidth - margin.left - margin.right,
                                 right_height = document.getElementById('right-followers').clientHeight - margin.top - margin.bottom;
 
-                            var left_bridges = acquaintances.slice(middle);
-                            var right_bridges = acquaintances.slice(middle + 1, acquaintances.length);
-
-                            // var left_acquaintances = acquaintances1.slice(middle);
-                            // var right_acquaintances = acquaintances1.slice(middle + 1, acquaintances1.length);
-
                             // set the ranges
                             var x_left = d3.scaleLinear().range([0, left_width]);
                             var y_left = d3.scaleLinear().range([left_height, 0]);
 
-
                             var x_right = d3.scaleLinear().range([0, right_width]);
                             var y_right = d3.scaleLinear().range([right_height, 0]);
-
-                            // var tooltip_left = d3.select("left-followers").append("div")
-                            //     .attr("class", "tooltip")
-                            //     .style("opacity", 0);
-                            //
-                            // var tooltip_right = d3.select("right-followers").append("div")
-                            //     .attr("class", "tooltip")
-                            //     .style("opacity", 0);
-
 
                             // append the svg obgect to the body of the page
                             // appends a 'group' element to 'svg'
