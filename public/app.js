@@ -2611,8 +2611,6 @@
                 .then(displayMostInteractiveFollowers, filterError);
             filterService.getAllFollowers($scope.userId, $scope.token)
                 .then(displayAllFollowers, filterError);
-            filterService.getAllActive($scope.userId, $scope.token)
-                .then(displayAllActive, filterError);
         }
 
         init();
