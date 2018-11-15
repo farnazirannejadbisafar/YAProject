@@ -158,8 +158,8 @@ exports.filter_all_followers = (req, res, next) => {
     } else {
         res.status(200).json({
             message: "all followers",
-            screennames: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.screen_name),
-            followerlength: user.twitter.mutualconnections.slice(1).sort(sortit).map(a => a.followers_count)
+            screennames: user.twitter.mutualconnections.slice(1).sort(sortit_asc).map(a => a.screen_name),
+            followerlength: user.twitter.mutualconnections.slice(1).sort(sortit_asc).map(a => a.followers_count)
     });
     }
 })
@@ -249,6 +249,10 @@ exports.filter_middle_followers = (req, res, next) => {
 function sortit(a,b){
 	return(b.followers_count - a.followers_count)
 	}
+
+function sortit_asc(a,b){
+    return(a.followers_count - b.followers_count)
+}
 
 function sortactive(a,b){
 	return(b.statuses_count - a.statuses_count)
