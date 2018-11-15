@@ -1618,7 +1618,10 @@
                         document.getElementById("mu-name").innerHTML = middleUser.name;
                         document.getElementById("mu-follower-count").innerHTML = "#Followers " +  middleUser.followers_count;
                         document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
-                        document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
+
+                        if(middleUser !== undefined && middleUser.profile_image_url_https !== undefined){
+                            document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
+                        }
 
                         var acquaintances = acquaintances1;
                         var inYourArea = d3.select('#left-followers');
