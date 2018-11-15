@@ -1644,8 +1644,15 @@
                             var left_b = bridges.slice(0, middle);
                             var right_b = bridges.slice(middle + 1, bridges.length);
 
-                            var left_color = color.slice(0, middle);
-                            var right_color = color.slice(middle + 1, color.length);
+                            var left_color;
+                            for(var i = 0; i < middle; i++){
+                                left_color = color(i);
+                            }
+
+                            var right_color;
+                            for(var j = middle+1; j < color.length; j++){
+                                right_color = color(j);
+                            }
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
                                 r[i] = [10, i * 5, left_b[i], left_color[i]];
