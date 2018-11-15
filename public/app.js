@@ -1651,7 +1651,7 @@
 
                             var right_color = [];
                             i = 0;
-                            for(var j = middle+1; j < color.length; j++){
+                            for(var j = middle+1; j < bridges.length; j++){
                                 right_color[i] = color(j);
                                 i++;
                             }

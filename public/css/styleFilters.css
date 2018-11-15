@@ -445,3 +445,23 @@ a:not([href]):not([tabindex]){
 #follower-slider {
   background-color: pink;
 }
+
+#all-followers-body{
+  width: 540px;
+  height: 667px;
+}
+
+#left-followers{
+  height: 667px;
+  width: 180px;
+}
+
+#right-followers{
+  height: 667px;
+  width: 180px;
+}
+
+#middle-follower{
+  height: 667px;
+  width: 180px;
+}
