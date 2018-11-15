@@ -1625,26 +1625,25 @@
                             }
 
                             // Feel free to change or delete any of the code you see in this editor!
-                            var semi_circle_svg = d3.select("#semi-circle").append("svg")
-                                .attr("width", 40)
-                                .attr("height", 50);
+                            var inYourArea2 = d3.select('#semi-circles');
+                            var insideSVG2 = inYourArea2.select("svg");
+                            insideSVG2.remove();
+                            var svg_semi_cirlce = d3.select("#semi-circle")
+                                .append("svg")
+                                .attr("width", 200)
+                                .attr("height", 200)
+                                .append("g")
+                                .attr("transform", "translate(100,100)");
 
-                            var arc = d3.arc();
+                            var arc = d3.svg.arc()
+                                .innerRadius(50)
+                                .outerRadius(55)
+                                .startAngle(0.5 * Math.PI)
+                                .endAngle(1.5*Math.PI);
 
-                            var halfcircle = function(x,y,rad) {
-                                return semi_circle_svg.append('path')
-                                    .attr('transform', 'translate('+[x,y]+')')
-                                    .attr('d', arc({
-                                        innerRadius: 0,
-                                        outerRadius: rad,
-                                        startAngle: -Math.PI*0.5,
-                                        endAngle: Math.PI*0.5
-                                    }));
-                            };
-
-                            halfcircle(40,50,30)
-                                .style('opacity', 1);
-
+                            svg_semi_cirlce.append("path")
+                                .attr("class", "arc")
+                                .attr("d", arc);
 
 
                             var inYourArea = d3.select('#left-followers');
