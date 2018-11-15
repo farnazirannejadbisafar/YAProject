@@ -445,6 +445,7 @@ a:not([href]):not([tabindex]){
 #all-followers-body{
   width: 320px;
   height: 568px;
+  text-align: center;
 }
 
 #semi-circle{
