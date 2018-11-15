@@ -469,4 +469,5 @@ a:not([href]):not([tabindex]){
 
 #middle-follower-card{
   width: 180px;
+  height: 100px;
 }
