@@ -1696,6 +1696,7 @@
                             svg_left.selectAll("dot")
                                 .data(left_bridges)
                                 .enter().append("circle")
+                                .attr('id', function(d){ return 'name' + d[2]; })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
@@ -1707,6 +1708,7 @@
                             svg_right.selectAll("dot")
                                 .data(right_bridges)
                                 .enter().append("circle")
+                                .attr('id', function(d){ return 'name' + d[2]; })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_right(d[0]);
@@ -1769,7 +1771,15 @@
 
                             function changeRed(h) {
                                 handle.attr("cx", sliderScale(h));
-                                d3.selectAll('.dot')
+                                var val = 0;
+                                var min = Number.MAX_VALUE;
+                                for(var i = 0; i < bridges.length; i++) {
+                                    if (Math.abs(val - bridges[i]) < min){
+                                        min = Math.abs(val - bridges[i]);
+                                        val = bridges[i];
+                                    }
+                                }
+                                d3.selectAll('#name' + val)
                                     .transition()
                                     .attr("r", 30);
                             }
