@@ -447,8 +447,13 @@ a:not([href]):not([tabindex]){
   height: 568px;
 }
 
-#left-followers{
+#semi-cicle{
   width: 320px;
+  height: 140px;
+}
+
+#left-followers{
+  width: 105px;
   height: 480px;
 }
 

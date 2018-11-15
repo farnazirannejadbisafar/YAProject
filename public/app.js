@@ -1625,15 +1625,19 @@
                             }
 
                             // Feel free to change or delete any of the code you see in this editor!
-                            var inYourArea2 = d3.select('#semi-circles');
+                            var inYourArea2 = d3.select('#semi-circle');
                             var insideSVG2 = inYourArea2.select("svg");
                             insideSVG2.remove();
+
+                            var sc_width = document.getElementById('semi-circle').clientWidth;
+                            var sc_height = document.getElementById('semi-circle').clientHeight;
+
                             var svg_semi_cirlce = d3.select("#semi-circle")
                                 .append("svg")
-                                .attr("width", 200)
-                                .attr("height", 200)
+                                .attr("width", sc_width)
+                                .attr("height", sc_height)
                                 .append("g")
-                                .attr("transform", "translate(100,100)");
+                                .attr("transform", "translate(" + sc_width/2 + "," + sc_height/2 + ")");
 
                             var arc = d3.svg.arc()
                                 .innerRadius(50)
