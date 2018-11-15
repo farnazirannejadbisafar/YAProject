@@ -2721,7 +2721,7 @@
 
         function displayAllFollowers(followerArrray) {
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
-            // $scope.bridgesAllFollowers = followerArrray.followerlength;
+            $scope.bridgesAllFollowers = followerArrray.followerlength;
             $scope.allfollowers = followerArrray.screennames.length;
 
             $scope.len = $scope.acquaintancesAllFollowers.length;
