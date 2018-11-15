@@ -1632,19 +1632,28 @@
                             insideSVG = inYourArea.select("svg");
                             insideSVG.remove();
 
+                            var color = d3.scale.linear().domain([0,bridges.length])
+                                .range(['#bae4dd', '#547e77']);
+
                             var svg_left = d3.select('#left-followers').append("svg");
                             var svg_right = d3.select('#right-followers').append("svg");
 
                             var left_acquaintances = acquaintances.slice(0, middle);
                             var right_acquaintances = acquaintances.slice(middle + 1, acquaintances.length);
 
+                            var left_b = bridges.slice(0, middle);
+                            var right_b = bridges.slice(middle + 1, bridges.length);
+
+                            var left_color = color.slice(0, middle);
+                            var right_color = color.slice(middle + 1, color.length);
+
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [10, i * 5, bridges[i]];
+                                r[i] = [10, i * 5, left_b[i], left_color[i]];
                                 return r;
                             }, []);
 
                             var right_bridges = right_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [10, i * 5, bridges[i]];
+                                r[i] = [10, i * 5, right_b[i], right_color[i]];
                                 return r;
                             }, []);
 
@@ -1697,6 +1706,7 @@
                                 .data(left_bridges)
                                 .enter().append("circle")
                                 .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d) { return d[3]})
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
@@ -1709,6 +1719,7 @@
                                 .data(right_bridges)
                                 .enter().append("circle")
                                 .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d) { return d[3]})
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_right(d[0]);
@@ -1724,7 +1735,7 @@
 
                             var sliderScale = d3.scaleLinear()
                                 .domain([bridges[bridges.length - 1], bridges[0]]) //
-                                .range([0, slider_width]) //
+                                .range([0, slider_width-20]) //
                                 .clamp(true);
 
                             var area1 = d3.select('#follower-slider');
@@ -1775,7 +1786,7 @@
                                 var min = Number.MAX_VALUE;
 
                                 for(var j = 0; j < bridges.length; j++) {
-                                    d3.selectAll('#name' + bridges[i])
+                                    d3.selectAll('#name' + bridges[j])
                                         .transition()
                                         .attr("r", 10);
                                 }
@@ -1787,7 +1798,7 @@
                                 }
                                 d3.selectAll('#name' + val)
                                     .transition()
-                                    .attr("r", 30);
+                                    .attr("r", 20);
                             }
                         }
 
