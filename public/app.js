@@ -1639,7 +1639,7 @@
                                 .append("g")
                                 .attr("transform", "translate(" + sc_width/2 + "," + sc_height/2 + ")");
 
-                            var arc = d3.svg.arc()
+                            var arc = d3.arc()
                                 .innerRadius(50)
                                 .outerRadius(55)
                                 .startAngle(0.5 * Math.PI)
