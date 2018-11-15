@@ -1616,8 +1616,6 @@
                     function drawConnections(acquaintances1, bridges, middle, middleUser) {
 
                         if (acquaintances1 !== undefined) {
-
-
                             document.getElementById("mu-name").innerHTML = middleUser.name;
                             document.getElementById("mu-follower-count").innerHTML = "#Followers " + middleUser.followers_count;
                             document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
@@ -1781,6 +1779,10 @@
                                 .domain([0, 255]) // Red component goes from 0 to 255
                                 .range([0, 200]) // Width of slider is 200 px
                                 .clamp(true);
+
+                            var area1 = d3.select('#follower-slider');
+                            var insideSvg1 = area1.select("svg");
+                            insideSvg1.remove();
 
                             var follower_slider = d3.select('#follower-slider').append('svg')
                                 .attr('width', slider_width)
