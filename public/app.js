@@ -1724,7 +1724,7 @@
 
                             var sliderScale = d3.scaleLinear()
                                 .domain([bridges[bridges.length - 1], bridges[0]]) //
-                                .range([0, 15]) //
+                                .range([0, 100]) //
                                 .clamp(true);
 
                             var area1 = d3.select('#follower-slider');
@@ -1773,6 +1773,9 @@
                                 handle.attr("cx", sliderScale(h));
                                 var val = 0;
                                 var min = Number.MAX_VALUE;
+                                d3.selectAll('#name')
+                                    .transition()
+                                    .attr("r", 10);
                                 for(var i = 0; i < bridges.length; i++) {
                                     if (Math.abs(val - bridges[i]) < min){
                                         min = Math.abs(val - bridges[i]);
