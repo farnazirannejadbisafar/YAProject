@@ -1757,6 +1757,61 @@
                         //         .duration(500)
                         //         .style("opacity", 0);
                         // });
+
+                        //slider start
+
+                        var slider_width = document.getElementById('follower-slider').clientWidth;
+                        var slider_height = document.getElementById('follower-slider').clientHeight;
+
+                        var sliderScale = d3.scaleLinear()
+                            .domain([0, 255]) // Red component goes from 0 to 255
+                            .range([0, 200]) // Width of slider is 200 px
+                            .clamp(true);
+
+                        var follower_slider = d3.select('#follower-slider').append('svg')
+                            .attr('width', slider_width)
+                            .attr('height', slider_height);
+
+                        var slider = follower_slider.append("g")
+                            .attr("class", "slider")
+                            .attr("transform", "translate(" + 13 + "," + 200 + ")");
+
+                        slider.append("line")
+                            .attr("class", "track")
+                            .attr("x1", sliderScale.range()[0])
+                            .attr("x2", sliderScale.range()[1])
+                            .select(function() {
+                                return this.parentNode;
+                            })
+                            .append("line")
+                            .attr("x1", sliderScale.range()[0])
+                            .attr("x2", sliderScale.range()[1])
+                            .attr("class", "track-inset")
+                            .select(function() {
+                                return this.parentNode;
+                            })
+                            .append("line")
+                            .attr("x1", sliderScale.range()[0])
+                            .attr("x2", sliderScale.range()[1])
+                            .attr("class", "track-overlay")
+                            .call(d3.drag()
+                                .on("start.interrupt", function() {
+                                    slider.interrupt();
+                                })
+                                .on("start drag", function() {
+                                    changeRed(sliderScale.invert(d3.event.x));
+                                }));
+
+                        var handle = slider.insert("circle", ".track-overlay")
+                            .attr("class", "handle")
+                            .attr("r", 9);
+
+                        function changeRed(h) {
+                            handle.attr("cx", sliderScale(h));
+                            // fillCircle(h);
+                        }
+
+                        // slider end
                     }
                 }
             }
