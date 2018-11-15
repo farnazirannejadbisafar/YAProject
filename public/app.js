@@ -1624,6 +1624,29 @@
                                 document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
                             }
 
+                            // Feel free to change or delete any of the code you see in this editor!
+                            var semi_circle_svg = d3.select("#semi-circle").append("svg")
+                                .attr("width", 40)
+                                .attr("height", 50);
+
+                            var arc = d3.arc();
+
+                            var halfcircle = function(x,y,rad) {
+                                return svg.append('path')
+                                    .attr('transform', 'translate('+[x,y]+')')
+                                    .attr('d', arc({
+                                        innerRadius: 0,
+                                        outerRadius: rad,
+                                        startAngle: -Math.PI*0.5,
+                                        endAngle: Math.PI*0.5
+                                    }));
+                            };
+
+                            halfcircle(40,50,30)
+                                .style('opacity', 1);
+
+
+
                             var inYourArea = d3.select('#left-followers');
                             var insideSVG = inYourArea.select("svg");
                             insideSVG.remove();

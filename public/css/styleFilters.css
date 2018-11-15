@@ -443,31 +443,31 @@ a:not([href]):not([tabindex]){
 }
 
 #all-followers-body{
-  width: 540px;
-  height: 667px;
+  width: 320px;
+  height: 568px;
 }
 
 #left-followers{
-  height: 667px;
-  width: 180px;
+  width: 320px;
+  height: 480px;
 }
 
 #right-followers{
-  height: 667px;
-  width: 180px;
+  width: 105px;
+  height: 480px;
 }
 
 #middle-follower{
-  height: 667px;
-  width: 180px;
+  width: 105px;
+  height: 480px;
 }
 
 #follower-slider{
-  width: 180px;
+  width: 105px;
   height: 30px;
 }
 
 #middle-follower-card{
-  width: 180px;
+  width: 105px;
   height: 300px;
 }
