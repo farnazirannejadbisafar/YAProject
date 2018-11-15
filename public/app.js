@@ -1806,7 +1806,7 @@
                                     }
                                 }
                                 d3.selectAll('#name' + val)
-                                    .transition()
+                                    .transition().duration(1000)
                                     .attr("r", 20);
                             }
                         }
