@@ -1683,12 +1683,12 @@
                             }
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [4, (i * 3) + 1, left_b[i], left_color[i]];
+                                r[i] = [2, (i * 3) + 1, left_b[i], left_color[i]];
                                 return r;
                             }, []);
 
                             var right_bridges = right_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [4, (i * 3) + 1, right_b[i], right_color[i]];
+                                r[i] = [2, (i * 3) + 1, right_b[i], right_color[i]];
                                 return r;
                             }, []);
 
@@ -1779,9 +1779,8 @@
                             var insideSvg1 = area1.select("svg");
                             insideSvg1.remove();
 
-                                alert("left_bridges[0] = " + left_bridges[0][0] + "\n right_bridges[right_bridges.length - 1] = " + right_bridges[right_bridges.length - 1][0])
-                            var follower_slider = createD3RangeSlider(left_bridges[0],
-                                                                      right_bridges[right_bridges.length - 1],"#follower-slider");
+                                alert("bridges[0] = " + bridges[0] + "\n bridges[bridges.length - 1] = " + bridges[bridges.length - 1])
+                            var follower_slider = createD3RangeSlider(bridges[0],bridges[bridges.length - 1],"#follower-slider");
 
                             follower_slider.onChange(changeRed);
 
