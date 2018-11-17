@@ -1637,7 +1637,7 @@
                                 .attr("width", sc_width)
                                 .attr("height", sc_height)
                                 .append("g")
-                                .attr("transform", "translate(" + sc_width/2 + "," + sc_height/2 + ")");
+                                .attr("transform", "translate(" + sc_width/2 + "," + 0 + ")");
 
                             var arc = d3.arc()
                                 .innerRadius(50)
@@ -1695,8 +1695,7 @@
                             left_bridges.slice(0, left_bridges.length - 2);
                             right_bridges.slice(0, right_bridges.length - 2);
 
-                            var margin = {top: 20, right: 10, bottom: 30, left: 10},
-                                left_width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
+                            var left_width = document.getElementById('left-followers').clientWidth - margin.left - margin.right,
                                 left_height = document.getElementById('left-followers').clientHeight - margin.top - margin.bottom,
                                 right_width = document.getElementById('right-followers').clientWidth - margin.left - margin.right,
                                 right_height = document.getElementById('right-followers').clientHeight - margin.top - margin.bottom;
@@ -1711,17 +1710,17 @@
                             // append the svg obgect to the body of the page
                             // appends a 'group' element to 'svg'
                             // moves the 'group' element to the top left margin
-                            svg_left.attr("width", left_width + margin.left + margin.right)
-                                .attr("height", left_height + margin.top + margin.bottom)
+                            svg_left.attr("width", left_width)
+                                .attr("height", left_height)
                                 .append("g")
                                 .attr("transform",
-                                    "translate(" + margin.left + "," + margin.top + ")");
+                                    "translate(0,0)");
 
-                            svg_right.attr("width", right_width + margin.left + margin.right)
-                                .attr("height", right_height + margin.top + margin.bottom)
+                            svg_right.attr("width", right_width)
+                                .attr("height", right_height)
                                 .append("g")
                                 .attr("transform",
-                                    "translate(" + margin.left + "," + margin.top + ")");
+                                    "translate(0,0)");
 
 
                             // Scale the range of the data
@@ -1768,58 +1767,64 @@
 
                             //slider start
 
-                            var slider_width = document.getElementById('follower-slider').clientWidth;
-                            var slider_height = document.getElementById('follower-slider').clientHeight;
+                            // var slider_width = document.getElementById('follower-slider').clientWidth;
+                            // var slider_height = document.getElementById('follower-slider').clientHeight;
 
-                            var sliderScale = d3.scaleLinear()
-                                .domain([bridges[bridges.length - 1], bridges[0]]) //
-                                .range([0, slider_width-20]) //
-                                .clamp(true);
+                            // var sliderScale = d3.scaleLinear()
+                            //     .domain([bridges[bridges.length - 1], bridges[0]]) //
+                            //     .range([0, slider_width-20]) //
+                            //     .clamp(true);
 
                             var area1 = d3.select('#follower-slider');
                             var insideSvg1 = area1.select("svg");
                             insideSvg1.remove();
 
-                            var follower_slider = d3.select('#follower-slider').append('svg')
-                                .attr('width', slider_width)
-                                .attr('height', slider_height);
+                            var follower_slider = createD3RangeSlider(left_bridges[0],
+                                                                      right_bridges[right_bridges.length - 1],"#follower-slider");
 
-                            var slider = follower_slider.append("g")
-                                .attr("class", "slider")
-                                .attr("transform", "translate(15,15)");
+                            follower_slider.onChange(changeRed);
 
-                            slider.append("line")
-                                .attr("class", "track")
-                                .attr("x1", sliderScale.range()[0])
-                                .attr("x2", sliderScale.range()[1])
-                                .select(function () {
-                                    return this.parentNode;
-                                })
-                                .append("line")
-                                .attr("x1", sliderScale.range()[0])
-                                .attr("x2", sliderScale.range()[1])
-                                .attr("class", "track-inset")
-                                .select(function () {
-                                    return this.parentNode;
-                                })
-                                .append("line")
-                                .attr("x1", sliderScale.range()[0])
-                                .attr("x2", sliderScale.range()[1])
-                                .attr("class", "track-overlay")
-                                .call(d3.drag()
-                                    .on("start.interrupt", function () {
-                                        slider.interrupt();
-                                    })
-                                    .on("start drag", function () {
-                                        changeRed(sliderScale.invert(d3.event.x));
-                                    }));
+                            // var follower_slider = d3.select('#follower-slider').append('svg')
+                            //     .attr('width', slider_width)
+                            //     .attr('height', slider_height);
+                            //
+                            // var slider = follower_slider.append("g")
+                            //     .attr("class", "slider")
+                            //     .attr("transform", "translate(15,15)");
 
-                            var handle = slider.insert("circle", ".track-overlay")
-                                .attr("class", "handle")
-                                .attr("r", 8);
+                            // slider.append("line")
+                            //     .attr("class", "track")
+                            //     .attr("x1", sliderScale.range()[0])
+                            //     .attr("x2", sliderScale.range()[1])
+                            //     .select(function () {
+                            //         return this.parentNode;
+                            //     })
+                            //     .append("line")
+                            //     .attr("x1", sliderScale.range()[0])
+                            //     .attr("x2", sliderScale.range()[1])
+                            //     .attr("class", "track-inset")
+                            //     .select(function () {
+                            //         return this.parentNode;
+                            //     })
+                            //     .append("line")
+                            //     .attr("x1", sliderScale.range()[0])
+                            //     .attr("x2", sliderScale.range()[1])
+                            //     .attr("class", "track-overlay")
+                            //     .call(d3.drag()
+                            //         .on("start.interrupt", function () {
+                            //             slider.interrupt();
+                            //         })
+                            //         .on("start drag", function () {
+                            //             changeRed(sliderScale.invert(d3.event.x));
+                            //         }));
+
+                            // var handle = slider.insert("circle", ".track-overlay")
+                            //     .attr("class", "handle")
+                            //     .attr("r", 8);
 
                             function changeRed(h) {
-                                handle.attr("cx", sliderScale(h));
+                                alert(h);
+                                // handle.attr("cx", sliderScale(h));
                                 var val = 0;
                                 var min = Number.MAX_VALUE;
 
