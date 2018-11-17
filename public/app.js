@@ -1779,7 +1779,7 @@
                             var insideSvg1 = area1.select("svg");
                             insideSvg1.remove();
 
-                                alert("left_bridges[0] = " + left_bridges[0] + "\n right_bridges[right_bridges.length - 1] = " + right_bridges[right_bridges.length - 1])
+                                alert("left_bridges[0] = " + left_bridges[0][0] + "\n right_bridges[right_bridges.length - 1] = " + right_bridges[right_bridges.length - 1][0])
                             var follower_slider = createD3RangeSlider(left_bridges[0],
                                                                       right_bridges[right_bridges.length - 1],"#follower-slider");
 
