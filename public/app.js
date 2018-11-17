@@ -1823,7 +1823,8 @@
                             //     .attr("r", 8);
 
                             function changeRed(h) {
-                                alert(h);
+                                alert(JSON.stringify(h));
+                                document.getElementById('follower-slider').innerText = h.begin + "-" + h.end;
                                 // handle.attr("cx", sliderScale(h));
                                 var val = 0;
                                 var min = Number.MAX_VALUE;
