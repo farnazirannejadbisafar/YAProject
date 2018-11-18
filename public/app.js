@@ -1768,11 +1768,11 @@
                             // Add the X Axis
                             svg_right.append("g")
                                 .attr("transform", "translate(0," + 0 + ")")
-                                .call(d3.axisBottom(x));
+                                .call(d3.axisBottom(x_right));
 
                             // Add the Y Axis
                             svg_right.append("g")
-                                .call(d3.axisLeft(y));
+                                .call(d3.axisLeft(y_right));
 
                             //slider start
 
