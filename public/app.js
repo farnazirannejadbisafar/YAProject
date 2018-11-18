@@ -1782,7 +1782,6 @@
                             var follower_slider = createD3RangeSlider(bridges[0],bridges[bridges.length - 1],"#follower-slider");
 
                             follower_slider.onChange(changeRed);
-                            follower_slider.range(1,1000);
 
                             function changeRed(h) {
                                 document.getElementById('range-label').innerText = h.begin + "-" + h.end;
