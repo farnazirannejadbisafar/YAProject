@@ -1768,24 +1768,7 @@
                                     return y_right(d[1]);
                                 });
 
-                            // Add the X Axis
-                            svg_right.append("g")
-                                .attr("transform", "translate(0," + right_height + ")")
-                                .call(d3.axisBottom(x_right));
-
-                            // Add the Y Axis
-                            svg_right.append("g")
-                                .call(d3.axisLeft(y_right));
-
                             //slider start
-
-                            // var slider_width = document.getElementById('follower-slider').clientWidth;
-                            // var slider_height = document.getElementById('follower-slider').clientHeight;
-
-                            // var sliderScale = d3.scaleLinear()
-                            //     .domain([bridges[bridges.length - 1], bridges[0]]) //
-                            //     .range([0, slider_width-20]) //
-                            //     .clamp(true);
 
                             var area1 = d3.select('#follower-slider');
                             var insideSvg1 = area1.select("svg");
@@ -1795,65 +1778,21 @@
 
                             follower_slider.onChange(changeRed);
 
-                            // var follower_slider = d3.select('#follower-slider').append('svg')
-                            //     .attr('width', slider_width)
-                            //     .attr('height', slider_height);
-                            //
-                            // var slider = follower_slider.append("g")
-                            //     .attr("class", "slider")
-                            //     .attr("transform", "translate(15,15)");
-
-                            // slider.append("line")
-                            //     .attr("class", "track")
-                            //     .attr("x1", sliderScale.range()[0])
-                            //     .attr("x2", sliderScale.range()[1])
-                            //     .select(function () {
-                            //         return this.parentNode;
-                            //     })
-                            //     .append("line")
-                            //     .attr("x1", sliderScale.range()[0])
-                            //     .attr("x2", sliderScale.range()[1])
-                            //     .attr("class", "track-inset")
-                            //     .select(function () {
-                            //         return this.parentNode;
-                            //     })
-                            //     .append("line")
-                            //     .attr("x1", sliderScale.range()[0])
-                            //     .attr("x2", sliderScale.range()[1])
-                            //     .attr("class", "track-overlay")
-                            //     .call(d3.drag()
-                            //         .on("start.interrupt", function () {
-                            //             slider.interrupt();
-                            //         })
-                            //         .on("start drag", function () {
-                            //             changeRed(sliderScale.invert(d3.event.x));
-                            //         }));
-
-                            // var handle = slider.insert("circle", ".track-overlay")
-                            //     .attr("class", "handle")
-                            //     .attr("r", 8);
-
                             function changeRed(h) {
-                                alert(JSON.stringify(h));
                                 document.getElementById('follower-slider').innerText = h.begin + "-" + h.end;
-                                // handle.attr("cx", sliderScale(h));
-                                var val = 0;
-                                var min = Number.MAX_VALUE;
 
-                                for(var j = 0; j < bridges.length; j++) {
-                                    d3.selectAll('#name' + bridges[j])
-                                        .transition()
-                                        .attr("r", 10);
-                                }
                                 for(var i = 0; i < bridges.length; i++) {
-                                    if (Math.abs(val - bridges[i]) < min){
-                                        min = Math.abs(val - bridges[i]);
-                                        val = bridges[i];
-                                    }
+                                   if(bridges[i] >= h.begin && bridges[i] <= h.end){
+                                       d3.selectAll('#name' + bridges[i])
+                                           .transition()
+                                           .attr("r", 20);
+                                   }
+                                   else{
+                                       d3.selectAll('#name' + bridges[i])
+                                           .transition()
+                                           .attr("r", 10);
+                                   }
                                 }
-                                d3.selectAll('#name' + val)
-                                    .transition().duration(1000)
-                                    .attr("r", 20);
                             }
                         }
 
