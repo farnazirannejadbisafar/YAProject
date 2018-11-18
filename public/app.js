@@ -1683,12 +1683,12 @@
                             }
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [0.5, 0.5 * i + 1, left_b[i], left_color[i]];
+                                r[i] = [0, i, left_b[i], left_color[i]];
                                 return r;
                             }, []);
 
                             var right_bridges = right_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [0.5, 0.5 * i + 1, right_b[i], right_color[i]];
+                                r[i] = [0, i, right_b[i], right_color[i]];
                                 return r;
                             }, []);
 
@@ -1714,13 +1714,13 @@
                                 .attr("height", left_height)
                                 .append("g")
                                 .attr("transform",
-                                    "translate(-20,-20)");
+                                    "translate(-5,-5)");
 
                             svg_right.attr("width", right_width)
                                 .attr("height", right_height)
                                 .append("g")
                                 .attr("transform",
-                                    "translate(-20,-20)");
+                                    "translate(-5,-5)");
 
 
                             // Scale the range of the data
