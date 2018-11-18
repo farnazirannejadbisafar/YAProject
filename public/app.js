@@ -1683,12 +1683,12 @@
                             }
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [0, i, left_b[i], left_color[i]];
+                                r[i] = [left_width/2, right_height/(i+1), left_b[i], left_color[i]];
                                 return r;
                             }, []);
 
                             var right_bridges = right_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [0, i, right_b[i], right_color[i]];
+                                r[i] = [right_width/2, right_height/(i+1), right_b[i], right_color[i]];
                                 return r;
                             }, []);
 
@@ -1724,19 +1724,11 @@
 
 
                             // Scale the range of the data
-                            x_left.domain([0, d3.max(left_bridges, function (d) {
-                                return d[0];
-                            })]);
-                            y_left.domain([0, d3.max(left_bridges, function (d) {
-                                return d[1];
-                            })]);
+                            x_left.domain([0, left_width]);
+                            y_left.domain([0, left_height]);
 
-                            x_right.domain([0, d3.max(right_bridges, function (d) {
-                                return d[0];
-                            })]);
-                            y_right.domain([0, d3.max(right_bridges, function (d) {
-                                return d[1];
-                            })]);
+                            x_right.domain([0, right_width]);
+                            y_right.domain([0, right_height]);
 
                             // Add the scatterplot
                             svg_left.selectAll("dot")
