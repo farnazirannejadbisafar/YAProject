@@ -1688,12 +1688,23 @@
                             }
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [left_width/2, right_height/(i+1), left_b[i], left_color[i]];
+                                if(i === 0){
+                                    r[i] = [left_width/2, right_height-12, left_b[i], left_color[i]];
+                                }
+                                else{
+                                    r[i] = [left_width/2, right_height/i, left_b[i], left_color[i]];
+                                }
+
                                 return r;
                             }, []);
 
                             var right_bridges = right_acquaintances.reduce(function (r, a, i) {
-                                r[i] = [right_width/2, right_height/(i+1), right_b[i], right_color[i]];
+                                if(i === 0){
+                                    r[i] = [right_width / 2, right_height-12, right_b[i], right_color[i]];
+                                }
+                                else {
+                                    r[i] = [right_width / 2, right_height / (i + 1), right_b[i], right_color[i]];
+                                }
                                 return r;
                             }, []);
 
