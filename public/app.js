@@ -1658,6 +1658,11 @@
                             insideSVG = inYourArea.select("svg");
                             insideSVG.remove();
 
+                            var left_width = document.getElementById('left-followers').clientWidth,
+                                left_height = document.getElementById('left-followers').clientHeight,
+                                right_width = document.getElementById('right-followers').clientWidth,
+                                right_height = document.getElementById('right-followers').clientHeight;
+
                             var color = d3.scaleLinear().domain([0,bridges.length])
                                 .range(['#bae4dd', '#547e77']);
 
@@ -1694,11 +1699,6 @@
 
                             left_bridges.slice(0, left_bridges.length - 2);
                             right_bridges.slice(0, right_bridges.length - 2);
-
-                            var left_width = document.getElementById('left-followers').clientWidth,
-                                left_height = document.getElementById('left-followers').clientHeight,
-                                right_width = document.getElementById('right-followers').clientWidth,
-                                right_height = document.getElementById('right-followers').clientHeight;
 
                             // set the ranges
                             var x_left = d3.scaleLinear().range([0, left_width]);
