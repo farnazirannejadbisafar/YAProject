@@ -477,7 +477,12 @@ a:not([href]):not([tabindex]){
   height: 30px;
   text-align: center;
   position: relative;
-  background-color: #eeeef5;
+  background-color: greenyellow;
+  margin-left: 1px;
+}
+
+#follower-slider .slider{
+  background-color:hotpink;
 }
 
 #middle-follower-card{
