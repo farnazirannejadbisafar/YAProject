@@ -1689,10 +1689,10 @@
 
                             var left_bridges = left_acquaintances.reduce(function (r, a, i) {
                                 if(i === 0){
-                                    r[i] = [left_width/2, right_height-12, left_b[i], left_color[i]];
+                                    r[i] = [left_width/2, left_height-12, left_b[i], left_color[i]];
                                 }
                                 else{
-                                    r[i] = [left_width/2, right_height/i, left_b[i], left_color[i]];
+                                    r[i] = [left_width/2, left_height/(i + 1), left_b[i], left_color[i]];
                                 }
 
                                 return r;
