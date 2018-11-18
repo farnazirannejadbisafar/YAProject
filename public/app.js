@@ -1774,12 +1774,17 @@
                             var insideSvg1 = area1.select("svg");
                             insideSvg1.remove();
 
+                            var fs = document.getElementById('follower-slider');
+                            while (fs.firstChild) {
+                                fs.removeChild(fs.firstChild);
+                            }
+
                             var follower_slider = createD3RangeSlider(bridges[0],bridges[bridges.length - 1],"#follower-slider");
 
                             follower_slider.onChange(changeRed);
 
                             function changeRed(h) {
-                                document.getElementById('follower-slider').innerText = h.begin + "-" + h.end;
+                                document.getElementById('range-label').innerText = h.begin + "-" + h.end;
 
                                 for(var i = 0; i < bridges.length; i++) {
                                    if(bridges[i] >= h.begin && bridges[i] <= h.end){
