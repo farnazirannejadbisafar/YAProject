@@ -1714,13 +1714,13 @@
                                 .attr("height", left_height)
                                 .append("g")
                                 .attr("transform",
-                                    "translate(-5,-5)");
+                                    "translate(0,0)");
 
                             svg_right.attr("width", right_width)
                                 .attr("height", right_height)
                                 .append("g")
                                 .attr("transform",
-                                    "translate(-5,-5)");
+                                    "translate(0,0)");
 
 
                             // Scale the range of the data
@@ -1764,6 +1764,15 @@
                                 .attr("cy", function (d) {
                                     return y_right(d[1]);
                                 });
+
+                            // Add the X Axis
+                            svg_right.append("g")
+                                .attr("transform", "translate(0," + 0 + ")")
+                                .call(d3.axisBottom(x));
+
+                            // Add the Y Axis
+                            svg_right.append("g")
+                                .call(d3.axisLeft(y));
 
                             //slider start
 
