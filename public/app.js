@@ -1767,7 +1767,7 @@
 
                             // Add the X Axis
                             svg_right.append("g")
-                                .attr("transform", "translate(0," + 0 + ")")
+                                .attr("transform", "translate(0," + right_height + ")")
                                 .call(d3.axisBottom(x_right));
 
                             // Add the Y Axis
@@ -1788,7 +1788,6 @@
                             var insideSvg1 = area1.select("svg");
                             insideSvg1.remove();
 
-                                alert("bridges[0] = " + bridges[0] + "\n bridges[bridges.length - 1] = " + bridges[bridges.length - 1])
                             var follower_slider = createD3RangeSlider(bridges[0],bridges[bridges.length - 1],"#follower-slider");
 
                             follower_slider.onChange(changeRed);
