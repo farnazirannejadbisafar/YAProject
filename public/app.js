@@ -1779,34 +1779,133 @@
                                 fs.removeChild(fs.firstChild);
                             }
 
-                            var follower_slider = createD3RangeSlider(bridges[0],bridges[bridges.length - 1],"#follower-slider");
+                            var slider_height = document.getElementById('follower-slider').clientHeight,
+                                slider_width = document.getElementById('follower-slider').clientWidth;
 
-                            follower_slider.onChange(changeRed);
+                            var slider_svg = d3.select('#follower-slider').append("svg")
+                                .attr('width', slider_width)
+                                .attr('height', slider_height)
+                                .attr("class", "slider")
+                                .attr("transform", "translate(0,0)");
 
-                            function changeRed(h) {
-                                document.getElementById('range-label').innerText = h.begin + "-" + h.end;
+                            var slider_x = d3.scaleLinear()
+                                .domain([0, 10])
+                                .range([0, slider_width])
+                                .clamp(true);
+
+                            var xMin = slider_x(0),
+                                xMax = slider_x(10);
+
+                            slider_svg.append("line")
+                                .attr("class", "track")
+                                .attr("x1", 10+slider_x.range()[0])
+                                .attr("x2", 10+slider_x.range()[1]);
+
+                            var selRange = slider_svg.append("line")
+                                .attr("class", "sel-range")
+                                .attr("x1", 10+slider_x(bridges[0]))
+                                .attr("x2", 10+slider_x(bridges[bridges.length - 1]));
+
+                            slider_svg.insert("g", ".track-overlay")
+                                .attr("class", "ticks")
+                                .attr("transform", "translate(2,2)")
+                                .selectAll("text")
+                                .data(slider_x.ticks(10))
+                                .enter().append("text")
+                                .attr("x", slider_x)
+                                .attr("text-anchor", "middle")
+                                .style("font-weight", "bold")
+                                .style("fill", function(x){return color(x);})
+                                .text(function(d) { return d; });
+
+                            var handle = slider_svg.selectAll("rect")
+                                .data([0, 1])
+                                .enter().append("rect", ".track-overlay")
+                                .attr("class", "handle")
+                                .attr("y", -8)
+                                .attr("x", function(d) { return slider_x(bridges[d]); })
+                                .attr("rx", 3)
+                                .attr("height", 16)
+                                .attr("width", 20)
+                                .call(
+                                    d3.drag()
+                                        .on("start", startDrag)
+                                        .on("drag", sliderdrag)
+                                        .on("end", endDrag)
+                                );
+
+                            function startDrag() {
+                                d3.select(this).raise().classed("active", true);
+                            }
+
+                            function sliderdrag(d){
+                                var x1=d3.event.x;
+                                if(x1>xMax){
+                                    x1=xMax
+                                }else if(x1<xMin){
+                                    x1=xMin
+                                }
+                                d3.select(this).attr("x", x1);
+                                var x2=x(bridges[d==0?1:0]);
+                                selRange
+                                    .attr("x1", 10+x1)
+                                    .attr("x2", 10+x2)
+                            }
+
+                            function endDrag(d){
+                                var v=Math.round(x.invert(d3.event.x));
+                                var elem=d3.select(this);
+                                bridges[d] = v;
+                                var v1=Math.min(bridges[0], bridges[bridges.length - 1]),
+                                    v2=Math.max(bridges[0], bridges[bridges.length - 1]);
+                                elem.classed("active", false)
+                                    .attr("x", x(v));
+                                selRange
+                                    .attr("x1", 10+x(v1))
+                                    .attr("x2", 10+x(v2));
 
                                 for(var i = 0; i < bridges.length; i++) {
-                                   if(bridges[i] >= h.begin && bridges[i] <= h.end){
-                                       d3.selectAll('#name' + bridges[i])
-                                           .transition()
-                                           .attr("r", 20);
-                                   }
-                                   else{
-                                       d3.selectAll('#name' + bridges[i])
-                                           .transition()
-                                           .attr("r", 10);
-                                   }
+                                    if(bridges[i] >= v1 && bridges[i] <= v2){
+                                        d3.selectAll('#name' + bridges[i])
+                                            .transition()
+                                            .attr("r", 20);
+                                    }
+                                    else{
+                                        d3.selectAll('#name' + bridges[i])
+                                            .transition()
+                                            .attr("r", 10);
+                                    }
                                 }
                             }
-                        }
 
-                        // slider end
+                            //     var follower_slider = createD3RangeSlider(bridges[0],bridges[bridges.length - 1],"#follower-slider");
+                            //
+                            //     follower_slider.onChange(changeRed);
+                            //
+                            //     function changeRed(h) {
+                            //         document.getElementById('range-label').innerText = h.begin + "-" + h.end;
+                            //
+                            //         for(var i = 0; i < bridges.length; i++) {
+                            //            if(bridges[i] >= h.begin && bridges[i] <= h.end){
+                            //                d3.selectAll('#name' + bridges[i])
+                            //                    .transition()
+                            //                    .attr("r", 20);
+                            //            }
+                            //            else{
+                            //                d3.selectAll('#name' + bridges[i])
+                            //                    .transition()
+                            //                    .attr("r", 10);
+                            //            }
+                            //         }
+                            //     }
+                            // }
+
+                            // slider end
+                        }
                     }
                 }
-            }
-        })
-        .config(AppConfig);
+            })
+            .config(AppConfig);
 
     function LoginController($scope, userService, $location, $anchorScroll) {
         $scope.login = login;
