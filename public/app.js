@@ -1786,7 +1786,7 @@
                                 .attr('width', slider_width)
                                 .attr('height', slider_height)
                                 .attr("class", "slider")
-                                .attr("transform", "translate(0,0)");
+                                .attr("transform", "translate(2,2)");
 
                             var slider_x = d3.scaleLinear()
                                 .domain([0, 10])
@@ -1815,7 +1815,6 @@
                                 .attr("x", slider_x)
                                 .attr("text-anchor", "middle")
                                 .style("font-weight", "bold")
-                                .style("fill", function(x){return color(x);})
                                 .text(function(d) { return d; });
 
                             var handle = slider_svg.selectAll("rect")
