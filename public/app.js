@@ -1774,10 +1774,10 @@
                             var insideSvg1 = area1.select("svg");
                             insideSvg1.remove();
 
-                            var fs = document.getElementById('follower-slider');
-                            while (fs.firstChild) {
-                                fs.removeChild(fs.firstChild);
-                            }
+                            // var fs = document.getElementById('follower-slider');
+                            // while (fs.firstChild) {
+                            //     fs.removeChild(fs.firstChild);
+                            // }
 
                             var slider_height = document.getElementById('follower-slider').clientHeight,
                                 slider_width = document.getElementById('follower-slider').clientWidth;
