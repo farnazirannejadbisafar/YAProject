@@ -1788,50 +1788,50 @@
                                 .attr("class", "slider")
                                 .attr("transform", "translate(2,2)");
 
-                            var slider_x = d3.scaleLinear()
-                                .domain([0, 10])
-                                .range([0, slider_width])
-                                .clamp(true);
-
-                            var xMin = slider_x(0),
-                                xMax = slider_x(10);
-
-                            slider_svg.append("line")
-                                .attr("class", "track")
-                                .attr("x1", 10+slider_x.range()[0])
-                                .attr("x2", 10+slider_x.range()[1]);
-
-                            var selRange = slider_svg.append("line")
-                                .attr("class", "sel-range")
-                                .attr("x1", 10+slider_x(bridges[0]))
-                                .attr("x2", 10+slider_x(bridges[bridges.length - 1]));
-
-                            slider_svg.insert("g", ".track-overlay")
-                                .attr("class", "ticks")
-                                .attr("transform", "translate(2,2)")
-                                .selectAll("text")
-                                .data(slider_x.ticks(10))
-                                .enter().append("text")
-                                .attr("x", slider_x)
-                                .attr("text-anchor", "middle")
-                                .style("font-weight", "bold")
-                                .text(function(d) { return d; });
-
-                            var handle = slider_svg.selectAll("rect")
-                                .data([0, 1])
-                                .enter().append("rect", ".track-overlay")
-                                .attr("class", "handle")
-                                .attr("y", -8)
-                                .attr("x", function(d) { return slider_x(bridges[d]); })
-                                .attr("rx", 3)
-                                .attr("height", 16)
-                                .attr("width", 20)
-                                .call(
-                                    d3.drag()
-                                        .on("start", startDrag)
-                                        .on("drag", sliderdrag)
-                                        .on("end", endDrag)
-                                );
+                            // var slider_x = d3.scaleLinear()
+                            //     .domain([0, 10])
+                            //     .range([0, slider_width])
+                            //     .clamp(true);
+                            //
+                            // var xMin = slider_x(0),
+                            //     xMax = slider_x(10);
+                            //
+                            // slider_svg.append("line")
+                            //     .attr("class", "track")
+                            //     .attr("x1", 10+slider_x.range()[0])
+                            //     .attr("x2", 10+slider_x.range()[1]);
+                            //
+                            // var selRange = slider_svg.append("line")
+                            //     .attr("class", "sel-range")
+                            //     .attr("x1", 10+slider_x(bridges[0]))
+                            //     .attr("x2", 10+slider_x(bridges[bridges.length - 1]));
+                            //
+                            // slider_svg.insert("g", ".track-overlay")
+                            //     .attr("class", "ticks")
+                            //     .attr("transform", "translate(2,2)")
+                            //     .selectAll("text")
+                            //     .data(slider_x.ticks(10))
+                            //     .enter().append("text")
+                            //     .attr("x", slider_x)
+                            //     .attr("text-anchor", "middle")
+                            //     .style("font-weight", "bold")
+                            //     .text(function(d) { return d; });
+                            //
+                            // var handle = slider_svg.selectAll("rect")
+                            //     .data([0, 1])
+                            //     .enter().append("rect", ".track-overlay")
+                            //     .attr("class", "handle")
+                            //     .attr("y", -8)
+                            //     .attr("x", function(d) { return slider_x(bridges[d]); })
+                            //     .attr("rx", 3)
+                            //     .attr("height", 16)
+                            //     .attr("width", 20)
+                            //     .call(
+                            //         d3.drag()
+                            //             .on("start", startDrag)
+                            //             .on("drag", sliderdrag)
+                            //             .on("end", endDrag)
+                            //     );
 
                             function startDrag() {
                                 d3.select(this).raise().classed("active", true);
