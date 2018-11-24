@@ -481,9 +481,9 @@ a:not([href]):not([tabindex]){
   margin-left: 1px;
 }
 
-#follower-slider .slider{
-  background-color:hotpink;
-}
+/*#follower-slider .slider{*/
+  /*background-color:hotpink;*/
+/*}*/
 
 #middle-follower-card{
   width: 160px;
