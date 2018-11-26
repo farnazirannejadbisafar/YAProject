@@ -26,8 +26,11 @@
 	<div>
 		<div class="add-btn"><a class="fa fa-arrow-right" ng-click="openSlideMenu()"></a></div>
 
-		<div id="follower-filter-body">
+		<div id="all-followers-body">
+			<!--<div>-->
+
 			<div ng-show="allfollowers" md-swipe-right="onSwipeRightAllFollowers($event, $target)" md-swipe-left="onSwipeLeftAllFollowers($event, $target)">
+				<h2 class="text-center text-uppercase text-secondary">All Followers</h2>
 				<div class="svg-class">
 					<all-followers acquaintances="acquaintancesAllFollowers"
 								   bridges="bridgesAllFollowers"
@@ -37,17 +40,49 @@
 							<div id="semi-circle"></div>
 						</div>
 						<div class="row mx-auto">
-
+							<div id="left-followers" class="col-3"></div>
+							<div id="middle-follower" class="col-6">
+								<div class="card" id="middle-follower-card">
+									<!--<div class="card-body">-->
+									<div class="avatar">
+										<img alt="" id="mu-profile-pic">
+									</div>
+									<div class="info">
+										<div class="desc"><p id="mu-name"></p></div>
+										<div class="desc"><p id="mu-screen-name"></p></div>
+										<div class="desc"><p id="mu-follower-count"></p></div>
+									</div>
+								<!--</div>-->
+								</div>
+								<div class="row" id="follower-slider"></div>
+                                <div class= "row" id="range-label"></div>
+                                <div class="row">
+								    <div class="btn-secondary btn-sm">Add</div>
+                                </div>
+							</div>
+							<div id="right-followers" class="col-3"></div>
 						</div>
 					</all-followers>
 				</div>
-				<div id="page-navigation" class="row">
-					<div class="col-3"><i class="fas fa-caret-left"></i></div>
-						{{pagename}}
-					<div class="col-3"><i class="fas fa-caret-right"></i></div>
-
-				</div>
+				<!--<div class="row svg-class">-->
+				<!--<div class="col-6 button-move">-->
+				<!--<p>{{plusdesc}}</p>-->
+				<!--</div>-->
+				<!--<div class="col-2 button-mv">-->
+				<!--<button class="w3-button w3-teal w3-circle" ng-click="onSelectAdd()">+</button>-->
+				<!--</div>-->
+				<!--<div class="col-2 button-mv">-->
+				<!--<div class="circle" ng-if="dandelion">-->
+				<!--<span ><i class="fa fa-circle"></i></span>-->
+				<!--</div>-->
+				<!--<div class="circlenum" ng-if="dandelion">-->
+				<!--<span >{{acquaintancesInYourArea.length}}</span>-->
+				<!--</div>-->
+				<!--<button class="w3-button w3-teal" ng-if="dandelion" ng-click="onSelectMessage()">Go</button>-->
+				<!--</div>-->
+				<!--</div>-->
 			</div>
+
 			<div ng-show="messagefollowers" md-swipe-right="onSwipeRightMessageFollowers($event, $target)" md-swipe-left="onSwipeLeftMessageFollowers($event, $target)" class="carousel-item active">
 				<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">Message Followers</h2>
 				<div class="row svg-class">
@@ -79,7 +114,9 @@
 					</div>
 				</div>
 			</div>
+			<!--</div>-->
 		</div>
+
 	</div>
 </div>
 

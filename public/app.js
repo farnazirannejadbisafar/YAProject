@@ -1585,12 +1585,17 @@
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
-                            drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
+                            // drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
+                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
                         }
                         catch (err) {
                             console.log(err)
                         }
                     }, true);
+
+                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser) {
+
+                    }
 
                     function drawDandelion(acquaintances, bridges, colors, friends) {
 
@@ -2520,12 +2525,16 @@
 
         // display most followers
         $scope.mostfollowers = 1;
-        $scope.allfollowers = undefined;
+        $scope.allfollowers = 1;
+        $scope.allActive = undefined;
+        $scope.allinteractive = undefined;
 
         $scope.middle = 0;
         $scope.middleUser = {};
 
         $scope.xyz = 'xyz';
+
+        $scope.pagename = 'All Followers';
 
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
@@ -2699,20 +2708,56 @@
         };
 
         $scope.onSwipeLeftAllFollowers = function (ev, target) {
-            if ($scope.middle < $scope.len){
-                $scope.middle = $scope.middle + 1;
-                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
-                    .then(displayMiddleUser, filterError);
-            }
+            // if ($scope.middle < $scope.len){
+            //     $scope.middle = $scope.middle + 1;
+            //     filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+            //         .then(displayMiddleUser, filterError);
+            // }
+            $scope.allActive = 1;
+            $scope.allfollowers = undefined;
+            $scope.allinteractive = undefined;
+            $scope.pagename = 'All Active';
         };
 
         $scope.onSwipeRightAllFollowers = function (ev, target) {
-            if ($scope.middle > 0){
-                $scope.middle = $scope.middle - 1;
-                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
-                    .then(displayMiddleUser, filterError);
-            }
+            // if ($scope.middle > 0){
+            //     $scope.middle = $scope.middle - 1;
+            //     filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+            //         .then(displayMiddleUser, filterError);
+            // }
+            $scope.allActive = undefined;
+            $scope.allfollowers = undefined;
+            $scope.allinteractive = 1;
+            $scope.pagename = 'All Interactive';
 
+        };
+
+        $scope.onSwipeLeftAllActive = function (ev, target) {
+            $scope.allActive = undefined;
+            $scope.allfollowers = undefined;
+            $scope.allinteractive = 1;
+            $scope.pagename = 'All Interactive';
+        };
+
+        $scope.onSwipRightAllActive = function (ev, target) {
+            $scope.allActive = undefined;
+            $scope.allfollowers = 1;
+            $scope.allinteractive = undefined;
+            $scope.pagename = 'All Followers';
+        };
+
+        $scope.onSwipeLeftAllInteractive = function (ev, target) {
+            $scope.allActive = undefined;
+            $scope.allfollowers = 1;
+            $scope.allinteractive = undefined;
+            $scope.pagename = 'All Followers';
+        };
+
+        $scope.onSwipeRightAllInteractive = function (ev, target) {
+            $scope.allActive = 1;
+            $scope.allfollowers = undefined;
+            $scope.allinteractive = undefined;
+            $scope.pagename = 'All Active';
         };
 
         function init() {
@@ -2844,12 +2889,12 @@
             $scope.len = $scope.acquaintancesAllFollowers.length;
             $scope.middle = 0;
 
-            if ($scope.len % 2 === 0){
-                $scope.middle = Math.floor(($scope.len - 1) / 2);
-            }
-            else{
-                $scope.middle = Math.round(($scope.len - 1) / 2);
-            }
+            // if ($scope.len % 2 === 0){
+            //     $scope.middle = Math.floor(($scope.len - 1) / 2);
+            // }
+            // else{
+            //     $scope.middle = Math.round(($scope.len - 1) / 2);
+            // }
 
             filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
                 .then(displayMiddleUser, filterError);
@@ -2863,7 +2908,7 @@
         function displayAllActive(followerArrray) {
             $scope.acquaintancesAllFollowers = followerArrray.screennames;
             $scope.bridgesAllFollowers = followerArrray.followerlength;
-            $scope.allfollowers = followerArrray.screennames.length
+            $scope.allActive = followerArrray.screennames.length
         }
 
         function filterError() {
@@ -2917,7 +2962,7 @@
                 templateUrl: 'feed.html'
             })
             .when('/filternew/:userId/:token', {
-                templateUrl: 'filters_new.html'
+                templateUrl: 'filters_new1.html'
             })
     }
 

@@ -442,9 +442,8 @@ a:not([href]):not([tabindex]){
   /*stroke-width: 1.25px;*/
 /*}*/
 
-#all-followers-body{
+#follower-filter-body{
   width: 320px;
-  height: 568px;
   text-align: center;
 }
 
