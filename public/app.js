@@ -1594,7 +1594,99 @@
                     }, true);
 
                     function drawConnectionsPage(acquaintances, bridges, middle, middleUser) {
+                        if (acquaintances !== undefined) {
+                            document.getElementById("mu-name").innerHTML = middleUser.name;
+                            document.getElementById("mu-follower-count").innerHTML = "#Followers " + middleUser.followers_count;
+                            document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
 
+                            if (middleUser.profile_image_url_https !== undefined) {
+                                document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
+                            }
+
+                            // semi circle start
+                            var inYourArea2 = d3.select('#semi-circle');
+                            var insideSVG2 = inYourArea2.select("svg");
+                            insideSVG2.remove();
+                            var sc_width = document.getElementById('semi-circle').clientWidth;
+                            var sc_height = document.getElementById('semi-circle').clientHeight;
+
+                            var svg_semi_cirlce = d3.select("#semi-circle")
+                                .append("svg")
+                                .attr("width", sc_width)
+                                .attr("height", sc_height)
+                                .append("g")
+                                .attr("transform", "translate(" + sc_width/2 + "," + 0 + ")");
+
+                            var arc = d3.arc()
+                                .innerRadius(50)
+                                .outerRadius(55)
+                                .startAngle(0.5 * Math.PI)
+                                .endAngle(1.5*Math.PI);
+
+                            svg_semi_cirlce.append("path")
+                                .attr("class", "arc")
+                                .attr("d", arc);
+
+                            // semi circle end
+
+                            // scatter plot start
+                            var inYourArea = d3.select('#all-followers-scatterplot');
+                            var insideSVG = inYourArea.select("svg");
+                            insideSVG.remove();
+
+                            var width_all_followers = document.getElementById('all-followers-scatterplot').clientWidth,
+                                height_all_followers = document.getElementById('all-followers-scatterplot').clientHeight;
+
+                            var color = d3.scaleLinear().domain([0,bridges.length])
+                                .range(['#bae4dd', '#547e77']);
+
+                            var svg_all_followers = d3.select('#all-followers-scatterplot').append("svg");
+
+                            var color_list = [];
+                            for(var i = 0; i < bridges.length; i++){
+                                color_list[i] = color(i);
+                            }
+
+                            var acquaintances_all_followers = acquaintances.reduce(function (r, a, i) {
+                                if(i === 0){
+                                    r[i] = [width_all_followers+12, height_all_followers/2, bridges[i], color_list[i]];
+                                }
+                                else{
+                                    r[i] = [width_all_followers/(i+1), height_all_followers/2, bridges[i], color_list[i]];
+                                }
+
+                                return r;
+                            }, []);
+
+                            // set the ranges
+                            var x_left = d3.scaleLinear().range([0, width_all_followers]);
+                            var y_left = d3.scaleLinear().range([height_all_followers, 0]);
+
+
+                            svg_all_followers.attr("width", width_all_followers)
+                                .attr("height", height_all_followers)
+                                .append("g")
+                                .attr("transform",
+                                    "translate(0,0)");
+
+                            // Scale the range of the data
+                            x_left.domain([0, width_all_followers]);
+                            y_left.domain([0, height_all_followers]);
+
+                            // Add the scatterplot
+                            svg_all_followers.selectAll("dot")
+                                .data(acquaintances_all_followers)
+                                .enter().append("circle")
+                                .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d) { return d[3]})
+                                .attr("r", 10)
+                                .attr("cx", function (d) {
+                                    return x_left(d[0]);
+                                })
+                                .attr("cy", function (d) {
+                                    return y_left(d[1]);
+                                });
+                        }
                     }
 
                     function drawDandelion(acquaintances, bridges, colors, friends) {
@@ -2532,6 +2624,12 @@
         $scope.middle = 0;
         $scope.middleUser = {};
 
+        $scope.middleActive = 0;
+        $scope.middleActiveUser = {};
+
+        $scope.middleInteractive = 0;
+        $scope.middleInteractiveUser = {};
+
         $scope.xyz = 'xyz';
 
         $scope.pagename = 'All Followers';
@@ -2708,52 +2806,103 @@
         };
 
         $scope.onSwipeLeftAllFollowers = function (ev, target) {
-            // if ($scope.middle < $scope.len){
-            //     $scope.middle = $scope.middle + 1;
-            //     filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
-            //         .then(displayMiddleUser, filterError);
-            // }
+            if ($scope.middle < $scope.len){
+                $scope.middle = $scope.middle + 1;
+                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+                    .then(displayMiddleUser, filterError);
+            }
+        };
+
+        $scope.onSwipeRightAllFollowers = function (ev, target) {
+            if ($scope.middle > 0){
+                $scope.middle = $scope.middle - 1;
+                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+                    .then(displayMiddleUser, filterError);
+            }
+        };
+
+        $scope.onSwipeLeftAllActive = function (ev, target) {
+            if ($scope.middleActive < $scope.lenActive){
+                $scope.middleActive = $scope.middleActive + 1;
+                filterService.getMiddleActive($scope.userId, $scope.middleActive, $scope.token)
+                    .then(displayMiddleActive, filterError);
+            }
+        };
+
+        $scope.onSwipeRightAllActive = function (ev, target) {
+            if ($scope.middleActive > 0){
+                $scope.middleActive = $scope.middleActive - 1;
+                filterService.getMiddleActive($scope.userId, $scope.middleActive, $scope.token)
+                    .then(displayMiddleActive, filterError);
+            }
+        };
+
+        $scope.onSwipeLeftAllInteractive = function (ev, target) {
+            if ($scope.middleInteractive < $scope.lenInteractive){
+                $scope.middleActive = $scope.middleActive + 1;
+                filterService.getMiddleInteractive($scope.userId, $scope.middleActive, $scope.token)
+                    .then(displayMiddleInteractive, filterError);
+            }
+        };
+
+        $scope.onSwipeRightAllInteractive = function (ev, target) {
+            if ($scope.middleInteractive > 0){
+                $scope.middleInteractive = $scope.middleInteractive - 1;
+                filterService.getMiddleInteractive($scope.userId, $scope.middleInteractive, $scope.token)
+                    .then(displayMiddleInteractive, filterError);
+            }
+        };
+
+        $scope.onLeftBtnAllFollowers = function (ev, target) {
             $scope.allActive = 1;
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Active';
         };
 
-        $scope.onSwipeRightAllFollowers = function (ev, target) {
-            // if ($scope.middle > 0){
-            //     $scope.middle = $scope.middle - 1;
-            //     filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
-            //         .then(displayMiddleUser, filterError);
-            // }
-            $scope.allActive = undefined;
-            $scope.allfollowers = undefined;
-            $scope.allinteractive = 1;
-            $scope.pagename = 'All Interactive';
-
-        };
-
-        $scope.onSwipeLeftAllActive = function (ev, target) {
+        $scope.onRightBtnAllFollowers = function (ev, target) {
             $scope.allActive = undefined;
             $scope.allfollowers = undefined;
             $scope.allinteractive = 1;
             $scope.pagename = 'All Interactive';
         };
 
-        $scope.onSwipRightAllActive = function (ev, target) {
+        $scope.onLeftBtnAllActive = function (ev, target) {
+            $scope.allActive = undefined;
+            $scope.allfollowers = undefined;
+            $scope.allinteractive = 1;
+            $scope.pagename = 'All Interactive';
+        };
+
+        $scope.onRightBtnAllActive = function (ev, target) {
             $scope.allActive = undefined;
             $scope.allfollowers = 1;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Followers';
         };
 
-        $scope.onSwipeLeftAllInteractive = function (ev, target) {
+        $scope.onLeftBtnAllActive = function (ev, target) {
+            $scope.allActive = undefined;
+            $scope.allfollowers = undefined;
+            $scope.allinteractive = 1;
+            $scope.pagename = 'All Interactive';
+        };
+
+        $scope.onRightBtnAllActive = function (ev, target) {
             $scope.allActive = undefined;
             $scope.allfollowers = 1;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Followers';
         };
 
-        $scope.onSwipeRightAllInteractive = function (ev, target) {
+        $scope.onLeftBtnAllInteractive = function (ev, target) {
+            $scope.allActive = undefined;
+            $scope.allfollowers = 1;
+            $scope.allinteractive = undefined;
+            $scope.pagename = 'All Followers';
+        };
+
+        $scope.onRightBtnAllInteractive = function (ev, target) {
             $scope.allActive = 1;
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
