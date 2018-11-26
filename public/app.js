@@ -2853,14 +2853,14 @@
             }
         };
 
-        $scope.onLeftBtnAllFollowers = function (ev, target) {
+        $scope.onLeftBtnAllFollowers = function (ev) {
             $scope.allActive = 1;
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Active';
         };
 
-        $scope.onRightBtnAllFollowers = function (ev, target) {
+        $scope.onRightBtnAllFollowers = function (ev) {
             $scope.allActive = undefined;
             $scope.allfollowers = undefined;
             $scope.allinteractive = 1;
