@@ -2962,7 +2962,7 @@
                 templateUrl: 'feed.html'
             })
             .when('/filternew/:userId/:token', {
-                templateUrl: 'filters_new1.html'
+                templateUrl: 'filters_new.html'
             })
     }
 
