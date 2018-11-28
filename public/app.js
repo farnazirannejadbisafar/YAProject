@@ -1691,17 +1691,16 @@
                             // Add the scatterplot
                             svg_all_followers.selectAll("path")
                                 .data(acquaintances_all_followers)
-                                .enter().append("path")
-                                .style("fill", function(b) { return b[3]})
-                                .attr("d",function(b) {
+                                .enter().append("cirlce")
+                                .style("fill", function(b) {
                                     if(b[2] === middleUser.followers_count){
-                                        return diamond;
+                                        return "green";
                                     }
-                                    else if (b[2] >= minFollower && b[2] <= maxFollower) {
-                                        return cross;
+                                    else if(b[2] >= minFollower && b[2] <= maxFollower){
+                                        return "red";
                                     }
                                     else{
-                                        return circle;
+                                        return b[3]
                                     }
                                 })
                                 .attr('id', function(b){ return 'name' + b[2]; })
@@ -2928,11 +2927,35 @@
             $scope.pagename = 'All Followers';
         };
 
-        $scope.onRightBtnAllInteractive = function (ev, target) {
+        $scope.onRightBtnAllInteractive = function (value) {
             $scope.allActive = 1;
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Active';
+        };
+
+        $scope.onMaxFollowerChange = function (value) {
+            if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
+                $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
+            }
+            else if(value < $scope.bridgesAllFollowers[0]){
+                $scope.maxFollower = $scope.bridgesAllFollowers[0]
+            }
+            else if(value < $scope.minFollower){
+                $scope.maxFollower = $scope.minFollower;
+            }
+        };
+
+        $scope.onMinFollowerChange = function (value) {
+            if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
+                $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
+            }
+            else if(value < $scope.bridgesAllFollowers[0]){
+                $scope.minFollower = $scope.bridgesAllFollowers[0]
+            }
+            else if(value > $scope.maxFollower){
+                $scope.minFollower = $scope.maxFollower;
+            }
         };
 
         function init() {

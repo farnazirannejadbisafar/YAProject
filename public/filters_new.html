@@ -59,7 +59,8 @@
 											   id="minFollower"
 											   min="{{bridgesAllFollowers[0]}}"
 											   max="{{bridgesAllFollowers[bridgesAllFollowers.length]}}"
-											   (change)="onMinFollowerChange($event)">
+											   ng-model="minFollower"
+											   ng-change="onMinFollowerChange(value)">
 									</mat-form-field>
 								</div>
 								<div class="col-6">
@@ -69,7 +70,8 @@
 											   id="maxFollower"
 											   min="{{bridgesAllFollowers[0]}}"
 											   max="{{bridgesAllFollowers[bridgesAllFollowers.length]}}"
-											   (change)="onMaxFollowerChange($event)">
+											   ng-model="maxFollower"
+											   ng-change="onMaxFollowerChange(value)">
 									</mat-form-field>
 								</div>
 							</div>
