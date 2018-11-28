@@ -1705,8 +1705,9 @@
                             //             .attr("r", 10);
                             //     }
                             // }
+                            d3.selectAll('#name' + bridges[middle]).select("circle").remove();
                             d3.selectAll('#name' + bridges[middle])
-                                .transition()
+                                // .transition()
                                 .enter().append("cross")
                                 .style("fill", "orange")
                                 .attr("r", 40);
