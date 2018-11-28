@@ -1605,6 +1605,12 @@
                                 document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
                             }
 
+                            document.getElementById('element_id').addEventListener(
+                                'change',
+                                callbackFunction,
+                                false
+                            );
+
                             // semi circle start
                             var inYourArea2 = d3.select('#semi-circle');
                             var insideSVG2 = inYourArea2.select("svg");
@@ -1679,7 +1685,12 @@
                                 .data(acquaintances_all_followers)
                                 .enter().append("circle")
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("fill", function(d) { return d[3]})
+                                .style("fill", function(d) {
+                                    if(d[2] === middleUser.followers_count){
+                                        return "red";
+                                    }
+                                    return d[3]
+                                })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
@@ -2631,8 +2642,8 @@
         $scope.middleInteractive = 0;
         $scope.middleInteractiveUser = {};
 
-        $scope.maxFollower = $scope.middleUser.followers_count;
-        $scope.mminFollower = $scope.middleUser.followers_count;
+        $scope.maxFollower = 0;
+        $scope.mminFollower = 0;
 
         $scope.pagename = 'All Followers';
 
