@@ -1674,11 +1674,12 @@
                             x_left.domain([0, width_all_followers]);
                             y_left.domain([0, height_all_followers]);
 
+                            alert(maxFollower);
+
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
                                 .enter().append("circle")
-                                .attr("d", d3.symbol().type("circle"))
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("fill", function(d) { return d[3]})
                                 .attr("r", 10)
@@ -1689,25 +1690,25 @@
                                     return y_left(d[1]);
                                 });
 
-                            for(var i = 0; i < bridges.length; i++){
-                                if(bridges[i] <= maxFollower && bridges[i] >= minFollower){
-                                    d3.selectAll('#name' + bridges[i])
-                                        .attr("d", d3.symbol().type("triangle-up"))
-                                        .transition()
-                                        .style("fill", "orange");
-                                }
-                                else{
-                                    d3.selectAll('#name' + bridges[i])
-                                        .attr("d", d3.symbol().type("circle"))
-                                        .transition()
-                                        .style("fill", function(d) { return d[3]})
-                                        .attr("r", 10);
-                                }
-                            }
-                            d3.selectAll('#name' + bridges[middle])
-                                .transition()
-                                .attr("d", d3.symbol().type("cross"))
-                                .style("fill", "blue");
+                            // for(var i = 0; i < bridges.length; i++){
+                            //     if(bridges[i] <= maxFollower && bridges[i] >= minFollower){
+                            //         d3.selectAll('#name' + bridges[i])
+                            //             .attr("d", d3.symbol().type("triangle-up"))
+                            //             .transition()
+                            //             .style("fill", "orange");
+                            //     }
+                            //     else{
+                            //         d3.selectAll('#name' + bridges[i])
+                            //             .attr("d", d3.symbol().type("circle"))
+                            //             .transition()
+                            //             .style("fill", function(d) { return d[3]})
+                            //             .attr("r", 10);
+                            //     }
+                            // }
+                            // d3.selectAll('#name' + bridges[middle])
+                            //     .transition()
+                            //     .attr("d", d3.symbol().type("cross"))
+                            //     .style("fill", "blue");
                         }
                     }
 
