@@ -2942,27 +2942,27 @@
         };
 
         $scope.onMaxFollowerChange = function () {
-            if($scope.maxFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
-                $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
-            }
-            else if($scope.maxFollower < $scope.bridgesAllFollowers[0]){
-                $scope.maxFollower = $scope.bridgesAllFollowers[0]
-            }
-            else if($scope.maxFollower < $scope.minFollower){
-                $scope.maxFollower = $scope.minFollower;
-            }
+            // if($scope.maxFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
+            //     $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
+            // }
+            // else if($scope.maxFollower < $scope.bridgesAllFollowers[0]){
+            //     $scope.maxFollower = $scope.bridgesAllFollowers[0]
+            // }
+            // else if($scope.maxFollower < $scope.minFollower){
+            //     $scope.maxFollower = $scope.minFollower;
+            // }
         };
 
         $scope.onMinFollowerChange = function () {
-            if($scope.minFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
-                $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
-            }
-            else if($scope.minFollower < $scope.bridgesAllFollowers[0]){
-                $scope.minFollower = $scope.bridgesAllFollowers[0]
-            }
-            else if($scope.minFollower > $scope.maxFollower){
-                $scope.minFollower = $scope.maxFollower;
-            }
+            // if($scope.minFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
+            //     $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
+            // }
+            // else if($scope.minFollower < $scope.bridgesAllFollowers[0]){
+            //     $scope.minFollower = $scope.bridgesAllFollowers[0]
+            // }
+            // else if($scope.minFollower > $scope.maxFollower){
+            //     $scope.minFollower = $scope.maxFollower;
+            // }
         };
 
         $scope.onFollowerImageClick = function () {

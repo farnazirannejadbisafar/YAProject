@@ -463,3 +463,10 @@ a:not([href]):not([tabindex]){
   border-bottom-left-radius: 44px;
   border-top-left-radius: 44px;
 }
+
+#circle-user-info {
+  background: lightgray;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
