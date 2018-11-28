@@ -32,7 +32,9 @@
 					<all-followers acquaintances="acquaintancesAllFollowers"
 								   bridges="bridgesAllFollowers"
 								   middle="middle"
-								   middle-user="middleUser">
+								   middle-user="middleUser"
+								   maxFollower="maxFollower"
+								   minFollower="minFollower">
 						<div class="row mx-auto">
 							<div id="semi-circle"></div>
 						</div>
@@ -49,11 +51,24 @@
 								</div>
 								<!--</div>-->
 							</div>
-							<!--<div class="row" id="follower-slider"></div>-->
-							<!--<div class= "row" id="range-label"></div>-->
-							<!--<div class="row">-->
-								<!--<div class="btn-secondary btn-sm">Add</div>-->
-							<!--</div>-->
+							<div class="row">
+								<div class="col-6">
+									<mat-form-field class="form-control-sm">
+										<input matInput placeholder="Min Follower Count"
+											   type="number"
+											   id="minFollower"
+											   (change)="onMinFollowerChange($event)">
+									</mat-form-field>
+								</div>
+								<div class="col-6">
+									<mat-form-field class="form-control-sm">
+										<input matInput placeholder="Max Follower Count"
+											   type="number"
+											   id="maxFollower"
+											   (change)="onMaxFollowerChange($event)">
+									</mat-form-field>
+								</div>
+							</div>
 						</div>
 						<div class="row mx-auto">
 							<div id="all-followers-scatterplot"></div>

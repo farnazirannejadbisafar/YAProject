@@ -1579,21 +1579,23 @@
                     acquaintances: '=',
                     bridges: '=',
                     middleUser: '=',
-                    middle: '='
+                    middle: '=',
+                    maxFollower: '=',
+                    minFollower: '='
                 },
                 link: function (scope, element, attrs) {
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
                             // drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
-                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
+                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser, scope.maxFollower, scope.minFollower)
                         }
                         catch (err) {
                             console.log(err)
                         }
                     }, true);
 
-                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser) {
+                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower) {
                         if (acquaintances !== undefined) {
                             document.getElementById("mu-name").innerHTML = middleUser.name;
                             document.getElementById("mu-follower-count").innerHTML = "#Followers " + middleUser.followers_count;
@@ -1662,7 +1664,6 @@
                             var x_left = d3.scaleLinear().range([0, width_all_followers]);
                             var y_left = d3.scaleLinear().range([height_all_followers, 0]);
 
-
                             svg_all_followers.attr("width", width_all_followers)
                                 .attr("height", height_all_followers)
                                 .append("g")
@@ -1676,7 +1677,7 @@
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
-                                .enter().append("circle")
+                                .attr("d", d3.svg.symbol().type("circle"))
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("fill", function(d) { return d[3]})
                                 .attr("r", 10)
@@ -1686,6 +1687,25 @@
                                 .attr("cy", function (d) {
                                     return y_left(d[1]);
                                 });
+
+                            for(var i = 0; i < bridges.length; i++){
+                                if(bridges[i] <= maxFollower && bridges[i] >= minFollower){
+                                    d3.selectAll('#name' + bridges[i]
+                                        .attr("d", d3.svg.symbol().type("triangle-up"))
+                                        .transition()
+                                        .style("fill", "orange");
+                                }
+                                else{
+                                    d3.selectAll('#name' + bridges[i])
+                                        .attr("d", d3.svg.symbol().type("circle"))
+                                        .transition()
+                                        .style("fill", function(d) { return d[3]})
+                                        .attr("r", 10);
+                                }
+                            }
+                            d3.selectAll('#name' + bridges[middle]).append("cross")
+                                .transition()
+                                .style("fill", "blue");
                         }
                     }
 
@@ -2630,7 +2650,8 @@
         $scope.middleInteractive = 0;
         $scope.middleInteractiveUser = {};
 
-        $scope.xyz = 'xyz';
+        $scope.maxFollower = $scope.middleUser.followers_count;
+        $scope.mminFollower = $scope.middleUser.followers_count;
 
         $scope.pagename = 'All Followers';
 
