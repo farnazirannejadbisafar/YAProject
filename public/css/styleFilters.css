@@ -461,6 +461,9 @@ a:not([href]):not([tabindex]){
 
 #middle-follower-card{
   text-align: center;
+  width: 50%;
+  height: auto;
+  padding-top: 50%;
 }
 
 .arc {
@@ -474,4 +477,20 @@ a:not([href]):not([tabindex]){
 #middle-follower{
   width:100%;
   height:100%;
+}
+
+.right-circle-btn,
+.left-circle-btn {
+  height: 44px;
+  width: 22px;
+}
+
+.right-circle-btn {
+  border-bottom-right-radius: 44px;
+  border-top-right-radius: 44px;
+}
+
+.left-circle-btn {
+  border-bottom-left-radius: 44px;
+  border-top-left-radius: 44px;
 }
