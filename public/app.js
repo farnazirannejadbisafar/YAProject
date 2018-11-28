@@ -1623,6 +1623,12 @@
                                 document.getElementById("mu-edit-profile-pic").src = middleUser.profile_image_url_https;
                             }
 
+                            document.getElementById("mu-profile-pic").onchange = function(){
+                                if(!edit){
+                                    edit = 1;
+                                }
+                            };
+
                             // semi circle start
                             var inYourArea2 = d3.select('#semi-circle');
                             var insideSVG2 = inYourArea2.select("svg");
