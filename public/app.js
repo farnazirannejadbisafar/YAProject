@@ -1690,7 +1690,7 @@
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
-                                .enter()
+                                .enter().append("path")
                                 .attr("d",function(b) {
                                     if(b[2] === middleUser.followers_count){
                                         return diamond;
