@@ -436,6 +436,7 @@ a:not([href]):not([tabindex]){
 
 #middle-follower-edit{
   width:318px;
+  background-color: lightslategrey;
 }
 
 #middle-follower{
