@@ -1693,17 +1693,18 @@
                                 .data(acquaintances_all_followers)
                                 .enter().append("cirlce")
                                 .style("fill", function(b) {
-                                    // if(b[2] === middleUser.followers_count){
-                                    //     return "green";
-                                    // }
-                                    // else if(b[2] >= minFollower && b[2] <= maxFollower){
-                                    //     return "red";
-                                    // }
-                                    // else{
+                                    if(b[2] === middleUser.followers_count){
+                                        return "green";
+                                    }
+                                    else if(b[2] >= minFollower && b[2] <= maxFollower){
+                                        return "red";
+                                    }
+                                    else{
                                         return b[3]
-                                    // }
+                                    }
                                 })
                                 .attr('id', function(b){ return 'name' + b[2]; })
+                                .attr('r', 10)
                                 .attr("cx", function (b) {
                                     return x_left(b[0]);
                                 })
@@ -2927,14 +2928,14 @@
             $scope.pagename = 'All Followers';
         };
 
-        $scope.onRightBtnAllInteractive = function (value) {
+        $scope.onRightBtnAllInteractive = function (ev, target) {
             $scope.allActive = 1;
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Active';
         };
 
-        $scope.onMaxFollowerChange = function (value) {
+        $scope.onMaxFollowerChange = function (ev) {
             if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
                 $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
             }
@@ -2946,7 +2947,7 @@
             }
         };
 
-        $scope.onMinFollowerChange = function (value) {
+        $scope.onMinFollowerChange = function (ev) {
             if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
                 $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
             }
