@@ -1698,9 +1698,9 @@
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
                                 .enter().append("circle")
-                                .attr('id', function(d){ return 'name' + d[2]; })
+                                .attr('id', function(d, i){ return 'name' + d[2]; })
                                 .style("fill", function(d) {
-                                    if(d[2] === middleUser.followers_count){
+                                    if(i === middle){
                                         return "red";
                                     }
                                     else if(d[2] <= maxFollower && d[2] >= minFollower){
