@@ -1674,7 +1674,7 @@
                             x_left.domain([0, width_all_followers]);
                             y_left.domain([0, height_all_followers]);
 
-                            alert(maxFollower);
+
 
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
@@ -1708,7 +1708,7 @@
                             d3.selectAll('#name' + bridges[middle])
                                 .transition()
                                 // .attr("d", d3.symbol().type("cross"))
-                                // .style("fill", "orange")
+                                .style("fill", "orange")
                                 .attr("r", 40);
                         }
                     }
