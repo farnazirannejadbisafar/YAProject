@@ -1690,7 +1690,7 @@
 
                             for(var i = 0; i < bridges.length; i++){
                                 if(bridges[i] <= maxFollower && bridges[i] >= minFollower){
-                                    d3.selectAll('#name' + bridges[i]
+                                    d3.selectAll('#name' + bridges[i])
                                         .attr("d", d3.svg.symbol().type("triangle-up"))
                                         .transition()
                                         .style("fill", "orange");
@@ -1703,8 +1703,9 @@
                                         .attr("r", 10);
                                 }
                             }
-                            d3.selectAll('#name' + bridges[middle]).append("cross")
+                            d3.selectAll('#name' + bridges[middle])
                                 .transition()
+                                .attr("d", d3.svg.symbol().type("cross"))
                                 .style("fill", "blue");
                         }
                     }
