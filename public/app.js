@@ -3076,6 +3076,8 @@
 
         function displayMiddleUser(followerArrray) {
             $scope.middleUser = followerArrray.userdetails;
+            $scope.maxFollower = $scope.middleUser.follower_count;
+            $scope.minFollower = $scope.middleUser.follower_count;
         }
 
         function displayAllActive(followerArrray) {
