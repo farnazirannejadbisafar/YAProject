@@ -1689,7 +1689,7 @@
 
 
                             // Add the scatterplot
-                            svg_all_followers.selectAll("dot")
+                            svg_all_followers.selectAll("path")
                                 .data(acquaintances_all_followers)
                                 .enter().append("path")
                                 .attr("d",function(b) {

@@ -57,6 +57,8 @@
 										<input matInput placeholder="Min Follower Count"
 											   type="number"
 											   id="minFollower"
+											   min="{{bridgesAllFollowers[0]}}"
+											   max="{{bridgesAllFollowers[bridgesAllFollowers.length]}}"
 											   (change)="onMinFollowerChange($event)">
 									</mat-form-field>
 								</div>
@@ -65,6 +67,8 @@
 										<input matInput placeholder="Max Follower Count"
 											   type="number"
 											   id="maxFollower"
+											   min="{{bridgesAllFollowers[0]}}"
+											   max="{{bridgesAllFollowers[bridgesAllFollowers.length]}}"
 											   (change)="onMaxFollowerChange($event)">
 									</mat-form-field>
 								</div>
