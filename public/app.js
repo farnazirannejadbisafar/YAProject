@@ -1698,8 +1698,8 @@
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
                                 .enter().append("circle")
-                                .attr('id', function(d, i){ return 'name' + d[2]; })
-                                .style("fill", function(d) {
+                                .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d, i) {
                                     if(i === middle){
                                         return "red";
                                     }
