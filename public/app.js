@@ -1604,11 +1604,11 @@
                             var div_mid_fol_edit = document.getElementById('middle-follower-edit');
 
                             if (edit) {
-                                div_mid_fol.style.display = "block";
-                                div_mid_fol_edit.style.display = "none";
-                            } else {
-                                div_mid_fol.style.display = "none";
                                 div_mid_fol_edit.style.display = "block";
+                                div_mid_fol.style.display = "none";
+                            } else {
+                                div_mid_fol_edit.style.display = "none";
+                                div_mid_fol.style.display = "block";
                             }
 
                             document.getElementById("mu-name").innerHTML = middleUser.name;
