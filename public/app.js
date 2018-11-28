@@ -1677,7 +1677,7 @@
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
-                                .attr("d", d3.svg.symbol().type("circle"))
+                                .attr("d", d3.symbol().type("circle"))
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("fill", function(d) { return d[3]})
                                 .attr("r", 10)
