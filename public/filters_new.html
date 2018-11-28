@@ -61,7 +61,7 @@
 										   type="number"
 										   id="maxFollowerFld"
 										   ng-model="maxFollower"
-										   ng-change="onMaxFollowerChange()">
+										   ng-change="onLeftBtnAllFollowers($event)">
 								</div>
 							</div>
 						<div class="row mx-auto">
@@ -69,7 +69,7 @@
 						</div>
 						</div>
 						<div ng-show="editMiddleFollower" id="middle-follower-edit" class="row">
-							<div id="mu-close" class="float-right"><i class="fa fa-cross" ng-click="closeEdit()"></i></div>
+							<div id="mu-close" class="float-right"><i class="fa fa-times" ng-click="closeEdit()"></i></div>
 							<div id="middle-follower-edit-card">
 								<div>
 									<img alt="" id="mu-edit-profile-pic">

@@ -2645,6 +2645,8 @@
 
         $scope.pagename = 'All Followers';
 
+        $scope.editMiddleFollower = 0;
+
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
         $scope.displayGatewayFollowers = displayGatewayFollowers;
@@ -2920,7 +2922,7 @@
             $scope.pagename = 'All Active';
         };
 
-        $scope.onMaxFollowerChange = function (ev) {
+        $scope.onMaxFollowerChange = function () {
             if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
                 $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
             }

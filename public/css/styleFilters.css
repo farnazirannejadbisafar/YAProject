@@ -471,28 +471,7 @@ a:not([href]):not([tabindex]){
   text-align: center;
 }
 
-#middle-follower{
-  /*width: 160px;*/
-  /*height: 480px;*/
-  text-align: center;
-}
-
-/*#follower-slider{*/
-  /*width: 160px;*/
-  /*height: 30px;*/
-  /*text-align: center;*/
-  /*position: relative;*/
-  /*background-color: greenyellow;*/
-  /*margin-left: 1px;*/
-/*}*/
-
-/*#follower-slider .slider{*/
-  /*background-color:hotpink;*/
-/*}*/
-
 #middle-follower-card{
-  /*width: 160px;*/
-  /*height: 300px;*/
   text-align: center;
 }
 
@@ -502,4 +481,9 @@ a:not([href]):not([tabindex]){
 
 #middle-follower-edit{
   width:100%;
+}
+
+#middle-follower{
+  width:100%;
+  height:100%;
 }
