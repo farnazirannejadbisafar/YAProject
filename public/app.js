@@ -1581,22 +1581,36 @@
                     middleUser: '=',
                     middle: '=',
                     maxFollower: '=',
-                    minFollower: '='
+                    minFollower: '=',
+                    edit: '='
                 },
                 link: function (scope, element, attrs) {
                     scope.$watch(function () {
                         try {
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
                             // drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
-                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser, scope.maxFollower, scope.minFollower)
+                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser,
+                                scope.maxFollower, scope.minFollower, scope.edit)
                         }
                         catch (err) {
                             console.log(err)
                         }
                     }, true);
 
-                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower) {
+                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower, edit) {
                         if (acquaintances !== undefined) {
+
+                            var div_mid_fol = document.getElementById('middle-follower');
+                            var div_mid_fol_edit = document.getElementById('middle-follower-edit');
+
+                            if (edit) {
+                                div_mid_fol.style.display = "block";
+                                div_mid_fol_edit.style.display = "none";
+                            } else {
+                                div_mid_fol.style.display = "none";
+                                div_mid_fol_edit.style.display = "block";
+                            }
+
                             document.getElementById("mu-name").innerHTML = middleUser.name;
                             document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
 
