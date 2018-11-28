@@ -1705,10 +1705,10 @@
                             //             .attr("r", 10);
                             //     }
                             // }
-                            // d3.selectAll('#name' + bridges[middle])
-                            //     .transition()
-                            //     .attr("d", d3.symbol().type("cross"))
-                            //     .style("fill", "blue");
+                            d3.selectAll('#name' + bridges[middle])
+                                .transition()
+                                .attr("d", d3.symbol().type("cross"))
+                                .style("fill", "blue");
                         }
                     }
 
