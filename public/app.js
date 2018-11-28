@@ -1671,10 +1671,10 @@
 
                             var acquaintances_all_followers = acquaintances.reduce(function (r, a, i) {
                                 if(i === 0){
-                                    r[i] = [12, height_all_followers/2, bridges[i], color_list[i]];
+                                    r[i] = [22, height_all_followers/2, bridges[i], color_list[i]];
                                 }
                                 else{
-                                    r[i] = [eachSqWidth*i, height_all_followers/2, bridges[i], color_list[i]];
+                                    r[i] = [eachSqWidth*i + 22, height_all_followers/2, bridges[i], color_list[i]];
                                 }
 
                                 return r;
@@ -1702,6 +1702,9 @@
                                 .style("fill", function(d) {
                                     if(d[2] === middleUser.followers_count){
                                         return "red";
+                                    }
+                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                        return "green";
                                     }
                                     return d[3]
                                 })
