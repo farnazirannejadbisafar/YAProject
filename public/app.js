@@ -1693,15 +1693,15 @@
                                 .data(acquaintances_all_followers)
                                 .enter().append("cirlce")
                                 .style("fill", function(b) {
-                                    if(b[2] === middleUser.followers_count){
-                                        return "green";
-                                    }
-                                    else if(b[2] >= minFollower && b[2] <= maxFollower){
-                                        return "red";
-                                    }
-                                    else{
+                                    // if(b[2] === middleUser.followers_count){
+                                    //     return "green";
+                                    // }
+                                    // else if(b[2] >= minFollower && b[2] <= maxFollower){
+                                    //     return "red";
+                                    // }
+                                    // else{
                                         return b[3]
-                                    }
+                                    // }
                                 })
                                 .attr('id', function(b){ return 'name' + b[2]; })
                                 .attr("cx", function (b) {
