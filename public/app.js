@@ -1707,7 +1707,7 @@
                             // }
                             d3.selectAll('#name' + bridges[middle])
                                 .transition()
-                                .attr("d", d3.symbol().type("cross"))
+                                .enter().append("cross")
                                 .style("fill", "orange")
                                 .attr("r", 40);
                         }
