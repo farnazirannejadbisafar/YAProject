@@ -2937,25 +2937,25 @@
         };
 
         $scope.onMaxFollowerChange = function () {
-            if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
+            if($scope.maxFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
                 $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
             }
-            else if(value < $scope.bridgesAllFollowers[0]){
+            else if($scope.maxFollower < $scope.bridgesAllFollowers[0]){
                 $scope.maxFollower = $scope.bridgesAllFollowers[0]
             }
-            else if(value < $scope.minFollower){
+            else if($scope.maxFollower < $scope.minFollower){
                 $scope.maxFollower = $scope.minFollower;
             }
         };
 
         $scope.onMinFollowerChange = function () {
-            if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
+            if($scope.minFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
                 $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
             }
-            else if(value < $scope.bridgesAllFollowers[0]){
+            else if($scope.minFollower < $scope.bridgesAllFollowers[0]){
                 $scope.minFollower = $scope.bridgesAllFollowers[0]
             }
-            else if(value > $scope.maxFollower){
+            else if($scope.minFollower > $scope.maxFollower){
                 $scope.minFollower = $scope.maxFollower;
             }
         };
