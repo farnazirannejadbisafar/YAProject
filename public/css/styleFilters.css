@@ -479,18 +479,18 @@ a:not([href]):not([tabindex]){
   height:100%;
 }
 
-.right-circle-btn,
-.left-circle-btn {
+#right-circle-btn,
+#left-circle-btn {
   height: 44px;
   width: 22px;
 }
 
-.right-circle-btn {
+#right-circle-btn {
   border-bottom-right-radius: 44px;
   border-top-right-radius: 44px;
 }
 
-.left-circle-btn {
+#left-circle-btn {
   border-bottom-left-radius: 44px;
   border-top-left-radius: 44px;
 }

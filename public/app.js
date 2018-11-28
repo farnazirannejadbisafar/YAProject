@@ -2832,7 +2832,7 @@
             $scope.messagefollowers = undefined;
         };
 
-        $scope.onSwipeLeftAllFollowers = function (ev, target) {
+        $scope.onSwipeLeftAllFollowers = function (ev) {
             if ($scope.middle < $scope.len){
                 $scope.middle = $scope.middle + 1;
                 filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
@@ -2840,7 +2840,7 @@
             }
         };
 
-        $scope.onSwipeRightAllFollowers = function (ev, target) {
+        $scope.onSwipeRightAllFollowers = function (ev) {
             if ($scope.middle > 0){
                 $scope.middle = $scope.middle - 1;
                 filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
