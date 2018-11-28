@@ -1667,12 +1667,14 @@
                                 color_list[i] = color(i);
                             }
 
+                            var eachSqWidth = width_all_followers/14;
+
                             var acquaintances_all_followers = acquaintances.reduce(function (r, a, i) {
                                 if(i === 0){
-                                    r[i] = [width_all_followers+12, height_all_followers/2, bridges[i], color_list[i]];
+                                    r[i] = [12, height_all_followers/2, bridges[i], color_list[i]];
                                 }
                                 else{
-                                    r[i] = [width_all_followers/(i+1), height_all_followers/2, bridges[i], color_list[i]];
+                                    r[i] = [eachSqWidth*i, height_all_followers/2, bridges[i], color_list[i]];
                                 }
 
                                 return r;
