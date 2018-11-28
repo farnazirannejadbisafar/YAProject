@@ -1598,18 +1598,16 @@
                     function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower) {
                         if (acquaintances !== undefined) {
                             document.getElementById("mu-name").innerHTML = middleUser.name;
-                            document.getElementById("mu-follower-count").innerHTML = "#Followers " + middleUser.followers_count;
                             document.getElementById("mu-screen-name").innerHTML = "@" + middleUser.screen_name;
+
+                            document.getElementById("mu-edit-name").innerHTML = middleUser.name;
+                            document.getElementById("mu-edit-screen-name").innerHTML = "@" + middleUser.screen_name;
+                            document.getElementById("mu-edit-followers").innerHTML = "Follower #: " + middleUser.followers_count;
 
                             if (middleUser.profile_image_url_https !== undefined) {
                                 document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
+                                document.getElementById("mu-edit-profile-pic").src = middleUser.profile_image_url_https;
                             }
-
-                            document.getElementById('element_id').addEventListener(
-                                'change',
-                                callbackFunction,
-                                false
-                            );
 
                             // semi circle start
                             var inYourArea2 = d3.select('#semi-circle');
@@ -2934,7 +2932,7 @@
             }
         };
 
-        $scope.onMinFollowerChange = function (ev) {
+        $scope.onMinFollowerChange = function () {
             if(value > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
                 $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
             }
@@ -2943,6 +2941,22 @@
             }
             else if(value > $scope.maxFollower){
                 $scope.minFollower = $scope.maxFollower;
+            }
+        };
+
+        $scope.onFollowerImageClick = function () {
+            if(!$scope.editMiddleFollower){
+                $scope.editMiddleFollower = 1;
+            }
+        };
+
+        $scope.addFollower = function () {
+
+        };
+
+        $scope.closeEdit = function () {
+            if($scope.editMiddleFollower){
+                $scope.editMiddleFollower = 0;
             }
         };
 

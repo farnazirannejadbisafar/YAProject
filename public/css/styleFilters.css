@@ -499,3 +499,7 @@ a:not([href]):not([tabindex]){
 .arc {
   fill: yellow;
 }
+
+#middle-follower-edit{
+  width:100%;
+}
