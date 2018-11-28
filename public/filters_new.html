@@ -29,13 +29,13 @@
 		<div id="follower-filter-body">
 			<div ng-show="allfollowers" md-swipe-right="onSwipeRightAllFollowers($event, $target)" md-swipe-left="onSwipeLeftAllFollowers($event, $target)">
 				<div class="svg-class">
-					<!--<all-followers acquaintances="acquaintancesAllFollowers"-->
-								   <!--bridges="bridgesAllFollowers"-->
-								   <!--middle="middle"-->
-								   <!--middle-user="middleUser"-->
-								   <!--max-follower="maxFollower"-->
-								   <!--min-follower="minFollower"-->
-								   <!--edit="editMiddleFollower">-->
+					<all-followers acquaintances="acquaintancesAllFollowers"
+								   bridges="bridgesAllFollowers"
+								   middle="middle"
+								   middle-user="middleUser"
+								   max-follower="maxFollower"
+								   min-follower="minFollower"
+								   edit="editMiddleFollower"></all-followers>
 						<div class="row mx-auto">
 							<div id="semi-circle"></div>
 						</div>
@@ -81,7 +81,6 @@
 								</div>
 							</div>
 						</div>
-					<!--</all-followers>-->
 				</div>
 				<div id="page-navigation" class="row">
 					<div class="col-3"><md-button class="fa fa-caret-left" ng-click="onLeftBtnAllFollowers($event)"></md-button></div>
@@ -90,37 +89,37 @@
 
 				</div>
 			</div>
-			<div ng-show="messagefollowers" md-swipe-right="onSwipeRightMessageFollowers($event, $target)" md-swipe-left="onSwipeLeftMessageFollowers($event, $target)" class="carousel-item active">
-				<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">Message Followers</h2>
-				<div class="row svg-class">
-					<div class="col-lg-8 mx-auto">
-						<div class="row justify-content-center">
-							<message-followers
-									bridges="acquaintancesInYourArea"
-									acquaintances="acquaintancesInYourArea"
-									colors="colorsInYourArea"
-									sendmessage="sendmessage">
-							</message-followers>
-						</div>
-					</div>
-				</div>
-				<div class="row svg-class">
-					<div class="col-6 button-move">
-						{{sendmessage}}
-						<textarea class = 'form-control' ng-model="sendnewmessage" id="textpost" maxlength="280" ng-keypress="clicked()"></textarea>
-						<div class="row text-right">
-							<p>{{ 280 - sendmessage.length - sendnewmessage.length + ' Char left' }}</p></div>
-					</div>
-					<div class="col-4 button-mv">
-						<div class="row postbtn">
-							<button class="w3-button w3-teal " ng-click="sendMessage()">Tweet</button>
-						</div>
-						<div class="row postbtn">
-							<button class="w3-button w3-teal " ng-click="backtofilter()">Filters</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<!--<div ng-show="messagefollowers" md-swipe-right="onSwipeRightMessageFollowers($event, $target)" md-swipe-left="onSwipeLeftMessageFollowers($event, $target)" class="carousel-item active">-->
+				<!--<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">Message Followers</h2>-->
+				<!--<div class="row svg-class">-->
+					<!--<div class="col-lg-8 mx-auto">-->
+						<!--<div class="row justify-content-center">-->
+							<!--<message-followers-->
+									<!--bridges="acquaintancesInYourArea"-->
+									<!--acquaintances="acquaintancesInYourArea"-->
+									<!--colors="colorsInYourArea"-->
+									<!--sendmessage="sendmessage">-->
+							<!--</message-followers>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="row svg-class">-->
+					<!--<div class="col-6 button-move">-->
+						<!--{{sendmessage}}-->
+						<!--<textarea class = 'form-control' ng-model="sendnewmessage" id="textpost" maxlength="280" ng-keypress="clicked()"></textarea>-->
+						<!--<div class="row text-right">-->
+							<!--<p>{{ 280 - sendmessage.length - sendnewmessage.length + ' Char left' }}</p></div>-->
+					<!--</div>-->
+					<!--<div class="col-4 button-mv">-->
+						<!--<div class="row postbtn">-->
+							<!--<button class="w3-button w3-teal " ng-click="sendMessage()">Tweet</button>-->
+						<!--</div>-->
+						<!--<div class="row postbtn">-->
+							<!--<button class="w3-button w3-teal " ng-click="backtofilter()">Filters</button>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 		</div>
 	</div>
 </div>
