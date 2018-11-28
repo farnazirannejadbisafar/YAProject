@@ -35,7 +35,7 @@
 								   middle-user="middleUser"
 								   max-follower="maxFollower"
 								   min-follower="minFollower"
-								   edit="editMiddleFollower">
+								   edit="editMiddleFollower"></all-followers>
 						<div class="row mx-auto">
 							<div id="semi-circle"></div>
 						</div>
@@ -60,7 +60,7 @@
 									<input placeholder="Max Follower Count"
 										   type="number"
 										   id="maxFollowerFld"
-										   ng-change="onLeftBtnAllFollowers($event)">
+										   ng-change="onMaxFollowerChange($event)">
 								</div>
 							</div>
 						<div class="row mx-auto">
@@ -81,7 +81,6 @@
 								</div>
 							</div>
 						</div>
-					</all-followers>
 				</div>
 				<div id="page-navigation" class="row">
 					<div class="col-3"><md-button class="fa fa-caret-left" ng-click="onLeftBtnAllFollowers($event)"></md-button></div>
