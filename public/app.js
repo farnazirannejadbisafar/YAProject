@@ -1692,6 +1692,7 @@
                             svg_all_followers.selectAll("path")
                                 .data(acquaintances_all_followers)
                                 .enter().append("path")
+                                .style("fill", function(b) { return b[3]})
                                 .attr("d",function(b) {
                                     if(b[2] === middleUser.followers_count){
                                         return diamond;
@@ -1704,16 +1705,12 @@
                                     }
                                 })
                                 .attr('id', function(b){ return 'name' + b[2]; })
-                                .style("fill", function(b) { return b[3]})
-                                .attr("r", 10)
                                 .attr("cx", function (b) {
                                     return x_left(b[0]);
                                 })
                                 .attr("cy", function (b) {
                                     return y_left(b[1]);
                                 });
-
-
                         }
                     }
 
