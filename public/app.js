@@ -1691,25 +1691,25 @@
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
                                 .enter()
-                                .attr("d",function(d) {
-                                    if(d[2] === middleUser.followers_count){
+                                .attr("d",function(b) {
+                                    if(b[2] === middleUser.followers_count){
                                         return diamond;
                                     }
-                                    else if (d[2] >= minFollower && d[2] <= maxFollower) {
+                                    else if (b[2] >= minFollower && b[2] <= maxFollower) {
                                         return cross;
                                     }
                                     else{
                                         return circle;
                                     }
                                 })
-                                .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("fill", function(d) { return d[3]})
+                                .attr('id', function(b){ return 'name' + b[2]; })
+                                .style("fill", function(b) { return b[3]})
                                 .attr("r", 10)
-                                .attr("cx", function (d) {
-                                    return x_left(d[0]);
+                                .attr("cx", function (b) {
+                                    return x_left(b[0]);
                                 })
-                                .attr("cy", function (d) {
-                                    return y_left(d[1]);
+                                .attr("cy", function (b) {
+                                    return y_left(b[1]);
                                 });
 
 
