@@ -1687,6 +1687,7 @@
                                 .type(d3.symbolCircle)
                                 .size(10);
 
+
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
