@@ -1623,7 +1623,7 @@
                                 document.getElementById("mu-edit-profile-pic").src = middleUser.profile_image_url_https;
                             }
 
-                            document.getElementById("mu-profile-pic").onchange = function(){
+                            document.getElementById("mu-profile-pic").onclick = function(){
                                 if(!edit){
                                     edit = 1;
                                 }
