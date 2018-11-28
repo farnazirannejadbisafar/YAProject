@@ -1674,42 +1674,18 @@
                             x_left.domain([0, width_all_followers]);
                             y_left.domain([0, height_all_followers]);
 
-
-                            var diamond = d3.symbol()
-                                .type(d3.symbolDiamond)
-                                .size(10);
-
-                            var cross = d3.symbol()
-                                .type(d3.symbolCross)
-                                .size(10);
-
-                            var circle = d3.symbol()
-                                .type(d3.symbolCircle)
-                                .size(10);
-
-
                             // Add the scatterplot
-                            svg_all_followers.selectAll("path")
+                            svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
-                                .enter().append("cirlce")
-                                .style("fill", function(b) {
-                                    if(b[2] === middleUser.followers_count){
-                                        return "green";
-                                    }
-                                    else if(b[2] >= minFollower && b[2] <= maxFollower){
-                                        return "red";
-                                    }
-                                    else{
-                                        return b[3]
-                                    }
+                                .enter().append("circle")
+                                .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d) { return d[3]})
+                                .attr("r", 10)
+                                .attr("cx", function (d) {
+                                    return x_left(d[0]);
                                 })
-                                .attr('id', function(b){ return 'name' + b[2]; })
-                                .attr('r', 10)
-                                .attr("cx", function (b) {
-                                    return x_left(b[0]);
-                                })
-                                .attr("cy", function (b) {
-                                    return y_left(b[1]);
+                                .attr("cy", function (d) {
+                                    return y_left(d[1]);
                                 });
                         }
                     }

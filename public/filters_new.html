@@ -54,24 +54,20 @@
 							<div class="row">
 								<div class="col-6">
 									<mat-form-field class="form-control-sm">
-										<input matInput placeholder="Min Follower Count"
+										<input placeholder="Min Follower Count"
 											   type="number"
 											   id="minFollower"
-											   min="{{bridgesAllFollowers[0]}}"
-											   max="{{bridgesAllFollowers[bridgesAllFollowers.length]}}"
 											   ng-model="minFollower"
-											   ng-change="onMinFollowerChange($event)">
+											   ng-change="onMinFollowerChange()">
 									</mat-form-field>
 								</div>
 								<div class="col-6">
 									<mat-form-field class="form-control-sm">
-										<input matInput placeholder="Max Follower Count"
+										<input placeholder="Max Follower Count"
 											   type="number"
 											   id="maxFollower"
-											   min="{{bridgesAllFollowers[0]}}"
-											   max="{{bridgesAllFollowers[bridgesAllFollowers.length]}}"
 											   ng-model="maxFollower"
-											   ng-change="onMaxFollowerChange($event)">
+											   ng-change="onMaxFollowerChange()">
 									</mat-form-field>
 								</div>
 							</div>
