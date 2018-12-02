@@ -436,7 +436,7 @@ a:not([href]):not([tabindex]){
 
 #middle-follower-edit{
   width:318px;
-  background-color: lightslategrey;
+  /*background-color: lightslategrey;*/
 }
 
 #middle-follower{
@@ -462,6 +462,8 @@ a:not([href]):not([tabindex]){
   height: 70px;
   width: 35px;
   border-width: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #right-circle-btn {
