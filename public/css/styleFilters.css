@@ -459,24 +459,24 @@ a:not([href]):not([tabindex]){
 
 #right-circle-btn,
 #left-circle-btn {
-  height: 44px;
-  width: 22px;
-  border-width: 0px;
+  height: 50px;
+  width: 25px;
+  border-width: 0;
 }
 
 #right-circle-btn {
-  border-bottom-right-radius: 44px;
-  border-top-right-radius: 44px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
 }
 
 #left-circle-btn {
-  border-bottom-left-radius: 44px;
-  border-top-left-radius: 44px;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
 }
 
 #mu-profile-pic {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   padding: 0;
 }
