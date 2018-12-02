@@ -62,6 +62,7 @@
 							<div class="row mx-auto" id="maxMinBtns">
 									<div class="col-6">
 										<mat-select id="minFollowerFld"
+													ng-model="minFollower"
 											   	ng-change="onMinFollowerChange()">
 											<mat-option *ngFor="x for x in bridgesAllFollowers" [value]="minFollower">
 
