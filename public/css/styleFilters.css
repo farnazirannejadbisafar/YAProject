@@ -421,13 +421,14 @@ a:not([href]):not([tabindex]){
 }
 
 #semi-circle{
-  background: #9e978e;
+  /*background: #9e978e;*/
   display: inline-block;
   width: 150px;
   height: 60px;
   border-radius: 50% / 100%;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-bottom: 3px solid yellow;
 }
 
 #all-followers-scatterplot{
