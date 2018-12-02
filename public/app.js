@@ -2839,16 +2839,16 @@
 
         $scope.onSwipeLeftAllFollowers = function (ev) {
             if ($scope.middle < $scope.len){
-                $scope.middle = $scope.middle;
-                filterService.getMiddleFollower($scope.userId, $scope.middle+1, $scope.token)
+                $scope.middle = $scope.middle + 1;
+                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
                     .then(displayMiddleUser, filterError);
             }
         };
 
         $scope.onSwipeRightAllFollowers = function (ev) {
             if ($scope.middle > 0){
-                $scope.middle = $scope.middle;
-                filterService.getMiddleFollower($scope.userId, $scope.middle-1, $scope.token)
+                $scope.middle = $scope.middle - 1;
+                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
                     .then(displayMiddleUser, filterError);
             }
         };
