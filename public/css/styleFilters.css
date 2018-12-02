@@ -442,17 +442,26 @@ a:not([href]):not([tabindex]){
 #middle-follower{
   width:318px;
   height:100%;
+  margin:0;
+  padding:0;
 }
 
-#maxMinBtns{
-  width:300px;
-  height:30px;
+#maxMinBtns {
+  width: 300px;
+  height: 30px;
+  margin-top: 15px;
+  padding: 0;
+}
+
+#minFollowerFld, #maxFollowerFld{
+  width:110px;
 }
 
 #right-circle-btn,
 #left-circle-btn {
   height: 44px;
   width: 22px;
+  border-width: 0px;
 }
 
 #right-circle-btn {
