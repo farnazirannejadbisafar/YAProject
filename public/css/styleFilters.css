@@ -476,8 +476,8 @@ a:not([href]):not([tabindex]){
 
 #circle-user-info {
   background: lightgray;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   padding: 0;
 
