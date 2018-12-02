@@ -61,13 +61,13 @@
 							</div>
 							<div class="row mx-auto" id="maxMinBtns">
 									<div class="col-6">
-										<mat-select id="minFollowerFld"
-													ng-model="minFollower"
-											   	ng-change="onMinFollowerChange()">
-											<mat-option *ngFor="x for x in bridgesAllFollowers" [value]="minFollower">
-
-											</mat-option>
-										</mat-select >
+										<mat-form-field>
+											<select matNativeControl
+													required
+													ng-model="minFollower">
+												<option ng-repeat="x in bridgesAllFollowers">{{x}}</option>
+											</select>
+										</mat-form-field>
 									</div>
 									<div class="col-6">
 										<select id="maxFollowerFld"
