@@ -1624,28 +1624,28 @@
                             }
 
                             // semi circle start
-                            var inYourArea2 = d3.select('#semi-circle');
-                            var insideSVG2 = inYourArea2.select("svg");
-                            insideSVG2.remove();
-                            var sc_width = document.getElementById('semi-circle').clientWidth;
-                            var sc_height = document.getElementById('semi-circle').clientHeight;
+                            // var inYourArea2 = d3.select('#semi-circle');
+                            // var insideSVG2 = inYourArea2.select("svg");
+                            // insideSVG2.remove();
+                            // var sc_width = document.getElementById('semi-circle').clientWidth;
+                            // var sc_height = document.getElementById('semi-circle').clientHeight;
+                            //
+                            // var svg_semi_cirlce = d3.select("#semi-circle")
+                            //     .append("svg")
+                            //     .attr("width", sc_width)
+                            //     .attr("height", sc_height)
+                            //     .append("g")
+                            //     .attr("transform", "translate(" + sc_width/2 + "," + 0 + ")");
 
-                            var svg_semi_cirlce = d3.select("#semi-circle")
-                                .append("svg")
-                                .attr("width", sc_width)
-                                .attr("height", sc_height)
-                                .append("g")
-                                .attr("transform", "translate(" + sc_width/2 + "," + 0 + ")");
-
-                            var arc = d3.arc()
-                                .innerRadius(50)
-                                .outerRadius(55)
-                                .startAngle(0.5 * Math.PI)
-                                .endAngle(1.5*Math.PI);
-
-                            svg_semi_cirlce.append("path")
-                                .attr("class", "arc")
-                                .attr("d", arc);
+                            // var arc = d3.arc()
+                            //     .innerRadius(50)
+                            //     .outerRadius(55)
+                            //     .startAngle(0.5 * Math.PI)
+                            //     .endAngle(1.5*Math.PI);
+                            //
+                            // svg_semi_cirlce.append("path")
+                            //     .attr("class", "arc")
+                            //     .attr("d", arc);
 
                             // semi circle end
 

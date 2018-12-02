@@ -37,12 +37,14 @@
 								   min-follower="minFollower"
 								   edit="editMiddleFollower"></all-followers>
 						<div class="row mx-auto">
-							<div id="semi-circle"></div>
+							<div id="added_followers">
+								<div id="semi-circle"></div>
+							</div>
 						</div>
 						<div ng-show="!editMiddleFollower" id="middle-follower" class="row">
 							<div id="middle-follower-card">
 								<div class="row mx-auto">
-									<div class="col-2">
+									<div class="col-2 nopadding">
 										<button id="right-circle-btn" ng-click="onSwipeLeftAllFollowers($event)"></button>
 									</div>
 									<div class="col-8">
@@ -58,7 +60,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-2">
+									<div class="col-2 nopadding">
 										<button id="left-circle-btn" ng-click="onSwipeRightAllFollowers($event)"></button>
 									</div>
 								</div>

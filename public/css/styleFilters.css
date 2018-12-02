@@ -414,10 +414,16 @@ a:not([href]):not([tabindex]){
   padding: 1px;
 }
 
-#semi-circle{
+#added_followers{
   width: 318px;
   height: 100px;
   text-align: center;
+}
+
+#semi-circle{
+  width: 180px;
+  height: 60px;
+  color: yellow;
 }
 
 #all-followers-scatterplot{
@@ -481,4 +487,9 @@ a:not([href]):not([tabindex]){
   height: 70px;
   border-radius: 50%;
   padding: 0;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
 }
