@@ -421,6 +421,8 @@ a:not([href]):not([tabindex]){
 }
 
 #semi-circle{
+  background: #9e978e;
+  display: inline-block;
   width: 180px;
   height: 60px;
   border-width: 15px;
