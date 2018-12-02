@@ -2839,16 +2839,16 @@
 
         $scope.onSwipeLeftAllFollowers = function (ev) {
             if ($scope.middle < $scope.len){
-                $scope.middle = $scope.middle + 1;
-                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+                $scope.middle = $scope.middle;
+                filterService.getMiddleFollower($scope.userId, $scope.middle+1, $scope.token)
                     .then(displayMiddleUser, filterError);
             }
         };
 
         $scope.onSwipeRightAllFollowers = function (ev) {
             if ($scope.middle > 0){
-                $scope.middle = $scope.middle - 1;
-                filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
+                $scope.middle = $scope.middle;
+                filterService.getMiddleFollower($scope.userId, $scope.middle-1, $scope.token)
                     .then(displayMiddleUser, filterError);
             }
         };
@@ -2939,30 +2939,6 @@
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
             $scope.pagename = 'All Active';
-        };
-
-        $scope.onMaxFollowerChange = function () {
-            // if($scope.maxFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
-            //     $scope.maxFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
-            // }
-            // else if($scope.maxFollower < $scope.bridgesAllFollowers[0]){
-            //     $scope.maxFollower = $scope.bridgesAllFollowers[0]
-            // }
-            // else if($scope.maxFollower < $scope.minFollower){
-            //     $scope.maxFollower = $scope.minFollower;
-            // }
-        };
-
-        $scope.onMinFollowerChange = function () {
-            // if($scope.minFollower > $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]){
-            //     $scope.minFollower = $scope.bridgesAllFollowers[$scope.bridgesAllFollowers.length]
-            // }
-            // else if($scope.minFollower < $scope.bridgesAllFollowers[0]){
-            //     $scope.minFollower = $scope.bridgesAllFollowers[0]
-            // }
-            // else if($scope.minFollower > $scope.maxFollower){
-            //     $scope.minFollower = $scope.maxFollower;
-            // }
         };
 
         $scope.onFollowerImageClick = function () {
@@ -3109,13 +3085,6 @@
 
             $scope.len = $scope.acquaintancesAllFollowers.length;
             $scope.middle = 0;
-
-            // if ($scope.len % 2 === 0){
-            //     $scope.middle = Math.floor(($scope.len - 1) / 2);
-            // }
-            // else{
-            //     $scope.middle = Math.round(($scope.len - 1) / 2);
-            // }
 
             filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
                 .then(displayMiddleUser, filterError);
