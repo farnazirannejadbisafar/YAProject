@@ -61,18 +61,18 @@
 							</div>
 							<div class="row mx-auto" id="maxMinBtns">
 									<div class="col-6">
-										<input placeholder="Min Follower Count"
-											   type="number"
-											   id="minFollowerFld"
-											   ng-model="minFollower"
-											   ng-change="onMinFollowerChange()">
+										<select id="minFollowerFld"
+											   	ng-model="minFollower"
+												ng-options="x for x in bridgesAllFollowers"
+											   	ng-change="onMinFollowerChange()">
+										</select>
 									</div>
 									<div class="col-6">
-										<input placeholder="Max Follower Count"
-											   type="number"
-											   id="maxFollowerFld"
-											   ng-model="maxFollower"
-											   ng-change="onMaxFollowerChange()">
+										<select id="maxFollowerFld"
+											   	ng-model="maxFollower"
+												ng-options="x for x in bridgesAllFollowers"
+											   	ng-change="onMaxFollowerChange()">
+										</select>
 									</div>
 							</div>
 						<div class="row mx-auto">
@@ -95,9 +95,9 @@
 						</div>
 				</div>
 				<div id="page-navigation" class="row">
-					<div class="col-3 text-left"><md-button class="float-right fa fa-caret-left" ng-click="onLeftBtnAllFollowers($event)"></md-button></div>
+					<div class="col-3 text-left"><md-button class="float-left fa fa-caret-left" ng-click="onLeftBtnAllFollowers($event)"></md-button></div>
 					<div class="col-6">	{{pagename}} </div>
-					<div class="col-3 float-left"><md-button class="float-left fa fa-caret-right" ng-click="onRightBtnAllFollowers($event)"></md-button></div>
+					<div class="col-3 float-left"><md-button class="float-right fa fa-caret-right" ng-click="onRightBtnAllFollowers($event)"></md-button></div>
 
 				</div>
 			</div>
