@@ -479,4 +479,6 @@ a:not([href]):not([tabindex]){
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  padding: 0;
+
 }

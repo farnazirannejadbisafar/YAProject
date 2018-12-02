@@ -60,25 +60,20 @@
 								</div>
 							</div>
 							<div class="row mx-auto" id="maxMinBtns">
-								<md-input-container>
 									<div class="col-6">
-										<input mdInput
-											   placeholder="Min Follower Count"
+										<input placeholder="Min Follower Count"
 											   type="number"
-											   min={{briges}}
 											   id="minFollowerFld"
 											   ng-model="minFollower"
 											   ng-change="onMinFollowerChange()">
 									</div>
 									<div class="col-6">
-										<input mdInput
-												placeholder="Max Follower Count"
+										<input placeholder="Max Follower Count"
 											   type="number"
 											   id="maxFollowerFld"
 											   ng-model="maxFollower"
 											   ng-change="onMaxFollowerChange()">
 									</div>
-								</md-input-container>
 							</div>
 						<div class="row mx-auto">
 							<div id="all-followers-scatterplot"></div>
