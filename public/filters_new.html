@@ -97,16 +97,20 @@
 						</div>
 						</div>
 						<div ng-show="editMiddleFollower" id="middle-follower-edit" class="row">
-							<div id="mu-close" class="float-right"><i class="fa fa-times" ng-click="closeEdit()"></i></div>
-							<div id="middle-follower-edit-card">
-								<div>
-									<img alt="" id="mu-edit-profile-pic">
-								</div>
-								<div>
-									<div class="desc"><p id="mu-edit-name"></p></div>
-									<div class="desc"><p id="mu-edit-screen-name"></p></div>
-									<div class="desc"><p id="mu-edit-followers"></p></div>
-									<button class="btn-sm btn-light" ng-click="addMiddleFollower()">Add</button>
+							<div  id="myModal" class="modal">
+								<div  class="modal-content">
+									<div id="mu-close" class="float-right"><i class="fa fa-times" ng-click="closeEdit()"></i></div>
+									<div id="middle-follower-edit-card">
+										<div>
+											<img alt="" id="mu-edit-profile-pic">
+										</div>
+										<div>
+											<div class="desc"><p id="mu-edit-name"></p></div>
+											<div class="desc"><p id="mu-edit-screen-name"></p></div>
+											<div class="desc"><p id="mu-edit-followers"></p></div>
+											<button class="btn-sm btn-light" ng-click="addMiddleFollower()">Add</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
