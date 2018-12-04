@@ -3003,6 +3003,12 @@
             dot.style.left = x_pos+'px';
             dot.style.top = y_pos+'px';
             bsc.appendChild(dot);
+            if($scope.editMiddleFollower){
+                $scope.editMiddleFollower = 0;
+                if($scope.middle < $scope.len){
+                    $scope.middle += 1;
+                }
+            }
         };
 
 
