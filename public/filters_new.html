@@ -70,17 +70,21 @@
 							<div class="row mx-auto" id="maxMinBtns">
 									<div class="col-6">
 										<div>Minimum</div>
+										<mat-form-field>
 										<select id="minFollowerFld"
 												ng-model="minFollower"
 												ng-options="x for x in bridgesAllFollowers">
 										</select>
+										</mat-form-field>
 									</div>
 									<div class="col-6">
 										<div>Maximum</div>
+										<mat-form-field>
 										<select id="maxFollowerFld"
 											   	ng-model="maxFollower"
 												ng-options="x for x in bridgesAllFollowers">
 										</select>
+										</mat-form-field>
 									</div>
 							</div>
 							<div class="row" id="addFollower">
