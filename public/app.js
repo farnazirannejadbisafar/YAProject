@@ -2954,7 +2954,7 @@
             for(var i = 0; i < len; i++){
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
-                    $scope.disabledFollowers.append($scope.allfollowers[i])
+                    $scope.disabledFollowers.push($scope.allfollowers[i])
                     var bsc = document.getElementById('bigger-semi-circle');
                     var dot = document.createElement('div');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
