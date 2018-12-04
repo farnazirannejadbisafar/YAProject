@@ -2951,8 +2951,8 @@
 
         $scope.addFollower = function () {
             var len = $scope.bridgesAllFollowers.length;
-            var x_pos = 0;
-            var y_pos = 76;
+            var x_pos = 70;
+            var y_pos = 0;
             for(var i = 0; i < len; i++){
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
