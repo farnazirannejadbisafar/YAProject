@@ -2951,6 +2951,8 @@
 
         $scope.addFollower = function () {
             var len = $scope.bridgesAllFollowers.length;
+            var x_pos = 0;
+            var y_pos = 76;
             for(var i = 0; i < len; i++){
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
@@ -2959,8 +2961,12 @@
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
                     dot.classList.add("grey-dot");
-                    dot.style.webkitTransform = "rotate(-2deg)";
+                    // dot.style.webkitTransform = "rotate(-2deg)";
+                    dot.style.left = x_pos+'px';
+                    dot.style.top = y_pos+'px';
                     bsc.appendChild(dot);
+                    x_pos = x_pos + 15;
+                    y_pos = y_pos + 15;
                 }
             }
         };

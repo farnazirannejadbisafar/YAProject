@@ -431,23 +431,13 @@ a:not([href]):not([tabindex]){
   border-bottom: 3px solid yellow;
 }
 
-#bigger-semi-circle{
-    background: orange;
-    display: inline-block;
-    width: 175px;
-    height: 55px;
-    border-radius: 50% / 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom: 3px solid orange;
-}
-
 .grey-dot{
     height: 10px;
     width: 10px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+    position:absolute;
 }
 
 #all-followers-scatterplot{
@@ -481,6 +471,13 @@ a:not([href]):not([tabindex]){
   height: 30px;
   margin-top: 15px;
   padding: 0;
+}
+
+#addFollower {
+    width: 300px;
+    height: 30px;
+    margin-top: 15px;
+    padding: 0;
 }
 
 #minFollowerFld, #maxFollowerFld{
