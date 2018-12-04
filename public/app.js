@@ -2955,9 +2955,15 @@
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
                     $scope.disabledFollowers.append($scope.allfollowers[i])
+                    var bsc = document.getElementById('bigger-semi-circle');
+                    var dot = document.createElement('div');
+                    dot.id = "new" + $scope.bridgesAllFollowers[i];
+                    dot.classList.add("grey-dot");
+                    dot.innerHTML = bsc.innerHTML ;
+                    var p = document.getElementById("new" + $scope.bridgesAllFollowers[i]);
+                    p.appendChild(dot);
                 }
             }
-
         };
 
         $scope.closeEdit = function () {

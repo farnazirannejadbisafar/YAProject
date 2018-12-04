@@ -439,7 +439,15 @@ a:not([href]):not([tabindex]){
     border-radius: 50% / 100%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    border-bottom: 3px solid yellow;
+    border-bottom: 3px solid orange;
+}
+
+.grey-dot{
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 #all-followers-scatterplot{
