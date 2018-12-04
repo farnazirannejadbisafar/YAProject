@@ -1699,15 +1699,16 @@
                                 .data(acquaintances_all_followers)
                                 .enter().append("circle")
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("fill", function(d, i) {
+                                .style("stroke", function(d, i) {
                                     if(i === middle){
-                                        return "red";
+                                        return "black";
                                     }
                                     else if(d[2] <= maxFollower && d[2] >= minFollower){
-                                        return "green";
+                                        return "yellow";
                                     }
-                                    return d[3]
+                                    return "none"
                                 })
+                                .style("fill", function(d) { return d[3] })
                                 .attr("r", 10)
                                 .attr("cx", function (d) {
                                     return x_left(d[0]);
@@ -2954,10 +2955,14 @@
             var x_pos = 70;
             var y_pos = 0;
             var desc = false;
+            var myNode = document.getElementById("semi-circle");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
             for(var i = 0; i < len; i++){
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
-                    $scope.disabledFollowers.push($scope.allfollowers[i])
+                    $scope.disabledFollowers.push($scope.allfollowers[i]);
                     var bsc = document.getElementById('semi-circle');
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
@@ -2980,6 +2985,26 @@
                 }
             }
         };
+
+        $scope.addMiddleFollower = function () {
+            var x_pos = 70;
+            var y_pos = 0;
+            var myNode = document.getElementById("semi-circle");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+
+            $scope.disabledFollowers.push($scope.middleUser);
+            var bsc = document.getElementById('semi-circle');
+            var dot = document.createElement('span');
+            dot.id = "new" + $scope.middleUser;
+            dot.classList.add("grey-dot");
+            // dot.style.webkitTransform = "rotate(-2deg)";
+            dot.style.left = x_pos+'px';
+            dot.style.top = y_pos+'px';
+            bsc.appendChild(dot);
+        };
+
 
         $scope.closeEdit = function () {
             if($scope.editMiddleFollower){
