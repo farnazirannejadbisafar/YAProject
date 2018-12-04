@@ -38,7 +38,9 @@
 								   edit="editMiddleFollower"></all-followers>
 						<div class="row mx-auto">
 							<div id="added_followers">
-								<div id="semi-circle"></div>
+								<div id="bigger-semi-circle">
+									<div id="semi-circle"></div>
+								</div>
 							</div>
 						</div>
 						<div ng-show="!editMiddleFollower" id="middle-follower" class="row">
@@ -80,6 +82,9 @@
 												ng-options="x for x in bridgesAllFollowers">
 										</select>
 									</div>
+							</div>
+							<div class="row mx-auto" id="addFollower">
+								<button class="btn-light btn-sm" ng-click="addFollower()"></button>
 							</div>
 						<div class="row mx-auto">
 							<div id="all-followers-scatterplot"></div>

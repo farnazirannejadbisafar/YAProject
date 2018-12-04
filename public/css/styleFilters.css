@@ -431,6 +431,17 @@ a:not([href]):not([tabindex]){
   border-bottom: 3px solid yellow;
 }
 
+#bigger-semi-circle{
+    background: orange;
+    display: inline-block;
+    width: 175px;
+    height: 55px;
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom: 3px solid yellow;
+}
+
 #all-followers-scatterplot{
   width: 318px;
   height: 120px;

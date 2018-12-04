@@ -2666,6 +2666,8 @@
 
         $scope.editMiddleFollower = 0;
 
+        $scope.disabledFollowers = [];
+
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
         $scope.displayGatewayFollowers = displayGatewayFollowers;
@@ -2948,6 +2950,13 @@
         };
 
         $scope.addFollower = function () {
+            var len = $scope.bridgesAllFollowers.length;
+            for(var i = 0; i < len; i++){
+                if($scope.bridgesAllFollowers[i] >= $scope.minFollower
+                    && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
+                    $scope.disabledFollowers.append($scope.allfollowers[i])
+                }
+            }
 
         };
 
