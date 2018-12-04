@@ -2974,7 +2974,7 @@
                     }
                     y_pos = y_pos + 10;
 
-                    if (x_pos >= 45){
+                    if (x_pos >= 165){
                         desc = true
                     }
                 }
