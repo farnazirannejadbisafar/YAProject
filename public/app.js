@@ -2953,6 +2953,7 @@
             var len = $scope.bridgesAllFollowers.length;
             var x_pos = 70;
             var y_pos = 0;
+            var desc = false;
             for(var i = 0; i < len; i++){
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
@@ -2965,8 +2966,17 @@
                     dot.style.left = x_pos+'px';
                     dot.style.top = y_pos+'px';
                     bsc.appendChild(dot);
-                    x_pos = x_pos + 15;
-                    y_pos = y_pos + 15;
+                    if(desc){
+                        x_pos = x_pos - 10;
+                    }
+                    else{
+                        x_pos = x_pos + 10;
+                    }
+                    y_pos = y_pos + 10;
+
+                    if (x_pos >= 45){
+                        desc = true
+                    }
                 }
             }
         };
