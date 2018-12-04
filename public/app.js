@@ -2959,7 +2959,7 @@
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
                     dot.classList.add("grey-dot");
-                    element.style.webkitTransform = "rotate(-2deg)";
+                    dot.style.webkitTransform = "rotate(-2deg)";
                     bsc.appendChild(dot);
                 }
             }
