@@ -2960,8 +2960,8 @@
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
                     dot.classList.add("grey-dot");
                     dot.innerHTML = bsc.innerHTML ;
-                    var p = document.getElementById("new" + $scope.bridgesAllFollowers[i]);
-                    p.appendChild(dot);
+                    // var p = document.getElementById("new" + $scope.bridgesAllFollowers[i]);
+                    bsc.appendChild(dot);
                 }
             }
         };
