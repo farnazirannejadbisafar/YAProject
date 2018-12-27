@@ -1682,7 +1682,7 @@
                                     else if(d[2] <= maxFollower && d[2] >= minFollower){
                                         return d3.symbol().type(d3.symbolTriangle).size(100);
                                     }
-                                    return d3.symbol().type(d3.symbolCircle).size(100)
+                                    return d3.symbol().type(d3.symbolDiamond).size(100)
 
                                 })
                                 .attr('id', function(d){ return 'name' + d[2]; })
