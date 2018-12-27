@@ -1675,7 +1675,9 @@
                                 .data(acquaintances_all_followers)
                                 // .enter().append("circle")
                                 .enter().append("path")
-                                .attr("d", d3.symbol().type("triangle-up"))
+                                .attr("d", function (d) {
+                                    return symbol.type(d3.symbolCross)
+                                })
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("stroke", function(d, i) {
                                     if(i === middle){
