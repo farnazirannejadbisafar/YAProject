@@ -1688,12 +1688,14 @@
                                 // })
                                 .style("fill", function(d) { return d[3] })
                                 // .attr("r", 10)
-                                .attr("cx", function (d) {
-                                    return x_left(d[0]);
-                                })
-                                .attr("cy", function (d) {
-                                    return y_left(d[1]);
-                                });
+                                .attr('transform', function(d) {
+                                    return "translate(" + d[0] + "," + d[1] + ")";
+                                // .attr("cx", function (d) {
+                                //     return x_left(d[0]);
+                                // })
+                                // .attr("cy", function (d) {
+                                //     return y_left(d[1]);
+                                // });
                         }
                     }
 
