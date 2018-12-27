@@ -1674,7 +1674,7 @@
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
                                 // .enter().append("circle")
-                                .enter().append("path")
+                                .enter().append("circle")
                                 .attr("d", d3.symbol().type(d3.symbolCross).size(10))
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("stroke", function(d, i) {
