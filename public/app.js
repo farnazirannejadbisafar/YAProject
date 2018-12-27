@@ -1679,7 +1679,7 @@
                                     if(i === middle){
                                         return d3.symbolCross;
                                     }
-                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                    else if(a[2] <= maxFollower && a[2] >= minFollower){
                                         return d3.symbolSquare;
                                     }
                                     return d3.symbolCircle
@@ -1690,7 +1690,7 @@
                                         return "black";
                                     }
                                     else if(d[2] <= maxFollower && d[2] >= minFollower){
-                                        return "yellow";
+                                        return "orange";
                                     }
                                     return "none"
                                 })
