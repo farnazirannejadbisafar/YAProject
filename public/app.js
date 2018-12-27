@@ -1686,15 +1686,15 @@
 
                                 })
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("stroke", function(d, i) {
-                                    if(i === middle){
-                                        return "black";
-                                    }
-                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
-                                        return "yellow";
-                                    }
-                                    return "none"
-                                })
+                                // .style("stroke", function(d, i) {
+                                //     if(i === middle){
+                                //         return "black";
+                                //     }
+                                //     else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                //         return "yellow";
+                                //     }
+                                //     return "none"
+                                // })
                                 .style("fill", function(d) { return d[3] })
                                 .attr('transform', function(d) {
                                     return "translate(" + d[0] + "," + d[1] + ")"});
