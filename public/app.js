@@ -1674,18 +1674,18 @@
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
                                 // .enter().append("circle")
-                                .enter().append("circle")
-                                .attr("d", d3.symbol().type(d3.symbolCross).size(10))
+                                .enter().append("path")
+                                .attr("d", d3.symbol().type(d3.symbolCross).size(100))
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("stroke", function(d, i) {
-                                    if(i === middle){
-                                        return "black";
-                                    }
-                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
-                                        return "yellow";
-                                    }
-                                    return "none"
-                                })
+                                // .style("stroke", function(d, i) {
+                                //     if(i === middle){
+                                //         return "black";
+                                //     }
+                                //     else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                //         return "yellow";
+                                //     }
+                                //     return "none"
+                                // })
                                 .style("fill", function(d) { return d[3] })
                                 // .attr("r", 10)
                                 .attr("cx", function (d) {
