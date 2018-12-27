@@ -1582,7 +1582,8 @@
                     middle: '=',
                     maxFollower: '=',
                     minFollower: '=',
-                    edit: '='
+                    edit: '=',
+                    disabledFollowers: '='
                 },
                 link: function (scope, element, attrs) {
                     scope.$watch(function () {
@@ -1590,14 +1591,15 @@
                             // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
                             // drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
                             drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser,
-                                scope.maxFollower, scope.minFollower, scope.edit)
+                                scope.maxFollower, scope.minFollower, scope.edit, scope.disabledFollowers)
                         }
                         catch (err) {
                             console.log(err)
                         }
                     }, true);
 
-                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower, edit) {
+                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower,
+                                                 edit, disabledFollowers) {
                         if (acquaintances !== undefined) {
 
                             var div_mid_fol = document.getElementById('middle-follower');
@@ -1622,32 +1624,6 @@
                                 document.getElementById("mu-profile-pic").src = middleUser.profile_image_url_https;
                                 document.getElementById("mu-edit-profile-pic").src = middleUser.profile_image_url_https;
                             }
-
-                            // semi circle start
-                            // var inYourArea2 = d3.select('#semi-circle');
-                            // var insideSVG2 = inYourArea2.select("svg");
-                            // insideSVG2.remove();
-                            // var sc_width = document.getElementById('semi-circle').clientWidth;
-                            // var sc_height = document.getElementById('semi-circle').clientHeight;
-                            //
-                            // var svg_semi_cirlce = d3.select("#semi-circle")
-                            //     .append("svg")
-                            //     .attr("width", sc_width)
-                            //     .attr("height", sc_height)
-                            //     .append("g")
-                            //     .attr("transform", "translate(" + sc_width/2 + "," + 0 + ")");
-
-                            // var arc = d3.arc()
-                            //     .innerRadius(50)
-                            //     .outerRadius(55)
-                            //     .startAngle(0.5 * Math.PI)
-                            //     .endAngle(1.5*Math.PI);
-                            //
-                            // svg_semi_cirlce.append("path")
-                            //     .attr("class", "arc")
-                            //     .attr("d", arc);
-
-                            // semi circle end
 
                             // scatter plot start
                             var inYourArea = d3.select('#all-followers-scatterplot');
@@ -1697,7 +1673,9 @@
                             // Add the scatterplot
                             svg_all_followers.selectAll("dot")
                                 .data(acquaintances_all_followers)
-                                .enter().append("circle")
+                                // .enter().append("circle")
+                                .enter().append("path")
+                                .attr("d", d3.svg.symbol().type("triangle-up"))
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("stroke", function(d, i) {
                                     if(i === middle){

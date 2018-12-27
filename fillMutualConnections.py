@@ -4,34 +4,34 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 
-client = MongoClient('mongodb://heroku_xptmg5hr:9sp2bqojd2obgiccnlujse1mo@ds143241.mlab.com:43241/heroku_xptmg5hr')
-CONSUMER_KEY = 'VK7j7cv1FS48gtc6ZuL81Al1v'
-CONSUMER_SECRET = 'tVDWgyqhd8oRzxRq9VzlM7gr4az5WPHHdSEfn9eZOdVzUWCmv5'
+client = MongoClient('mongodb://manpreet:manpreet1@ds257808.mlab.com:57808/heroku_bb9z6l3j')
+CONSUMER_KEY = 'd0Mh9g4lxTEEEXd3NV0y3Tvo8'
+CONSUMER_SECRET = 'RbRkDg1EMdU45dX9bMCgg2ecsAG2hcEjIUpc388YhaWARaEzsW'
 #ACCESS_TOKEN = '1478790870-dW36ujNkJiQpHVJatXsDwFFNDHoKPe941CI1PYK'
 #ACCESS_TOKEN_SECRET = 'skcLxRmDEbGRbiZ3vpRofLpBg745WaqqOCMZsS1wnOvxn'
 
 # Get the sampleDB database
-db = client.heroku_xptmg5hr
+db = client.heroku_bb9z6l3j
 
 # Previous Users list to not populate mutualconnections again.
-previousUsers = ["Melanie", "JavierGrullon6", "Sabiha_5273", "eliassalazar262", "krishnakaranam3", "pyt_xxh1", "farnazIr"]
+previousUsers = ["Melanie", "JavierGrullon6", "Sabiha_5273", "eliassalazar262", "krishnakaranam3", "pyt_xxh1", "NicsNation", "fortunejones6", "ThetruthYells", "BlaPatrol", "AriannaSeykia", "Manpree17078273"]
 
 def Remove(duplicate):
     final_list = []
     for user in duplicate:
         if any(x.screen_name == user.screen_name for x in final_list):
             final_list.append(user)
-    
+
     return final_list
 
-# gives the top 10 followers with highest followers of the screenName 
+# gives the top 10 followers with highest followers of the screenName
 def topFollowers(screenName,ACCESS_TOKEN,ACCESS_TOKEN_SECRET):
     # get the api for twitter
     api = twitter.Api(consumer_key=CONSUMER_KEY,
-                    consumer_secret=CONSUMER_SECRET,
-                    access_token_key=ACCESS_TOKEN,
-                    access_token_secret=ACCESS_TOKEN_SECRET,
-                    sleep_on_rate_limit=True)
+                      consumer_secret=CONSUMER_SECRET,
+                      access_token_key=ACCESS_TOKEN,
+                      access_token_secret=ACCESS_TOKEN_SECRET,
+                      sleep_on_rate_limit=True)
     theFollowers = api.GetFollowers(screen_name=screenName, include_user_entities=True)
     print("this is iteration:")
     print(len(theFollowers))
@@ -39,7 +39,7 @@ def topFollowers(screenName,ACCESS_TOKEN,ACCESS_TOKEN_SECRET):
     for each in theFollowers:
         each._json['mutual_connection'] = screenName
         returnList = returnList + [each]
-    
+
     newlist = sorted(returnList, key=lambda x: x.followers_count, reverse=True)
     newlist = newlist[0:10]
     newlist2 = sorted(returnList, key=lambda x: x.followers_count, reverse=False)
