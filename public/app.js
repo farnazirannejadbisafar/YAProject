@@ -1689,7 +1689,7 @@
                                 .style("fill", function(d) { return d[3] })
                                 // .attr("r", 10)
                                 .attr('transform', function(d) {
-                                    return "translate(" + d[0] + "," + d[1] + ")";
+                                    return "translate(" + d[0] + "," + d[1] + ")"});
                                 // .attr("cx", function (d) {
                                 //     return x_left(d[0]);
                                 // })
