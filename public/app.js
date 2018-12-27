@@ -1675,7 +1675,15 @@
                                 .data(acquaintances_all_followers)
                                 // .enter().append("circle")
                                 .enter().append("path")
-                                .attr("d", d3.symbol().type(function(a, i) {return d3.symbolCross}).size(100))
+                                .attr("d", d3.symbol().type(function(a, i) {
+                                    if(i === middle){
+                                        return d3.symbolCross;
+                                    }
+                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                        return d3.symbolSquare;
+                                    }
+                                    return d3.symbolCircle
+                                }).size(100))
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("stroke", function(d, i) {
                                     if(i === middle){
