@@ -1676,7 +1676,7 @@
                                 // .enter().append("circle")
                                 .enter().append("path")
                                 .attr("d", function (d) {
-                                    return symbol.type(d3.symbolCross)
+                                    return d3.symbol.type(d3.symbolCross)
                                 })
                                 .attr('id', function(d){ return 'name' + d[2]; })
                                 .style("stroke", function(d, i) {
