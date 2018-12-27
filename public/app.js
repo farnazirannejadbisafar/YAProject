@@ -1675,27 +1675,29 @@
                                 .data(acquaintances_all_followers)
                                 // .enter().append("circle")
                                 .enter().append("path")
-                                .attr("d", d3.symbol().type(d3.symbolCross).size(100))
+                                .attr("d", function(d) {
+                                    if(i === middle){
+                                        return d3.symbol().type(d3.symbolCross).size(100);
+                                    }
+                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                        return d3.symbol().type(d3.symbolTriangle).size(100);
+                                    }
+                                    return d3.symbol().type(d3.symbolCircle).size(100)
+
+                                })
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                // .style("stroke", function(d, i) {
-                                //     if(i === middle){
-                                //         return "black";
-                                //     }
-                                //     else if(d[2] <= maxFollower && d[2] >= minFollower){
-                                //         return "yellow";
-                                //     }
-                                //     return "none"
-                                // })
+                                .style("stroke", function(d, i) {
+                                    if(i === middle){
+                                        return "black";
+                                    }
+                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
+                                        return "yellow";
+                                    }
+                                    return "none"
+                                })
                                 .style("fill", function(d) { return d[3] })
-                                // .attr("r", 10)
                                 .attr('transform', function(d) {
                                     return "translate(" + d[0] + "," + d[1] + ")"});
-                                // .attr("cx", function (d) {
-                                //     return x_left(d[0]);
-                                // })
-                                // .attr("cy", function (d) {
-                                //     return y_left(d[1]);
-                                // });
                         }
                     }
 
