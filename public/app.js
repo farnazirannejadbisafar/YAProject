@@ -2947,6 +2947,7 @@
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
                     $scope.disabledAllFollowers.push($scope.bridgesAllFollowers[i]);
+                    $scope.taggedAllFollowers.push($scope.acquaintancesAllFollowers[i]);
                     var bsc = document.getElementById('semi-circle');
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
@@ -2979,6 +2980,7 @@
             }
 
             $scope.disabledAllFollowers.push($scope.middleUser.followers_count);
+            $scope.taggedAllFollowers.push($scope.middleUser.screen_name);
             var bsc = document.getElementById('semi-circle');
             var dot = document.createElement('span');
             dot.id = "new" + $scope.middleUser;
