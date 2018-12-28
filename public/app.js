@@ -1685,8 +1685,8 @@
                                     return d3.symbolCircle
                                 }).size(100))
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("fill", function(d, i) {
-                                    if (disabledFollowers.indexOf(d[i]) > -1){
+                                .style("fill", function(d) {
+                                    if (disabledFollowers.indexOf(d[2]) > -1){
                                         return '#e9e9e9'
                                     }
                                     else{
