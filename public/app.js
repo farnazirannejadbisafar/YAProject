@@ -2631,6 +2631,8 @@
         $scope.allActive = undefined;
         $scope.allinteractive = undefined;
 
+        $scope.prevPageNum = 1;
+
         $scope.middle = 0;
         $scope.middleUser = {};
 
@@ -2649,6 +2651,7 @@
 
         $scope.disabledAllFollowers = [];
         $scope.taggedAllFollowers = [];
+        $scope.taggedAllFollowersColNum = 0;
 
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
@@ -2781,13 +2784,15 @@
             $scope.messagefollowers = 1;
         };
 
-        $scope.onSelectMessage = function (ev, target) {
-            $scope.mostfollowers = undefined;
-            $scope.leastfollowers = undefined;
-            $scope.gatewayfollowers = undefined;
-            $scope.mostactivefollowers = undefined;
-            $scope.leastactivefollowers = undefined;
-            $scope.mostinteractivefollowers = undefined;
+        $scope.onSelectMessage = function (pageNum, ev, target) {
+            $scope.taggedAllFollowersColNum = $scope.taggedAllFollowers.length % 3;
+
+            if ($scope.taggedAllFollowers === 0){
+                $scope.taggedAllFollowers = 1;
+            }
+
+            $scope.prevPageNum = pageNum;
+
             $scope.allfollowers = undefined;
             $scope.allActive = undefined;
             $scope.allinteractive = undefined;
@@ -2947,7 +2952,9 @@
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
                     $scope.disabledAllFollowers.push($scope.bridgesAllFollowers[i]);
-                    $scope.taggedAllFollowers.push($scope.acquaintancesAllFollowers[i]);
+                    if($scope.taggedAllFollowers.indexOf($scope.acquaintancesAllFollowers[i]) === -1){
+                        $scope.taggedAllFollowers.push($scope.acquaintancesAllFollowers[i]);
+                    }
                     var bsc = document.getElementById('semi-circle');
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
@@ -2980,7 +2987,9 @@
             }
 
             $scope.disabledAllFollowers.push($scope.middleUser.followers_count);
-            $scope.taggedAllFollowers.push($scope.middleUser.screen_name);
+            if ($scope.taggedAllFollowers.indexOf($scope.middleUser.screen_name) === -1){
+                $scope.taggedAllFollowers.push($scope.middleUser.screen_name);
+            }
             var bsc = document.getElementById('semi-circle');
             var dot = document.createElement('span');
             dot.id = "new" + $scope.middleUser;
@@ -3036,13 +3045,16 @@
         }
 
         $scope.backtofilter = function () {
-            $scope.mostfollowers = 1;
-            $scope.allfollowers = 1;
-            $scope.leastfollowers = undefined;
-            $scope.gatewayfollowers = undefined;
-            $scope.mostactivefollowers = undefined;
-            $scope.leastactivefollowers = undefined;
-            $scope.mostinteractivefollowers = undefined;
+            if ($scope.prevPageNum === 1){
+                $scope.allfollowers = 1;
+            }
+            else if ($scope.prevPageNum === 2){
+                $scope.allActive = 1;
+            }
+            else if ($scope.prevPageNum === 3){
+                $scope.allinteractive = 1;
+            }
+
             $scope.messagefollowers = undefined;
         };
 
