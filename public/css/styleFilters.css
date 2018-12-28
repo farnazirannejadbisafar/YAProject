@@ -539,5 +539,5 @@ a:not([href]):not([tabindex]){
 }
 
 .grey-bg{
-  background-color: lightgray;
+  background-color: #e9e9e9;
 }
