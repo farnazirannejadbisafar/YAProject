@@ -1685,7 +1685,15 @@
                                     return d3.symbolCircle
                                 }).size(100))
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("fill", function(d) { return d[3] })
+                                .style("fill", function(d, i) {
+                                    if (disabledFollowers.indexOf(d[i]) > -1){
+                                        return '#e9e9e9'
+                                    }
+                                    else{
+                                        return d[3]
+                                    }
+
+                                })
                                 .attr('transform', function(d) {
                                     return "translate(" + d[0] + "," + d[1] + ")"});
                         }
@@ -2934,7 +2942,7 @@
             for(var i = 0; i < len; i++){
                 if($scope.bridgesAllFollowers[i] >= $scope.minFollower
                     && $scope.bridgesAllFollowers[i] <= $scope.maxFollower){
-                    $scope.disabledFollowers.push($scope.allfollowers[i]);
+                    $scope.disabledFollowers.push($scope.bridgesAllFollowers[i]);
                     var bsc = document.getElementById('semi-circle');
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
@@ -2966,7 +2974,7 @@
                 myNode.removeChild(myNode.firstChild);
             }
 
-            $scope.disabledFollowers.push($scope.middleUser);
+            $scope.disabledFollowers.push($scope.middleUser.followers_count);
             var bsc = document.getElementById('semi-circle');
             var dot = document.createElement('span');
             dot.id = "new" + $scope.middleUser;
