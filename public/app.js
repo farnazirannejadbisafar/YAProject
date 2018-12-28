@@ -1677,23 +1677,14 @@
                                 .enter().append("path")
                                 .attr("d", d3.symbol().type(function(a, i) {
                                     if(i === middle){
-                                        return d3.symbolCross;
+                                        return d3.symbolSquare;
                                     }
                                     else if(a[2] <= maxFollower && a[2] >= minFollower){
-                                        return d3.symbolSquare;
+                                        return d3.symbolTriangle;
                                     }
                                     return d3.symbolCircle
                                 }).size(100))
                                 .attr('id', function(d){ return 'name' + d[2]; })
-                                .style("stroke", function(d, i) {
-                                    if(i === middle){
-                                        return "black";
-                                    }
-                                    else if(d[2] <= maxFollower && d[2] >= minFollower){
-                                        return "orange";
-                                    }
-                                    return "none"
-                                })
                                 .style("fill", function(d) { return d[3] })
                                 .attr('transform', function(d) {
                                     return "translate(" + d[0] + "," + d[1] + ")"});
