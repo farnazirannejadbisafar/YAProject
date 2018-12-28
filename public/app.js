@@ -2787,6 +2787,9 @@
             $scope.mostactivefollowers = undefined;
             $scope.leastactivefollowers = undefined;
             $scope.mostinteractivefollowers = undefined;
+            $scope.allfollowers = undefined;
+            $scope.allActive = undefined;
+            $scope.allinteractive = undefined;
             $scope.messagefollowers = 1;
         };
 
