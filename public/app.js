@@ -3047,8 +3047,7 @@
         function createTagsFromArray(arrayFollewers) {
             var tags = '';
             if(arrayFollewers.length > 0){
-                 tags = "@" + arrayFollewers.join(" @") + " ";
-                $scope.sendmessage = tags;
+                tags = "@" + arrayFollewers.join(" @") + " ";
             }
             return tags;
         }
@@ -3080,7 +3079,7 @@
             var size = $scope.taggedAllFollowers.length;
 
             if (size <= 10){
-                postTweet($scope.sendnewmessage)
+                postTweet($scope.sendmessage)
             }
             else{
                 for(var i = 0; i < size; i++){
