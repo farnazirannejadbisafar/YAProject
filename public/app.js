@@ -3033,8 +3033,19 @@
         init();
 
         function addTags() {
-            var tags = "@" + $scope.taggedAllFollowers.join(" @") + " ";
-            $scope.sendmessage = tags;
+            if($scope.taggedAllFollowers.length > 0){
+                var tags = "@" + $scope.taggedAllFollowers.join(" @") + " ";
+                $scope.sendmessage = tags;
+            }
+        }
+
+        function createTagsFromArray(arrayFollewers) {
+            var tags = '';
+            if(arrayFollewers.length > 0){
+                 tags = "@" + arrayFollewers.join(" @") + " ";
+                $scope.sendmessage = tags;
+            }
+            return tags;
         }
 
         function onSelectAdd() {
@@ -3059,9 +3070,34 @@
         };
 
         $scope.sendMessage = function () {
-            var post = {
-                text: $scope.sendmessage + $scope.sendnewmessage
+            var tagCount = 0;
+            var tags = [];
+            var size = $scope.taggedAllFollowers.length;
+
+            if (size <= 10){
+                postTweet($scope.sendnewmessage)
             }
+            else{
+                for(var i = 0; i < size; i++){
+                    if (tagCount === 10){
+                        var tweetTags = createTagsFromArray(tags);
+                        tags = [];
+                        postTweet(tweetTags);
+                    }
+                    else{
+                        tagCount += 1;
+                        tags.append($scope.taggedAllFollowers[i]);
+                    }
+                }
+                tweetTags = createTagsFromArray(tags);
+                postTweet(tweetTags);
+            }
+        };
+
+        function postTweet(tags) {
+            var post = {
+                text: $scope.sendmessage + tags
+            };
             postService.createPost(post, $scope.userId, $scope.token)
                 .then(function (postResponse) {
                     if (postResponse) {
