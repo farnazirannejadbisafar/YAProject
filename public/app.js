@@ -2648,10 +2648,20 @@
         $scope.pagename = 'All Followers';
 
         $scope.editMiddleFollower = 0;
+        $scope.editMiddleActive = 0;
+        $scope.editMiddleInteractive = 0;
 
         $scope.disabledAllFollowers = [];
         $scope.taggedAllFollowers = [];
         $scope.taggedAllFollowersColNum = 0;
+
+        $scope.disabledAllActive = [];
+        $scope.taggedAllActive = [];
+        $scope.taggedAllActiveColNum = 0;
+
+        $scope.disabledAllInteractive = [];
+        $scope.taggedAllInteractive = [];
+        $scope.taggedAllInteractiveColNum = 0;
 
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
@@ -2661,7 +2671,10 @@
         $scope.displayMostInteractiveFollowers = displayMostInteractiveFollowers;
         $scope.displayAllFollowers = displayAllFollowers;
         $scope.displayAllActive = displayAllActive;
+        $scope.displayAllInteractive = displayAllInteractive;
         $scope.displayMiddleUser = displayMiddleUser;
+        $scope.displayMiddleActive = displayMiddleActive;
+        $scope.displayMiddleInteractive = displayMiddleInteractive;
         $scope.filterError = filterError;
         $scope.openReach = openReach;
         $scope.openFeed = openFeed;
@@ -2939,6 +2952,18 @@
             }
         };
 
+        $scope.onActiveImageClick = function () {
+            if(!$scope.editMiddleActive){
+                $scope.editMiddleActive = 1;
+            }
+        };
+
+        $scope.onInteractiveImageClick = function () {
+            if(!$scope.editMiddleInteractive){
+                $scope.editMiddleInteractive = 1;
+            }
+        };
+
         $scope.addFollower = function () {
             var len = $scope.bridgesAllFollowers.length;
             var x_pos = 70;
@@ -2958,6 +2983,85 @@
                     var bsc = document.getElementById('semi-circle');
                     var dot = document.createElement('span');
                     dot.id = "new" + $scope.bridgesAllFollowers[i];
+                    dot.classList.add("grey-dot");
+                    // dot.style.webkitTransform = "rotate(-2deg)";
+                    dot.style.left = x_pos+'px';
+                    dot.style.top = y_pos+'px';
+                    bsc.appendChild(dot);
+                    if(desc){
+                        x_pos = x_pos - 10;
+                    }
+                    else{
+                        x_pos = x_pos + 10;
+                    }
+                    y_pos = y_pos + 10;
+
+                    if (x_pos >= 165){
+                        desc = true
+                    }
+                }
+            }
+        };
+
+        $scope.addActive = function () {
+            var len = $scope.bridgesAllActive.length;
+            var x_pos = 70;
+            var y_pos = 0;
+            var desc = false;
+            var myNode = document.getElementById("semi-circle-active");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+            for(var i = 0; i < len; i++){
+                if($scope.bridgesAllActive[i] >= $scope.minActive
+                    && $scope.bridgesAllActive[i] <= $scope.maxActive){
+                    $scope.disabledAllActive.push($scope.bridgesAllActive[i]);
+                    if($scope.taggedAllActive.indexOf($scope.acquaintancesAllActive[i]) === -1){
+                        $scope.taggedAllActive.push($scope.acquaintancesAllActive[i]);
+                    }
+                    var bsc = document.getElementById('semi-circle-active');
+                    var dot = document.createElement('span');
+                    dot.id = "new" + $scope.bridgesAllActive[i];
+                    dot.classList.add("grey-dot");
+                    // dot.style.webkitTransform = "rotate(-2deg)";
+                    dot.style.left = x_pos+'px';
+                    dot.style.top = y_pos+'px';
+                    bsc.appendChild(dot);
+                    if(desc){
+                        x_pos = x_pos - 10;
+                    }
+                    else{
+                        x_pos = x_pos + 10;
+                    }
+                    y_pos = y_pos + 10;
+
+                    if (x_pos >= 165){
+                        desc = true
+                    }
+                }
+            }
+        };
+
+
+        $scope.addInteractive = function () {
+            var len = $scope.bridgesAllInteractive.length;
+            var x_pos = 70;
+            var y_pos = 0;
+            var desc = false;
+            var myNode = document.getElementById("semi-circle-interactive");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+            for(var i = 0; i < len; i++){
+                if($scope.bridgesAllInteractive[i] >= $scope.minInteractive
+                    && $scope.bridgesAllInteractive[i] <= $scope.maxInteractive){
+                    $scope.disabledAllInteractive.push($scope.bridgesAllInteractive[i]);
+                    if($scope.taggedAllInteractive.indexOf($scope.acquaintancesAllInteractive[i]) === -1){
+                        $scope.taggedAllInteractive.push($scope.acquaintancesAllInteractive[i]);
+                    }
+                    var bsc = document.getElementById('semi-circle-interactive');
+                    var dot = document.createElement('span');
+                    dot.id = "new" + $scope.bridgesAllInteractive[i];
                     dot.classList.add("grey-dot");
                     // dot.style.webkitTransform = "rotate(-2deg)";
                     dot.style.left = x_pos+'px';
@@ -3007,9 +3111,77 @@
         };
 
 
+        $scope.addMiddleActive = function () {
+            var x_pos = 70;
+            var y_pos = 0;
+            var myNode = document.getElementById("semi-circle-active");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+
+            $scope.disabledAllActive.push($scope.middleActiveUser.followers_count);
+            if ($scope.taggedAllActive.indexOf($scope.middleActiveUser.screen_name) === -1){
+                $scope.taggedAllActive.push($scope.middleActiveUser.screen_name);
+            }
+            var bsc = document.getElementById('semi-circle-active');
+            var dot = document.createElement('span');
+            dot.id = "new" + $scope.middleActiveUser;
+            dot.classList.add("grey-dot");
+            // dot.style.webkitTransform = "rotate(-2deg)";
+            dot.style.left = x_pos+'px';
+            dot.style.top = y_pos+'px';
+            bsc.appendChild(dot);
+            if($scope.editMiddleActive){
+                $scope.editMiddleActive = 0;
+                if($scope.middleActive < $scope.lenActive){
+                    $scope.middleActive += 1;
+                }
+            }
+        };
+
+        $scope.addMiddleInteractive = function () {
+            var x_pos = 70;
+            var y_pos = 0;
+            var myNode = document.getElementById("semi-circle-interactive");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+
+            $scope.disabledAllInteractive.push($scope.middleInteractiveUser.followers_count);
+            if ($scope.taggedAllInteractive.indexOf($scope.middleInteractiveUser.screen_name) === -1){
+                $scope.taggedAllInteractive.push($scope.middleInteractiveUser.screen_name);
+            }
+            var bsc = document.getElementById('semi-circle-interactive');
+            var dot = document.createElement('span');
+            dot.id = "new" + $scope.middleInteractiveUser;
+            dot.classList.add("grey-dot");
+            // dot.style.webkitTransform = "rotate(-2deg)";
+            dot.style.left = x_pos+'px';
+            dot.style.top = y_pos+'px';
+            bsc.appendChild(dot);
+            if($scope.editMiddleInteractive){
+                $scope.editMiddleInteractive = 0;
+                if($scope.middleInteractive < $scope.lenInteractive){
+                    $scope.middleInteractive += 1;
+                }
+            }
+        };
+
         $scope.closeEdit = function () {
             if($scope.editMiddleFollower){
                 $scope.editMiddleFollower = 0;
+            }
+        };
+
+        $scope.closeEditActive = function () {
+            if($scope.editMiddleActive){
+                $scope.editMiddleActive = 0;
+            }
+        };
+
+        $scope.closeEditInteractive = function () {
+            if($scope.editMiddleInteractive){
+                $scope.editMiddleInteractive = 0;
             }
         };
 
@@ -3028,6 +3200,10 @@
                 .then(displayMostInteractiveFollowers, filterError);
             filterService.getAllFollowers($scope.userId, $scope.token)
                 .then(displayAllFollowers, filterError);
+            filterService.getAllActive($scope.userId, $scope.token)
+                .then(displayAllActive, filterError);
+            filterService.getAllInteractive($scope.userId, $scope.token)
+                .then(displayAllInteractive, filterError);
         }
 
         init();
@@ -3186,16 +3362,48 @@
 
         }
 
+        function displayAllActive(followerArrray) {
+            $scope.acquaintancesAllActive = followerArrray.screennames;
+            $scope.bridgesAllActive = followerArrray.followerlength;
+            $scope.allActive = followerArrray.screennames.length;
+
+            $scope.lenActive = $scope.acquaintancesAllActive.length;
+            $scope.middleActive = 0;
+
+            filterService.getMiddleActive($scope.userId, $scope.middleActive, $scope.token)
+                .then(displayMiddleActive, filterError);
+
+        }
+
+        function displayAllInteractive(followerArrray) {
+            $scope.acquaintancesAllInteractive = followerArrray.screennames;
+            $scope.bridgesAllInteractive = followerArrray.followerlength;
+            $scope.allInteractive = followerArrray.screennames.length;
+
+            $scope.lenInteractive = $scope.acquaintancesAllInteractive.length;
+            $scope.middleInteractive = 0;
+
+            filterService.getMiddleInteractive($scope.userId, $scope.middleInteractive, $scope.token)
+                .then(displayMiddleInteractive, filterError);
+
+        }
+
         function displayMiddleUser(followerArrray) {
             $scope.middleUser = followerArrray.userdetails;
             $scope.maxFollower = $scope.middleUser.followers_count;
             $scope.minFollower = $scope.middleUser.followers_count;
         }
 
-        function displayAllActive(followerArrray) {
-            $scope.acquaintancesAllFollowers = followerArrray.screennames;
-            $scope.bridgesAllFollowers = followerArrray.followerlength;
-            $scope.allActive = followerArrray.screennames.length
+        function displayMiddleActive(followerArrray) {
+            $scope.middleActive = followerArrray.userdetails;
+            $scope.maxActive = $scope.middleActive.followers_count;
+            $scope.minActive = $scope.middleActive.followers_count;
+        }
+
+        function displayMiddleInteractive(followerArrray) {
+            $scope.middleInteractive = followerArrray.userdetails;
+            $scope.maxInteractive = $scope.middleInteractive.followers_count;
+            $scope.minInteractive = $scope.middleInteractive.followers_count;
         }
 
         function filterError() {
