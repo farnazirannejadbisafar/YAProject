@@ -2011,7 +2011,269 @@
                     }
                 }
             })
-            .config(AppConfig);
+        .directive('allActive', function () {
+
+            return {
+                restrict: 'E',
+                terminal: true,
+                scope: {
+                    acquaintances: '=',
+                    bridges: '=',
+                    middleUser: '=',
+                    middle: '=',
+                    maxFollower: '=',
+                    minFollower: '=',
+                    edit: '=',
+                    disabledFollowers: '='
+                },
+                link: function (scope, element, attrs) {
+                    scope.$watch(function () {
+                        try {
+                            // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            // drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
+                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser,
+                                scope.maxFollower, scope.minFollower, scope.edit, scope.disabledFollowers)
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }
+                    }, true);
+
+                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower,
+                                                 edit, disabledFollowers) {
+                        if (acquaintances !== undefined) {
+
+                            var div_mid_fol = document.getElementById('middle-active');
+                            var div_mid_fol_edit = document.getElementById('middle-active-edit');
+
+                            if (edit) {
+                                div_mid_fol_edit.style.display = "block";
+                                div_mid_fol.style.display = "none";
+                            } else {
+                                div_mid_fol_edit.style.display = "none";
+                                div_mid_fol.style.display = "block";
+                            }
+
+                            document.getElementById("mu-name-active").innerHTML = middleUser.name;
+                            document.getElementById("mu-screen-name-active").innerHTML = "@" + middleUser.screen_name;
+
+                            document.getElementById("mu-edit-name-active").innerHTML = middleUser.name;
+                            document.getElementById("mu-edit-screen-name-active").innerHTML = "@" + middleUser.screen_name;
+                            document.getElementById("mu-edit-followers-active").innerHTML = "Follower #: " + middleUser.followers_count;
+
+                            if (middleUser.profile_image_url_https !== undefined) {
+                                document.getElementById("mu-profile-pic-active").src = middleUser.profile_image_url_https;
+                                document.getElementById("mu-edit-profile-pic-active").src = middleUser.profile_image_url_https;
+                            }
+
+                            // scatter plot start
+                            var inYourArea = d3.select('#all-active-scatterplot');
+                            var insideSVG = inYourArea.select("svg");
+                            insideSVG.remove();
+
+                            var width_all_followers = document.getElementById('all-active-scatterplot').clientWidth,
+                                height_all_followers = document.getElementById('all-active-scatterplot').clientHeight;
+
+                            var color = d3.scaleLinear().domain([0,bridges.length])
+                                .range(['#bae4dd', '#547e77']);
+
+                            var svg_all_followers = d3.select('#all-active-scatterplot').append("svg");
+
+                            var color_list = [];
+                            for(var i = 0; i < bridges.length; i++){
+                                color_list[i] = color(i);
+                            }
+
+                            var eachSqWidth = width_all_followers/14;
+
+                            var acquaintances_all_followers = acquaintances.reduce(function (r, a, i) {
+                                if(i === 0){
+                                    r[i] = [22, height_all_followers/2, bridges[i], color_list[i]];
+                                }
+                                else{
+                                    r[i] = [eachSqWidth*i + 22, height_all_followers/2, bridges[i], color_list[i]];
+                                }
+
+                                return r;
+                            }, []);
+
+                            // set the ranges
+                            var x_left = d3.scaleLinear().range([0, width_all_followers]);
+                            var y_left = d3.scaleLinear().range([height_all_followers, 0]);
+
+                            svg_all_followers.attr("width", width_all_followers)
+                                .attr("height", height_all_followers)
+                                .append("g")
+                                .attr("transform",
+                                    "translate(0,0)");
+
+                            // Scale the range of the data
+                            x_left.domain([0, width_all_followers]);
+                            y_left.domain([0, height_all_followers]);
+
+                            // Add the scatterplot
+                            svg_all_followers.selectAll("dot")
+                                .data(acquaintances_all_followers)
+                                // .enter().append("circle")
+                                .enter().append("path")
+                                .attr("d", d3.symbol().type(function(a, i) {
+                                    if(i === middle){
+                                        return d3.symbolSquare;
+                                    }
+                                    else if(a[2] <= maxFollower && a[2] >= minFollower){
+                                        return d3.symbolTriangle;
+                                    }
+                                    return d3.symbolCircle
+                                }).size(100))
+                                .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d) {
+                                    if (disabledFollowers.indexOf(d[2]) > -1){
+                                        return '#e9e9e9'
+                                    }
+                                    else{
+                                        return d[3]
+                                    }
+
+                                })
+                                .attr('transform', function(d) {
+                                    return "translate(" + d[0] + "," + d[1] + ")"});
+                        }
+                    }
+                }
+            }
+        })
+        .directive('allInteractive', function () {
+
+            return {
+                restrict: 'E',
+                terminal: true,
+                scope: {
+                    acquaintances: '=',
+                    bridges: '=',
+                    middleUser: '=',
+                    middle: '=',
+                    maxFollower: '=',
+                    minFollower: '=',
+                    edit: '=',
+                    disabledFollowers: '='
+                },
+                link: function (scope, element, attrs) {
+                    scope.$watch(function () {
+                        try {
+                            // drawDandelion(scope.acquaintances, scope.bridges, scope.colors,[]);
+                            // drawConnections(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser)
+                            drawConnectionsPage(scope.acquaintances, scope.bridges, scope.middle, scope.middleUser,
+                                scope.maxFollower, scope.minFollower, scope.edit, scope.disabledFollowers)
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }
+                    }, true);
+
+                    function drawConnectionsPage(acquaintances, bridges, middle, middleUser, maxFollower, minFollower,
+                                                 edit, disabledFollowers) {
+                        if (acquaintances !== undefined) {
+
+                            var div_mid_fol = document.getElementById('middle-interactive');
+                            var div_mid_fol_edit = document.getElementById('middle-interactive-edit');
+
+                            if (edit) {
+                                div_mid_fol_edit.style.display = "block";
+                                div_mid_fol.style.display = "none";
+                            } else {
+                                div_mid_fol_edit.style.display = "none";
+                                div_mid_fol.style.display = "block";
+                            }
+
+                            document.getElementById("mu-name-interactive").innerHTML = middleUser.name;
+                            document.getElementById("mu-screen-name-interactive").innerHTML = "@" + middleUser.screen_name;
+
+                            document.getElementById("mu-edit-name-interactive").innerHTML = middleUser.name;
+                            document.getElementById("mu-edit-screen-name-interactive").innerHTML = "@" + middleUser.screen_name;
+                            document.getElementById("mu-edit-followers-interactive").innerHTML = "Follower #: " + middleUser.followers_count;
+
+                            if (middleUser.profile_image_url_https !== undefined) {
+                                document.getElementById("mu-profile-pic-interactive").src = middleUser.profile_image_url_https;
+                                document.getElementById("mu-edit-profile-pic-interactive").src = middleUser.profile_image_url_https;
+                            }
+
+                            // scatter plot start
+                            var inYourArea = d3.select('#all-interactive-scatterplot');
+                            var insideSVG = inYourArea.select("svg");
+                            insideSVG.remove();
+
+                            var width_all_followers = document.getElementById('all-interactive-scatterplot').clientWidth,
+                                height_all_followers = document.getElementById('all-interactive-scatterplot').clientHeight;
+
+                            var color = d3.scaleLinear().domain([0,bridges.length])
+                                .range(['#bae4dd', '#547e77']);
+
+                            var svg_all_followers = d3.select('#all-interactive-scatterplot').append("svg");
+
+                            var color_list = [];
+                            for(var i = 0; i < bridges.length; i++){
+                                color_list[i] = color(i);
+                            }
+
+                            var eachSqWidth = width_all_followers/14;
+
+                            var acquaintances_all_followers = acquaintances.reduce(function (r, a, i) {
+                                if(i === 0){
+                                    r[i] = [22, height_all_followers/2, bridges[i], color_list[i]];
+                                }
+                                else{
+                                    r[i] = [eachSqWidth*i + 22, height_all_followers/2, bridges[i], color_list[i]];
+                                }
+
+                                return r;
+                            }, []);
+
+                            // set the ranges
+                            var x_left = d3.scaleLinear().range([0, width_all_followers]);
+                            var y_left = d3.scaleLinear().range([height_all_followers, 0]);
+
+                            svg_all_followers.attr("width", width_all_followers)
+                                .attr("height", height_all_followers)
+                                .append("g")
+                                .attr("transform",
+                                    "translate(0,0)");
+
+                            // Scale the range of the data
+                            x_left.domain([0, width_all_followers]);
+                            y_left.domain([0, height_all_followers]);
+
+                            // Add the scatterplot
+                            svg_all_followers.selectAll("dot")
+                                .data(acquaintances_all_followers)
+                                // .enter().append("circle")
+                                .enter().append("path")
+                                .attr("d", d3.symbol().type(function(a, i) {
+                                    if(i === middle){
+                                        return d3.symbolSquare;
+                                    }
+                                    else if(a[2] <= maxFollower && a[2] >= minFollower){
+                                        return d3.symbolTriangle;
+                                    }
+                                    return d3.symbolCircle
+                                }).size(100))
+                                .attr('id', function(d){ return 'name' + d[2]; })
+                                .style("fill", function(d) {
+                                    if (disabledFollowers.indexOf(d[2]) > -1){
+                                        return '#e9e9e9'
+                                    }
+                                    else{
+                                        return d[3]
+                                    }
+
+                                })
+                                .attr('transform', function(d) {
+                                    return "translate(" + d[0] + "," + d[1] + ")"});
+                        }
+                    }
+                }
+            }
+        })
+        .config(AppConfig);
 
     function LoginController($scope, userService, $location, $anchorScroll) {
         $scope.login = login;
@@ -2653,15 +2915,14 @@
 
         $scope.disabledAllFollowers = [];
         $scope.taggedAllFollowers = [];
-        $scope.taggedAllFollowersColNum = 0;
+
+        $scope.taggedColNum = 0;
 
         $scope.disabledAllActive = [];
         $scope.taggedAllActive = [];
-        $scope.taggedAllActiveColNum = 0;
 
         $scope.disabledAllInteractive = [];
         $scope.taggedAllInteractive = [];
-        $scope.taggedAllInteractiveColNum = 0;
 
         $scope.displayMostFollowers = displayMostFollowers;
         $scope.displayLeastFollowers = displayLeastFollowers;
@@ -2798,10 +3059,18 @@
         };
 
         $scope.onSelectMessage = function (pageNum, ev, target) {
-            $scope.taggedAllFollowersColNum = $scope.taggedAllFollowers.length % 3;
+            if (pageNum === 1){
+                $scope.taggedColNum = $scope.taggedAllFollowers.length % 3;
+            }
+            else if (pageNum === 2){
+                $scope.taggedColNum = $scope.taggedAllActive.length % 3;
+            }
+            else if (pageNum === 3){
+                $scope.taggedColNum = $scope.taggedAllInteractive.length % 3;
+            }
 
-            if ($scope.taggedAllFollowers === 0){
-                $scope.taggedAllFollowers = 1;
+            if ($scope.taggedColNum === 0){
+                $scope.taggedColNum = 1;
             }
 
             $scope.prevPageNum = pageNum;
