@@ -17,6 +17,7 @@
         this.getAllInteractive = getAllInteractive;
         this.getMiddleActive = getMiddleActive;
         this.getMiddleFollower = getMiddleFollower;
+        this.getMiddleInteractive = getMiddleInteractive;
 
         var URL = '/api/filter';
 
