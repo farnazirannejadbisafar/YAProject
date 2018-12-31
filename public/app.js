@@ -3033,11 +3033,6 @@
         init();
 
         function addTags() {
-            //start testing
-            for(var k = 0; k < 12; k++){
-                $scope.taggedAllFollowers.push('Manpree17078273')
-            }
-            //end testing
             if($scope.taggedAllFollowers.length > 0){
                 var tags = "@" + $scope.taggedAllFollowers.join(" @") + " ";
                 $scope.sendmessage = tags;
