@@ -3084,6 +3084,7 @@
             else{
                 for(var i = 0; i < size; i++){
                     if (tagCount === 10){
+                        tagCount = 0;
                         var tweetTags = createTagsFromArray(tags);
                         tags = [];
                         postTweet(tweetTags);
