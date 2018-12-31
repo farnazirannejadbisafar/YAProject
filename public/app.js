@@ -3090,7 +3090,7 @@
                     }
                     else{
                         tagCount += 1;
-                        tags.append($scope.taggedAllFollowers[i]);
+                        tags.push($scope.taggedAllFollowers[i]);
                     }
                 }
                 tweetTags = createTagsFromArray(tags);
