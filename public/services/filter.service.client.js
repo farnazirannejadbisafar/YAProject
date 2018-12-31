@@ -14,6 +14,7 @@
         this.getMostInteractiveFollowers = getMostInteractiveFollowers;
         this.getAllFollowers = getAllFollowers;
         this.getAllActive = getAllActive;
+        this.getAllInteractive = getAllInteractive;
         this.getMiddleActive = getMiddleActive;
         this.getMiddleFollower = getMiddleFollower;
 
@@ -116,6 +117,16 @@
                 });
         }
 
+        function getAllInteractive(userId, token) {
+            var url = URL + '/allinteractive/' + userId;
+            return $http.get(url,{
+                headers: {'Authorization': "Bearer "+token}
+            })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
         function getMiddleFollower(userId, index, token) {
             var url = URL + '/middleuserfollowers/' + userId + '/' + index;
             return $http.get(url,{
@@ -128,6 +139,16 @@
 
         function getMiddleActive(userId, index, token) {
             var url = URL + '/middleuseractive/' + userId + '/' + index;
+            return $http.get(url,{
+                headers: {'Authorization': "Bearer "+token}
+            })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getMiddleInteractive(userId, index, token) {
+            var url = URL + '/middleuserinteractive/' + userId + '/' + index;
             return $http.get(url,{
                 headers: {'Authorization': "Bearer "+token}
             })
