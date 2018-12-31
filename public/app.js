@@ -3034,7 +3034,7 @@
 
         function addTags() {
             //start testing
-            for(var k = 0; k < 25; k++){
+            for(var k = 0; k < 12; k++){
                 $scope.taggedAllFollowers.push('Manpree17078273')
             }
             //end testing
