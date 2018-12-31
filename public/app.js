@@ -3100,7 +3100,7 @@
 
         function postTweet(tags) {
             var post = {
-                text: $scope.sendmessage + tags
+                text: tags + $scope.sendnewmessage
             };
             postService.createPost(post, $scope.userId, $scope.token)
                 .then(function (postResponse) {
