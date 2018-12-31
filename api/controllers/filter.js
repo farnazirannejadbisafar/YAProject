@@ -183,8 +183,8 @@ exports.filter_all_active = (req, res, next) => {
     } else {
         res.status(200).json({
             message: "all followers",
-            screennames: user.twitter.followers.sort(sortactive).map(a => a.screen_name),
-            followerlength: user.twitter.followers.sort(sortactive).map(a => a.statuses_count)
+            screennames: user.twitter.followers.slice(1).sort(sortactive_asc).map(a => a.screen_name),
+            followerlength: user.twitter.followers.slice(1).sort(sortactive_asc).map(a => a.statuses_count)
     });
     }
 })
@@ -195,6 +195,32 @@ exports.filter_all_active = (req, res, next) => {
     });
 });
 };
+
+
+exports.filter_all_interactive = (req, res, next) => {
+    const id = req.params.userId;
+    User.findById(id)
+        .then(user => {
+        if (!user) {
+        return res.status(404).json({
+            message: "User not found"
+        });
+    } else {
+        res.status(200).json({
+            message: "all followers",
+            screennames: user.twitter.followers.slice(1).sort(sortinteractive_asc).map(a => a.screen_name),
+            followerlength: user.twitter.followers.slice(1).sort(sortinteractive_asc).map(a => a.favourites_count)
+    });
+    }
+})
+.catch(err => {
+        console.log(err);
+    res.status(500).json({
+        error: err
+    });
+});
+};
+
 
 exports.filter_middle_active = (req, res, next) => {
     const id = req.params.userId;
@@ -209,8 +235,34 @@ exports.filter_middle_active = (req, res, next) => {
     } else {
         res.status(200).json({
             message: "middle user followers",
-            userdetails: user.twitter.followers.sort(sortactive).slice(index, index+1)
+            userdetails: user.twitter.followers.slice(1).sort(sortactive_asc)[index]
     });
+    }
+})
+.catch(err => {
+        console.log(err);
+    res.status(500).json({
+        error: err
+    });
+});
+};
+
+
+exports.filter_middle_interactive = (req, res, next) => {
+    const id = req.params.userId;
+    const index = req.param.index;
+
+    User.findById(id)
+        .then(user => {
+        if (!user) {
+        return res.status(404).json({
+            message: "User not found"
+        });
+    } else {
+        res.status(200).json({
+            message: "middle user followers",
+            userdetails: user.twitter.followers.slice(1).sort(sortinteractive_asc)[index]
+        });
     }
 })
 .catch(err => {
@@ -234,7 +286,7 @@ exports.filter_middle_followers = (req, res, next) => {
     } else {
         res.status(200).json({
             message: "middle user followers",
-            userdetails: user.twitter.mutualconnections.slice(1).sort(sortit_asc)[index]
+            userdetails: user.twitter.mutualconnections.sort(sortit_asc)[index]
     });
     }
 })
@@ -258,6 +310,14 @@ function sortactive(a,b){
 	return(b.statuses_count - a.statuses_count)
 	}
 
+function sortactive_asc(a,b){
+    return(a.statuses_count - b.statuses_count)
+}
+
 function sortinteractive(a,b){
 	return(b.favourites_count - a.favourites_count)
 	}
+
+function sortinteractive_asc(a,b){
+    return(a.favourites_count - b.favourites_count)
+}
