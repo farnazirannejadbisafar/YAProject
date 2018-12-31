@@ -3035,7 +3035,7 @@
         function addTags() {
             //start testing
             for(var k = 0; k < 25; k++){
-                $scope.taggedAllFollowers.append('Manpree17078273');
+                $scope.taggedAllFollowers.push('Manpree17078273')
             }
             //end testing
             if($scope.taggedAllFollowers.length > 0){
