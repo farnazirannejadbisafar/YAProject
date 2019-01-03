@@ -440,7 +440,7 @@ a:not([href]):not([tabindex]){
     position:absolute;
 }
 
-#all-followers-scatterplot{
+#all-followers-scatterplot, #all-active-scatterplot, #all-interactive-scatterplot{
   width: 318px;
   height: 120px;
   text-align: center;
@@ -454,12 +454,12 @@ a:not([href]):not([tabindex]){
   fill: yellow;
 }
 
-#middle-follower-edit{
+#middle-follower-edit, #middle-active-edit, #middle-interactive-edit{
   width:318px;
   /*background-color: lightslategrey;*/
 }
 
-#middle-follower{
+#middle-follower, #middle-active, #middle-interactive{
   width:318px;
   height:100%;
   margin:0;
@@ -503,7 +503,7 @@ a:not([href]):not([tabindex]){
   border-top-left-radius: 70px;
 }
 
-#mu-profile-pic {
+#mu-profile-pic, #mu-profile-pic-active, #mu-profile-pic-interactive {
   width: 70px;
   height: 70px;
   border-radius: 50%;

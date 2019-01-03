@@ -37,94 +37,296 @@
 								   min-follower="minFollower"
 								   disabled-followers="disabledAllFollowers"
 								   edit="editMiddleFollower"></all-followers>
-						<div class="row mx-auto">
-							<div id="added_followers">
-								<!--<div id="bigger-semi-circle">-->
-									<div id="semi-circle" ng-click="onSelectMessage(1, $event)"></div>
-								<!--</div>-->
-							</div>
+					<div class="row mx-auto">
+						<div id="added_followers">
+							<!--<div id="bigger-semi-circle">-->
+							<div id="semi-circle" ng-click="onSelectMessage(1, $event)"></div>
+							<!--</div>-->
 						</div>
-						<div ng-show="!editMiddleFollower" id="middle-follower" class="row">
-							<div id="middle-follower-card">
-								<div class="row mx-auto">
-									<div class="col-2 nopadding">
-										<button id="right-circle-btn" ng-click="onSwipeLeftAllFollowers($event)"></button>
-									</div>
-									<div class="col-8">
-										<div id="circle-user-info">
-											<div class="align-content-center">
-												<div>
-													<img ng-click="onFollowerImageClick()" alt="" id="mu-profile-pic">
-												</div>
-												<div>
-													<div><p id="mu-name"></p></div>
-													<div><p id="mu-screen-name"></p></div>
-												</div>
+					</div>
+					<div ng-show="!editMiddleFollower" id="middle-follower" class="row">
+						<div id="middle-follower-card">
+							<div class="row mx-auto">
+								<div class="col-2 nopadding">
+									<button id="right-circle-btn" ng-click="onSwipeLeftAllFollowers($event)"></button>
+								</div>
+								<div class="col-8">
+									<div id="circle-user-info">
+										<div class="align-content-center">
+											<div>
+												<img ng-click="onFollowerImageClick()" alt="" id="mu-profile-pic">
+											</div>
+											<div>
+												<div><p id="mu-name"></p></div>
+												<div><p id="mu-screen-name"></p></div>
 											</div>
 										</div>
 									</div>
-									<div class="col-2 nopadding">
-										<button id="left-circle-btn" ng-click="onSwipeRightAllFollowers($event)"></button>
-									</div>
+								</div>
+								<div class="col-2 nopadding">
+									<button id="left-circle-btn" ng-click="onSwipeRightAllFollowers($event)"></button>
 								</div>
 							</div>
-							<div class="grey-bg">
-								<div class="row mx-auto" id="maxMinBtns">
-										<div class="col-6">
-											<div>Minimum</div>
-											<mat-form-field>
-											<select id="minFollowerFld"
-													ng-model="minFollower"
-													ng-options="x for x in bridgesAllFollowers">
-											</select>
-											</mat-form-field>
-										</div>
-										<div class="col-6">
-											<div>Maximum</div>
-											<mat-form-field>
-											<select id="maxFollowerFld"
-													ng-model="maxFollower"
-													ng-options="x for x in bridgesAllFollowers">
-											</select>
-											</mat-form-field>
-										</div>
+						</div>
+						<div class="grey-bg">
+							<div class="row mx-auto" id="maxMinBtns">
+								<div class="col-6">
+									<div>Minimum</div>
+									<mat-form-field>
+										<select id="minFollowerFld"
+												ng-model="minFollower"
+												ng-options="x for x in bridgesAllFollowers">
+										</select>
+									</mat-form-field>
 								</div>
-								<div class="row" id="addFollower">
-									<div class="col-12 align-content-center text-center" >
-										<button class="btn-light" ng-click="addFollower()">Add</button>
-									</div>
+								<div class="col-6">
+									<div>Maximum</div>
+									<mat-form-field>
+										<select id="maxFollowerFld"
+												ng-model="maxFollower"
+												ng-options="x for x in bridgesAllFollowers">
+										</select>
+									</mat-form-field>
 								</div>
 							</div>
+							<div class="row" id="addFollower">
+								<div class="col-12 align-content-center text-center" >
+									<button class="btn-light" ng-click="addFollower()">Add</button>
+								</div>
+							</div>
+						</div>
 						<div class="row mx-auto">
 							<div id="all-followers-scatterplot"></div>
 						</div>
-						</div>
-						<div ng-show="editMiddleFollower" id="middle-follower-edit" class="row">
-							<div  id="myModal" class="modal">
-								<div  class="modal-content">
-									<div id="mu-close" class="float-right">
-										<i class="fa fa-times float-right" ng-click="closeEdit()">
-										</i>
+					</div>
+					<div ng-show="editMiddleFollower" id="middle-follower-edit" class="row">
+						<div  id="myModal" class="modal">
+							<div  class="modal-content">
+								<div id="mu-close" class="float-right">
+									<i class="fa fa-times float-right" ng-click="closeEdit()">
+									</i>
+								</div>
+								<div id="middle-follower-edit-card">
+									<div>
+										<img alt="" id="mu-edit-profile-pic">
 									</div>
-									<div id="middle-follower-edit-card">
-										<div>
-											<img alt="" id="mu-edit-profile-pic">
-										</div>
-										<div>
-											<div class="desc"><p id="mu-edit-name"></p></div>
-											<div class="desc"><p id="mu-edit-screen-name"></p></div>
-											<div class="desc"><p id="mu-edit-followers"></p></div>
-											<button class="btn-sm btn-light" ng-click="addMiddleFollower()">Add</button>
-										</div>
+									<div>
+										<div class="desc"><p id="mu-edit-name"></p></div>
+										<div class="desc"><p id="mu-edit-screen-name"></p></div>
+										<div class="desc"><p id="mu-edit-followers"></p></div>
+										<button class="btn-sm btn-light" ng-click="addMiddleFollower()">Add</button>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 				<div id="page-navigation" class="row">
 					<div class="col-3 text-left"><md-button aria-label="Left" class="float-left fa fa-caret-left" ng-click="onLeftBtnAllFollowers($event)"></md-button></div>
 					<div class="col-6"> <div class="align-content-center">{{pagename}}</div></div>
 					<div class="col-3 float-left"><md-button aria-label="Right" class="float-right fa fa-caret-right" ng-click="onRightBtnAllFollowers($event)"></md-button></div>
+
+				</div>
+			</div>
+			<div ng-show="allactive" md-swipe-right="onSwipeRightAllActive($event, $target)" md-swipe-left="onSwipeLeftAllActive($event, $target)">
+				<div class="svg-class">
+					<all-active acquaintances="acquaintancesAllActive"
+								bridges="bridgesAllActive"
+								middle="middleActive"
+								middle-user="middleActiveUser"
+								max-follower="maxActive"
+								min-follower="minActive"
+								disabled-followers="disabledAllActive"
+								edit="editMiddleActive"></all-active>
+					<div class="row mx-auto">
+						<div id="added_followers">
+							<!--<div id="bigger-semi-circle">-->
+							<div id="semi-circle-active" ng-click="onSelectMessage(2, $event)"></div>
+							<!--</div>-->
+						</div>
+					</div>
+					<div ng-show="!editMiddleActive" id="middle-active" class="row">
+						<div id="middle-follower-card">
+							<div class="row mx-auto">
+								<div class="col-2 nopadding">
+									<button id="right-circle-btn" ng-click="onSwipeLeftAllActive($event)"></button>
+								</div>
+								<div class="col-8">
+									<div id="circle-user-info">
+										<div class="align-content-center">
+											<div>
+												<img ng-click="onActiveImageClick()" alt="" id="mu-profile-pic-active">
+											</div>
+											<div>
+												<div><p id="mu-name-active"></p></div>
+												<div><p id="mu-screen-name-active"></p></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-2 nopadding">
+									<button id="left-circle-btn" ng-click="onSwipeRightAllActive($event)"></button>
+								</div>
+							</div>
+						</div>
+						<div class="grey-bg">
+							<div class="row mx-auto" id="maxMinBtns">
+								<div class="col-6">
+									<div>Minimum</div>
+									<mat-form-field>
+										<select id="minFollowerFld"
+												ng-model="minActive"
+												ng-options="x for x in bridgesAllActive">
+										</select>
+									</mat-form-field>
+								</div>
+								<div class="col-6">
+									<div>Maximum</div>
+									<mat-form-field>
+										<select id="maxFollowerFld"
+												ng-model="maxActive"
+												ng-options="x for x in bridgesAllActive">
+										</select>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row" id="addFollower">
+								<div class="col-12 align-content-center text-center" >
+									<button class="btn-light" ng-click="addActive()">Add</button>
+								</div>
+							</div>
+						</div>
+						<div class="row mx-auto">
+							<div id="all-active-scatterplot"></div>
+						</div>
+					</div>
+					<div ng-show="editMiddleActive" id="middle-active-edit" class="row">
+						<div  id="myModal" class="modal">
+							<div  class="modal-content">
+								<div id="mu-close" class="float-right">
+									<i class="fa fa-times float-right" ng-click="closeEditActive()">
+									</i>
+								</div>
+								<div id="middle-follower-edit-card">
+									<div>
+										<img alt="" id="mu-edit-profile-pic-active">
+									</div>
+									<div>
+										<div class="desc"><p id="mu-edit-name-active"></p></div>
+										<div class="desc"><p id="mu-edit-screen-name-active"></p></div>
+										<div class="desc"><p id="mu-edit-followers-active"></p></div>
+										<button class="btn-sm btn-light" ng-click="addMiddleActive()">Add</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="page-navigation" class="row">
+					<div class="col-3 text-left"><md-button aria-label="Left" class="float-left fa fa-caret-left" ng-click="onLeftBtnAllActive($event)"></md-button></div>
+					<div class="col-6"> <div class="align-content-center">{{pagename}}</div></div>
+					<div class="col-3 float-left"><md-button aria-label="Right" class="float-right fa fa-caret-right" ng-click="onRightBtnAllActive($event)"></md-button></div>
+
+				</div>
+			</div>
+			<div ng-show="allinteractive" md-swipe-right="onSwipeRightAllInteractive($event, $target)" md-swipe-left="onSwipeLeftAllInteractive($event, $target)">
+				<div class="svg-class">
+					<all-interactive acquaintances="acquaintancesAllInteractive"
+									 bridges="bridgesAllInteractive"
+									 middle="middleInteractive"
+									 middle-user="middleInteractiveUser"
+									 max-follower="maxInteractive"
+									 min-follower="minInteractive"
+									 disabled-followers="disabledAllInteractive"
+									 edit="editMiddleInteractive"></all-interactive>
+					<div class="row mx-auto">
+						<div id="added_followers">
+							<!--<div id="bigger-semi-circle">-->
+							<div id="semi-circle-interactive" ng-click="onSelectMessage(3, $event)"></div>
+							<!--</div>-->
+						</div>
+					</div>
+					<div ng-show="!editMiddleInteractive" id="middle-interactive" class="row">
+						<div id="middle-follower-card">
+							<div class="row mx-auto">
+								<div class="col-2 nopadding">
+									<button id="right-circle-btn" ng-click="onSwipeLeftAllInteractive($event)"></button>
+								</div>
+								<div class="col-8">
+									<div id="circle-user-info">
+										<div class="align-content-center">
+											<div>
+												<img ng-click="onInteractiveImageClick()" alt="" id="mu-profile-pic-interactive">
+											</div>
+											<div>
+												<div><p id="mu-name-interactive"></p></div>
+												<div><p id="mu-screen-name-interactive"></p></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-2 nopadding">
+									<button id="left-circle-btn" ng-click="onSwipeRightAllInteractive($event)"></button>
+								</div>
+							</div>
+						</div>
+						<div class="grey-bg">
+							<div class="row mx-auto" id="maxMinBtns">
+								<div class="col-6">
+									<div>Minimum</div>
+									<mat-form-field>
+										<select id="minFollowerFld"
+												ng-model="minInteractive"
+												ng-options="x for x in bridgesAllInteractive">
+										</select>
+									</mat-form-field>
+								</div>
+								<div class="col-6">
+									<div>Maximum</div>
+									<mat-form-field>
+										<select id="maxFollowerFld"
+												ng-model="maxInteractive"
+												ng-options="x for x in bridgesAllInteractive">
+										</select>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row" id="addFollower">
+								<div class="col-12 align-content-center text-center" >
+									<button class="btn-light" ng-click="addInteractive()">Add</button>
+								</div>
+							</div>
+						</div>
+						<div class="row mx-auto">
+							<div id="all-interactive-scatterplot"></div>
+						</div>
+					</div>
+					<div ng-show="editMiddleInteractive" id="middle-interactive-edit" class="row">
+						<div  id="myModal" class="modal">
+							<div  class="modal-content">
+								<div id="mu-close" class="float-right">
+									<i class="fa fa-times float-right" ng-click="closeEditInteractive()">
+									</i>
+								</div>
+								<div id="middle-follower-edit-card">
+									<div>
+										<img alt="" id="mu-edit-profile-pic-interactive">
+									</div>
+									<div>
+										<div class="desc"><p id="mu-edit-name-interactive"></p></div>
+										<div class="desc"><p id="mu-edit-screen-name-interactive"></p></div>
+										<div class="desc"><p id="mu-edit-followers-interactive"></p></div>
+										<button class="btn-sm btn-light" ng-click="addMiddleInteractive()">Add</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="page-navigation" class="row">
+					<div class="col-3 text-left"><md-button aria-label="Left" class="float-left fa fa-caret-left" ng-click="onLeftBtnAllInteractive($event)"></md-button></div>
+					<div class="col-6"> <div class="align-content-center">{{pagename}}</div></div>
+					<div class="col-3 float-left"><md-button aria-label="Right" class="float-right fa fa-caret-right" ng-click="onRightBtnAllInteractive($event)"></md-button></div>
 
 				</div>
 			</div>
