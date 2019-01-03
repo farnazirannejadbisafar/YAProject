@@ -182,7 +182,7 @@ exports.filter_all_active = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "all followers",
+            message: "all active",
             screennames: user.twitter.followers.slice(1).sort(sortactive_asc).map(a => a.screen_name),
             followerlength: user.twitter.followers.slice(1).sort(sortactive_asc).map(a => a.statuses_count)
     });
@@ -207,7 +207,7 @@ exports.filter_all_interactive = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "all followers",
+            message: "all interactive",
             screennames: user.twitter.followers.slice(1).sort(sortinteractive_asc).map(a => a.screen_name),
             followerlength: user.twitter.followers.slice(1).sort(sortinteractive_asc).map(a => a.favourites_count)
     });
@@ -234,7 +234,7 @@ exports.filter_middle_active = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "middle user followers",
+            message: "middle user active",
             userdetails: user.twitter.followers.slice(1).sort(sortactive_asc)[index]
     });
     }
@@ -260,7 +260,7 @@ exports.filter_middle_interactive = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "middle user followers",
+            message: "middle user interactive",
             userdetails: user.twitter.followers.slice(1).sort(sortinteractive_asc)[index]
         });
     }
