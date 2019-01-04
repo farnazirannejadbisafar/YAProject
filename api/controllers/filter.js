@@ -224,7 +224,7 @@ exports.filter_all_interactive = (req, res, next) => {
 
 exports.filter_middle_active = (req, res, next) => {
     const id = req.params.userId;
-    const index = req.param.index;
+    const index = req.params.index;
 
     User.findById(id)
         .then(user => {
@@ -234,9 +234,9 @@ exports.filter_middle_active = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "middle user active",
-            userdetails: user.twitter.followers.slice(1).sort(sortactive_asc)[index]
-    });
+            message: "middle user followers",
+            userdetails: user.twitter.mutualconnections.slice(1).sort(sortit_asc)[index]
+        });
     }
 })
 .catch(err => {
@@ -246,11 +246,12 @@ exports.filter_middle_active = (req, res, next) => {
     });
 });
 };
+
 
 
 exports.filter_middle_interactive = (req, res, next) => {
     const id = req.params.userId;
-    const index = req.param.index;
+    const index = req.params.index;
 
     User.findById(id)
         .then(user => {
@@ -260,8 +261,8 @@ exports.filter_middle_interactive = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "middle user interactive",
-            userdetails: user.twitter.followers.slice(1).sort(sortinteractive_asc)[index]
+            message: "middle user followers",
+            userdetails: user.twitter.mutualconnections.slice(1).sort(sortit_asc)[index]
         });
     }
 })
@@ -272,6 +273,7 @@ exports.filter_middle_interactive = (req, res, next) => {
     });
 });
 };
+
 
 exports.filter_middle_followers = (req, res, next) => {
     const id = req.params.userId;
