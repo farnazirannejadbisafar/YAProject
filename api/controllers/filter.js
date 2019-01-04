@@ -234,8 +234,8 @@ exports.filter_middle_active = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "middle user followers",
-            userdetails: user.twitter.followers.slice(1).sort(sortit_asc)[index]
+            message: "middle user active",
+            userdetails: user.twitter.followers.slice(1).sort(sortactive_asc)[index]
         });
     }
 })
@@ -261,7 +261,7 @@ exports.filter_middle_interactive = (req, res, next) => {
         });
     } else {
         res.status(200).json({
-            message: "middle user followers",
+            message: "middle user interactive",
             userdetails: user.twitter.followers.slice(1).sort(sortinteractive_asc)[index]
         });
     }
