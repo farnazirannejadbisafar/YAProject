@@ -408,19 +408,19 @@ a:not([href]):not([tabindex]){
 .w3-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
 .w3-btn,.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 
-#follower-filter-body{
+.follower-filter-body{
   width: 318px;
   text-align: center;
   padding: 1px;
 }
 
-#added_followers{
+#added_followers, #added_followers2, #added_followers3{
   width: 318px;
   height: 100px;
   text-align: center;
 }
 
-#semi-circle{
+.semi-circle{
   background: yellow;
   display: inline-block;
   width: 165px;
@@ -446,7 +446,7 @@ a:not([href]):not([tabindex]){
   text-align: center;
 }
 
-#middle-follower-card{
+#middle-follower-card, #middle-follower-card2, #middle-follower-card3{
   text-align: center;
 }
 
@@ -466,26 +466,26 @@ a:not([href]):not([tabindex]){
   padding:0;
 }
 
-#maxMinBtns {
+.maxMinBtns {
   width: 300px;
   height: 30px;
   margin-top: 15px;
   padding: 0;
 }
 
-#addFollower {
+.addFollower {
     width: 300px;
     height: 30px;
     margin-top: 50px;
     padding: 0;
 }
 
-#minFollowerFld, #maxFollowerFld{
+.minFollowerFld, .maxFollowerFld{
   width:110px;
 }
 
-#right-circle-btn,
-#left-circle-btn {
+.right-circle-btn,
+.left-circle-btn {
   height: 70px;
   width: 35px;
   border-width: 0;
@@ -493,17 +493,17 @@ a:not([href]):not([tabindex]){
   margin: 0;
 }
 
-#right-circle-btn {
+.right-circle-btn {
   border-bottom-right-radius: 70px;
   border-top-right-radius: 70px;
 }
 
-#left-circle-btn {
+.left-circle-btn {
   border-bottom-left-radius: 70px;
   border-top-left-radius: 70px;
 }
 
-#mu-profile-pic, #mu-profile-pic-active, #mu-profile-pic-interactive {
+.mu-profile-pic, .mu-profile-pic-active, .mu-profile-pic-interactive {
   width: 70px;
   height: 70px;
   border-radius: 50%;
