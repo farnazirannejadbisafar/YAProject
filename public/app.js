@@ -3664,15 +3664,15 @@
         }
 
         function displayMiddleActive(followerArrray) {
-            $scope.middleActive = followerArrray.userdetails;
-            $scope.maxActive = $scope.middleActive.followers_count;
-            $scope.minActive = $scope.middleActive.followers_count;
+            $scope.middleActiveUser = followerArrray.userdetails;
+            $scope.maxActive = $scope.middleActiveUser.followers_count;
+            $scope.minActive = $scope.middleActiveUser.followers_count;
         }
 
         function displayMiddleInteractive(followerArrray) {
-            $scope.middleInteractive = followerArrray.userdetails;
-            $scope.maxInteractive = $scope.middleInteractive.followers_count;
-            $scope.minInteractive = $scope.middleInteractive.followers_count;
+            $scope.middleInteractiveUser = followerArrray.userdetails;
+            $scope.maxInteractive = $scope.middleInteractiveUser.followers_count;
+            $scope.minInteractive = $scope.middleInteractiveUser.followers_count;
         }
 
         function filterError() {
