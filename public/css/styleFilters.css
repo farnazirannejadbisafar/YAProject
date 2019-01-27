@@ -420,7 +420,7 @@ a:not([href]):not([tabindex]){
   text-align: center;
 }
 
-.semi-circle{
+.semi-circle, .semi-circle-active, semi-circle-interactive{
   background: yellow;
   display: inline-block;
   width: 165px;
