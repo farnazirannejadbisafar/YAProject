@@ -333,9 +333,14 @@
 			<div ng-show="messagefollowers" md-swipe-right="onSwipeRightMessageFollowers($event, $target)" md-swipe-left="onSwipeLeftMessageFollowers($event, $target)" class="carousel-item active">
 				<h2 class="text-center text-uppercase text-secondary mb-0 h2-class">Send Message</h2>
 				<div>
-					<mat-grid-list cols={{taggedColNum}}>
-						<mat-grid-tile *ngFor="let follower of taggedAllFollowers">{{follower}}</mat-grid-tile>
-					</mat-grid-list>
+					<!--<mat-grid-list cols={{taggedColNum}}>-->
+						<!--<mat-grid-tile *ngFor="let follower of taggedAllFollowers">{{follower}}</mat-grid-tile>-->
+					<!--</mat-grid-list>-->
+					<table>
+						<tr *ngFor="let follower of taggedAllFollowers">
+							<td>{{follower}}</td>
+						</tr>
+					</table>
 				</div>
 				<div class="row svg-class">
 					<div class="col-6 button-move">
