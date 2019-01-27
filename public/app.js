@@ -3066,16 +3066,16 @@
             $scope.disabledAll = [];
 
             if (pageNum === 1){
-                $scope.taggedAll = $scope.taggedAllFollowers.splice();
-                $scope.disabledAll = $scope.disabledAllFollowers.splice();
+                $scope.taggedAll = $scope.taggedAllFollowers.slice();
+                $scope.disabledAll = $scope.disabledAllFollowers.slice();
             }
             else if (pageNum === 2){
-                $scope.taggedAll = $scope.taggedAllActive.splice();
-                $scope.disabledAll = $scope.disabledAllActive.splice();
+                $scope.taggedAll = $scope.taggedAllActive.slice();
+                $scope.disabledAll = $scope.disabledAllActive.slice();
             }
             else if (pageNum === 3) {
-                $scope.taggedAll = $scope.taggedAllInteractive.splice();
-                $scope.disabledAll = $scope.disabledAllInteractive.splice();
+                $scope.taggedAll = $scope.taggedAllInteractive.slice();
+                $scope.disabledAll = $scope.disabledAllInteractive.slice();
             }
 
             $scope.prevPageNum = pageNum;
