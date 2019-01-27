@@ -337,7 +337,7 @@
 						<!--<mat-grid-tile *ngFor="let follower of taggedAllFollowers">{{follower}}</mat-grid-tile>-->
 					<!--</mat-grid-list>-->
 					<table>
-						<tr ng-repeat="let follower of taggedAllFollowers">
+						<tr *ngFor="let follower of taggedAll">
 							<td>{{follower}}</td>
 						</tr>
 					</table>
