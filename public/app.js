@@ -3160,9 +3160,9 @@
         };
 
         $scope.onLeftBtnAllFollowers = function (ev) {
-            $scope.allActive = 1;
             $scope.allfollowers = undefined;
             $scope.allinteractive = undefined;
+            $scope.allActive = 1;
             $scope.pagename = 'All Active';
         };
 
@@ -3634,7 +3634,7 @@
         function displayAllActive(followerArrray) {
             $scope.acquaintancesAllActive = followerArrray.screennames;
             $scope.bridgesAllActive = followerArrray.followerlength;
-            $scope.allActive = followerArrray.screennames.length;
+            // $scope.allActive = followerArrray.screennames.length;
 
             $scope.lenActive = $scope.acquaintancesAllActive.length;
             $scope.middleActive = 0;
@@ -3647,7 +3647,7 @@
         function displayAllInteractive(followerArrray) {
             $scope.acquaintancesAllInteractive = followerArrray.screennames;
             $scope.bridgesAllInteractive = followerArrray.followerlength;
-            $scope.allInteractive = followerArrray.screennames.length;
+            // $scope.allInteractive = followerArrray.screennames.length;
 
             $scope.lenInteractive = $scope.acquaintancesAllInteractive.length;
             $scope.middleInteractive = 0;
