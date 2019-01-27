@@ -3112,7 +3112,7 @@
         };
 
         $scope.onSwipeLeftAllFollowers = function (ev) {
-            if ($scope.middle < $scope.len){
+            if ($scope.middle < $scope.len - 1){
                 $scope.middle = $scope.middle + 1;
                 filterService.getMiddleFollower($scope.userId, $scope.middle, $scope.token)
                     .then(displayMiddleUser, filterError);
@@ -3128,7 +3128,7 @@
         };
 
         $scope.onSwipeLeftAllActive = function (ev, target) {
-            if ($scope.middleActive < $scope.lenActive){
+            if ($scope.middleActive < $scope.lenActive - 1){
                 $scope.middleActive = $scope.middleActive + 1;
                 filterService.getMiddleActive($scope.userId, $scope.middleActive, $scope.token)
                     .then(displayMiddleActive, filterError);
@@ -3144,7 +3144,7 @@
         };
 
         $scope.onSwipeLeftAllInteractive = function (ev, target) {
-            if ($scope.middleInteractive < $scope.lenInteractive){
+            if ($scope.middleInteractive < $scope.lenInteractive - 1){
                 $scope.middleActive = $scope.middleActive + 1;
                 filterService.getMiddleInteractive($scope.userId, $scope.middleActive, $scope.token)
                     .then(displayMiddleInteractive, filterError);
