@@ -2921,6 +2921,9 @@
         $scope.disabledAllActive = [];
         $scope.taggedAllActive = [];
 
+        $scope.disabledAll = [];
+        $scope.taggedAll = [];
+
         $scope.disabledAllInteractive = [];
         $scope.taggedAllInteractive = [];
 
@@ -3059,18 +3062,20 @@
         };
 
         $scope.onSelectMessage = function (pageNum, ev, target) {
+            $scope.taggedAll = [];
+            $scope.disabledAll = [];
+
             if (pageNum === 1){
-                $scope.taggedColNum = $scope.taggedAllFollowers.length % 3;
+                $scope.taggedAll = $scope.taggedAllFollowers.splice();
+                $scope.disabledAll = $scope.disabledAllFollowers.splice();
             }
             else if (pageNum === 2){
-                $scope.taggedColNum = $scope.taggedAllActive.length % 3;
+                $scope.taggedAll = $scope.taggedAllActive.splice();
+                $scope.disabledAll = $scope.disabledAllActive.splice();
             }
-            else if (pageNum === 3){
-                $scope.taggedColNum = $scope.taggedAllInteractive.length % 3;
-            }
-
-            if ($scope.taggedColNum === 0){
-                $scope.taggedColNum = 1;
+            else if (pageNum === 3) {
+                $scope.taggedAll = $scope.taggedAllInteractive.splice();
+                $scope.disabledAll = $scope.disabledAllInteractive.splice();
             }
 
             $scope.prevPageNum = pageNum;
@@ -3478,8 +3483,8 @@
         init();
 
         function addTags() {
-            if($scope.taggedAllFollowers.length > 0){
-                var tags = "@" + $scope.taggedAllFollowers.join(" @") + " ";
+            if($scope.taggedAll.length > 0){
+                var tags = "@" + $scope.taggedAll.join(" @") + " ";
                 $scope.sendmessage = tags;
             }
         }
